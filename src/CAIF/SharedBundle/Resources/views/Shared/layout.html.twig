@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="//use.fonticons.com/2d2cc9ab.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" type="image/ico" href="{{ asset('bundles/caifshared/images/favicon.png') }}"/>
+
+        <title>{% block title %}CAIF{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+            {% stylesheets
+                '@CAIFSharedBundle/Resources/public/css/bootstrap/bootstrap.css'
+                '@CAIFSharedBundle/Resources/public/css/custom.css'
+                '@CAIFSharedBundle/Resources/public/css/bootstrap-datepicker/bootstrap-datepicker.css'
+                '@CAIFSharedBundle/Resources/public/css/bootstrap-timepicker/bootstrap-timepicker.css'
+                '@CAIFSharedBundle/Resources/public/css/custom-typeahead.css'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+
+        <style type="text/css">
+            @font-face {
+                font-family: "Lato-Light";
+                src: url("{{ asset('bundles/caifshared/fonts/Lato-Light.ttf') }}")
+            }
+            @font-face {
+                font-family: "Lato";
+                src: url("{{ asset('bundles/caifshared/fonts/Lato-Light.ttf') }}")
+            }
+        </style>
+    </head>
+
+    <body>
+        {% include 'CAIFSharedBundle:Shared:nav.html.twig' %}
+
+        {% block flash_messages %}
+            {% set flashTypes = [ 'info', 'warning', 'error', 'success'] %}
+            {% set flashTypeMap = {
+                'info' : 'info',
+                'warning' : 'warning',
+                'error' : 'danger',
+                'success' : 'success',
+            } %}
+            {% for flashType in flashTypes %}
+                {% for flashMessage in app.session.flashbag.get(flashType) %}
+                    <div class="hidden-print alert alert-dismissible alert-{{ flashTypeMap[flashType] }}" role="alert" style="margin-bottom: 0px;">
+                        <div class="container">
+                            <strong>
+                                {{ flashMessage|raw }}
+                            </strong>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endblock %}
+
+        {% block page_title %}
+            <div style="height: 125px;">
+                <div style="height: 125px; overflow: hidden;">
+                    <img src="{{ asset('bundles/caifshared/images/purpleBar.png') }}" class="header-background-home pull-right">
+                </div>
+                <div class="container" style="margin-top: -125px; position: relative; padding: 40px;">
+                    <div class="pull-right hidden-xs" style="margin-top: -25px;">
+                        <a href="{{ path('caif_shared_student_form') }}" class="btn-header pull-right">
+                            International Student Form
+                        </a>
+                        <a href="{{ path('caif_shared_host_form') }}" class="btn-header pull-right" style="margin-right: 10px;">
+                            Community Member Form
+                        </a>
+                    </div>
+                    <h1 class="color-white main-heading">
+                        {% block page_title_header %}{% endblock %}
+                    </h1>
+                </div>
+            </div>
+        {% endblock %}
+
+        <div class="content">
+            <div id="page-wrapper">
+                {% block container_content %}
+                    {#<div class="container" style="border: 1px solid #eee; border-top: none; background-color: #fff;">#}
+                    <div class="container">
+                        <div class="row">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                        <br>
+                    </div>
+                {% endblock %}
+                <hr>
+                {% block footer %}
+                    <br>
+                    <div class="container">
+                        <div class="row hidden-xs">
+                            <div class="col-sm-2">
+                                <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" style="font-size: 30px;" class="light-grey" target="_blank">
+                                    {{ icon('facebook-square') }}
+                                </a>
+                            </div>
+                            <div class="col-sm-10">
+                                <h4 class="light-grey pull-right">
+                                    Copyright &copy; {{ "now"|date('Y') }}
+                                    Clemson Area International Friendship
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="visible-xs">
+                            <center class="light-grey">
+                                <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" style="font-size: 30px;" class="light-grey" target="_blank">
+                                    {{ icon('facebook-square') }}
+                                </a>
+                                <br>
+                                Copyright &copy; {{ "now"|date('Y') }}
+                                Clemson Area International Friendship
+                            </center>
+                        </div>
+                    </div>
+                    <br>
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block javascripts %}
+
+            {% javascripts
+                'bundles/caifshared/js/jquery-1.11.1.min.js'
+                'bundles/caifshared/js/lib/bootstrap/bootstrap.js'
+                'bundles/caifshared/js/lib/bootstrap-datepicker/bootstrap-datepicker.js'
+                'bundles/caifshared/js/lib/bootstrap-timepicker/bootstrap-timepicker.js'
+                'bundles/caifshared/js/bloodhound.js'
+                'bundles/caifshared/js/typeahead.js'
+                'bundles/caifshared/js/custom-typeahead.js'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            <script>
+                $('.js-row-click').on('click', function(e) {
+                    window.location.href = $(this).attr('id');
+                })
+
+                /* timepicker */
+                $('.timepicker').timepicker({showInputs: false});
+
+
+                /* datepicker */
+                $('.datepicker').datepicker();
+                $('tbody').on('click', function(e){
+                    $('.datepicker-days').parent().hide();
+                })
+
+                var is_chrome = window.chrome;
+                if ( is_chrome ) {
+                    $('input[type=date]').on('click', function(event) {
+                        event.preventDefault();
+                    });
+
+                    $('input[type=time]').on('click', function(event) {
+                        event.preventDefault();
+                    });
+                }
+            </script>
+
+        {% endblock %}
+    </body>
+</html>

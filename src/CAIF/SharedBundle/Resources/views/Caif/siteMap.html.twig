@@ -1,0 +1,70 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Site Map
+{% endblock %}
+
+{% block content %}
+    <div class="col-xs-12 col-md-3">
+        {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
+        {{ macros.help_sub_nav('site-map') }}
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <br>
+        <ul>
+            <li>
+                <strong>Home</strong>
+                <ul>
+                    <li><a href="{{ path('caif_shared_index') }}">Home</a></li>
+                    <li><a href="{{ path('caif_shared_quotes') }}">What Folks Are Saying</a></li>
+                    <li><a href="{{ path('caif_shared_officers') }}">Officers</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong>Students</strong>
+                <ul>
+                    <li><a href="{{ path('caif_shared_student_form') }}">Form</a></li>
+                    <li><a href="{{ path('caif_shared_student_guidelines') }}">Guidelines</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong>Community Members</strong>
+                <ul>
+                    <li><a href="{{ path('caif_shared_host_about') }}">About The Program</a></li>
+                    <li><a href="{{ path('caif_shared_host_form') }}">Form</a></li>
+                    <li><a href="{{ path('caif_shared_host_guidelines') }}">Guidelines</a></li>
+                    <li><a href="{{ path('caif_shared_host_activity') }}">Activity Ideas</a></li>
+                    <li><a href="{{ path('caif_shared_host_conversation') }}">Conversation Starters</a></li>
+                    <li><a href="{{ path('caif_shared_host_serve') }}">What To Serve</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong>Events and Services</strong>
+                <ul>
+                    <li><a href="{{ path('caif_shared_event_index') }}">Events</a></li>
+                    <li><a href="{{ path('caif_shared_event_english_classes') }}">English Classes</a></li>
+                    <li><a href="{{ path('caif_shared_event_intl_club') }}">International Club</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong><a href="{{ path('caif_shared_contact') }}">Contact Us</a></strong>
+            </li>
+            <li>
+                <strong>Login</strong>
+                <ul>
+                    <li>
+                        <strong>My Profile</strong>
+                        <ul>
+                            <li>Overview</li>
+                            <li>Edit Profile</li>
+                            <li>Change Password</li>
+                            <li>View Community Member / Student Profile</li>
+                        </ul>
+                    </li>
+                    <li>Help</li>
+                    <li>Logout</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

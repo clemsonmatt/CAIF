@@ -1,0 +1,619 @@
+{# check for archived #}
+{% macro check_archived(person) %}
+    {% if not person.active %}
+        <div class="alert alert-danger">
+            <strong>
+                {{ icon('exclamation-triangle') }}
+                Archived
+            </strong>
+            <a href="{{ path('caif_shared_profile_unarchive', {'person': person.id}) }}" class="text-danger pull-right">
+                Click here to re-activate
+            </a>
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{# student sub nav #}
+{% macro student(person, active_tab) %}
+    <br>
+    <center>
+        <div style="display: block;
+            width: 200px;
+            height: 200px;
+            background: #E6E7ED;
+            border-radius: 100px;
+            -webkit-border-radius: 100px;
+            background-image: url(
+                {{ asset('/uploads/' ~ person.photo|url_encode) }}
+            );
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;">
+        </div>
+    </center>
+    <hr>
+    <center>
+        Member since {{ person.createdAt|date('m/d/Y') }}
+    </center>
+    <hr>
+    <ul class="list-group sub-tabs">
+        <a href="{{ path('caif_shared_profile_student', {'person': person.id}) }}" class="list-group-item {% if active_tab == "overview" %}active{% endif %}">
+            Overview
+        </a>
+        <a href="{{ path('caif_shared_profile_student_edit', {'person': person.id}) }}" class="list-group-item {% if active_tab == "edit" %}active{% endif %}">
+            Edit Profile
+        </a>
+        <a href="{{ path('caif_shared_profile_password_change', {'person': person.id}) }}" class="list-group-item {% if active_tab == "password" %}active{% endif %}">
+            Change Password
+        </a>
+        <a href="{{ path('caif_shared_profile_student_host', {'person': person.id}) }}" class="list-group-item {% if active_tab == "host" %}active{% endif %}">
+            Host Profile
+        </a>
+    </ul>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        {% if person.active %}
+            <a href="{{ path('caif_shared_profile_archive', {'person': person.id}) }}" class="btn btn-danger-inverse btn-block">
+                {{ icon('archive') }}
+                Archive
+            </a>
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{# host sub nav #}
+{% macro host(person, active_tab) %}
+    <br>
+    <center>
+        <div style="display: block;
+            width: 200px;
+            height: 200px;
+            background: #E6E7ED;
+            border-radius: 100px;
+            -webkit-border-radius: 100px;
+            background-image: url(
+                {{ asset('/uploads/' ~ person.photo|url_encode) }}
+            );
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;">
+        </div>
+    </center>
+
+    <hr>
+    <center>
+        Member since {{ person.createdAt|date('m/d/Y') }}
+    </center>
+    <hr>
+    <ul class="list-group sub-tabs">
+        <a href="{{ path('caif_shared_profile_host', {'person': person.id}) }}" class="list-group-item {% if active_tab == "overview" %}active{% endif %}">
+            Overview
+        </a>
+        <a href="{{ path('caif_shared_profile_member_edit', {'person': person.id}) }}" class="list-group-item {% if active_tab == "edit" %}active{% endif %}">
+            Edit Profile
+        </a>
+        <a href="{{ path('caif_shared_profile_password_change', {'person': person.id}) }}" class="list-group-item {% if active_tab == "password" %}active{% endif %}">
+            Change Password
+        </a>
+        {% if person.hosting %}
+            <a href="{{ path('caif_shared_profile_host_student', {'person': person.id}) }}" class="list-group-item {% if active_tab == "students" %}active{% endif %}">
+                Student Profile(s)
+            </a>
+        {% endif %}
+    </ul>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('caif_shared_profile_archive', {'person': person.id}) }}" class="btn btn-danger-inverse btn-block">
+            {{ icon('archive') }}
+            Archive
+        </a>
+    {% endif %}
+{% endmacro %}
+
+{# student profile #}
+{% macro student_profile(person, show_all) %}
+    {% if show_all == false %}
+        {# show photo on left then contact info on right -- this is for host viewing student #}
+        <div class="row">
+            <div class="col-md-5">
+                <br>
+                {% if person.photo != null %}
+                    <img src="{{ asset('/uploads/' ~ person.photo|url_encode) }}" style="max-height: 310px; max-width: 100%;">
+                {% else %}
+                    <div style="background-color: #f8f6f9; height: 310px; width: 100%;">
+                        <center style="font-size: 180px;">
+                            {{ icon('user') }}
+                        </center>
+                    </div>
+                {% endif %}
+                <hr>
+                <h3 class="secondary-color">{{ person }}</h3>
+                Member since {{ person.createdAt|date('m/d/Y') }}
+                <hr>
+            </div>
+            <div class="col-md-7">
+                <h3>Contact</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">First Name</th>
+                        <td>{{ person.firstName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{ person.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{ person.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ person.email }}</td>
+                    </tr>
+                </table>
+
+                <h3>Address</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">Apt. Complex</th>
+                        <td>{{ person.apartmentComplex }}</td>
+                    </tr>
+                    <tr>
+                        <th>Apt. Number</th>
+                        <td>{{ person.apartmentNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mailing Address</th>
+                        <td>{{ person.mailingAddress }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ person.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Zip</th>
+                        <td>{{ person.zip }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% else %}
+        {# this is stu viewing themself #}
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Contact</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">First Name</th>
+                        <td>{{ person.firstName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{ person.lastName }}</td>
+                    </tr>
+                    {% if show_all %}
+                        <tr>
+                            <th>Username</th>
+                            <td>{{ person.username }}</td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{ person.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ person.email }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h3>Address</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">Apt. Complex</th>
+                        <td>{{ person.apartmentComplex }}</td>
+                    </tr>
+                    <tr>
+                        <th>Apt. Number</th>
+                        <td>{{ person.apartmentNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mailing Address</th>
+                        <td>{{ person.mailingAddress }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ person.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Zip</th>
+                        <td>{{ person.zip }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    <h3>Additional Information</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th class="col-sm-3">Birthday</th>
+            <td>
+                {% if person.birthday != null %}
+                    {{ person.birthday|date('m/d/Y') }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Home Country</th>
+            <td>{{ person.homeCountryName }}</td>
+        </tr>
+        <tr>
+            <th>Degree Program</th>
+            <td>{{ person.degreeProgram }}</td>
+        </tr>
+        <tr>
+            <th>Area of Study</th>
+            <td>{{ person.areaOfStudy }}</td>
+        </tr>
+        <tr>
+            <th>Allergies</th>
+            <td>{{ person.allergies }}</td>
+        </tr>
+        <tr>
+            <th>Known Languages</th>
+            <td>{{ person.languages }}</td>
+        </tr>
+        <tr>
+            <th>Places Traveled</th>
+            <td>{{ person.travel }}</td>
+        </tr>
+        <tr>
+            <th>Favorite Activities</th>
+            <td>{{ person.activities }}</td>
+        </tr>
+        <tr>
+            <th>Does Not Eat</th>
+            <td>{{ person.dneFoods }}</td>
+        </tr>
+        <tr>
+            <th>Marital Status</th>
+            <td>
+                {% if person.maritalStatus == 'married' %}
+                    Married
+                    <br>
+                    {% if person.spouseHere %}
+                        Spouse is in America
+                    {% else %}
+                        Spouse is not in America
+                    {% endif %}
+                {% else %}
+                    Single
+                {% endif %}
+
+                {% if person.spouseName != null %}
+                    <br>
+                    <strong>Spouse's Name:</strong>
+                    {{ person.spouseName }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Children</th>
+            <td>
+                {% if person.kidStatus %}
+                    Has children
+                    <br>
+                    {% if person.kidsHere %}
+                        Children are in America
+                    {% else %}
+                        Children are not in America
+                    {% endif %}
+                {% else %}
+                    No children
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Smoking Preference</th>
+            <td>
+                {% if person.smoke %}
+                    Smoking
+                {% else %}
+                    Non-smoking
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Car in the U.S.</th>
+            <td>
+                {% if person.car %}
+                    Has car
+                {% else %}
+                    Does not have car
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+{% endmacro %}
+
+{# host profile #}
+{% macro host_profile(person, show_all) %}
+    {% if show_all == false %}
+        {# show photo on left then contact info on right -- this is for stu viewing host #}
+        <div class="row">
+            <div class="col-md-5">
+                <br>
+                {% if person.photo != null %}
+                    <img src="{{ asset('/uploads/' ~ person.photo|url_encode) }}" style="max-height: 310px; width: 100%;">
+                {% else %}
+                    <div style="background-color: #f8f6f9; height: 310px; width: 100%;">
+                        <center style="font-size: 180px;">
+                            {{ icon('users') }}
+                        </center>
+                    </div>
+                {% endif %}
+                <hr>
+                <h3 class="secondary-color">{{ person }}</h3>
+                Member since {{ person.createdAt|date('m/d/Y') }}
+                <hr>
+            </div>
+            <div class="col-md-7">
+                <h3>Contact</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">Name</th>
+                        <td>{{ person.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Phone</th>
+                        <td>{{ person.mobilePhone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Home Phone</th>
+                        <td>{{ person.homePhone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Work Phone</th>
+                        <td>{{ person.workPhone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email(s)</th>
+                        <td>
+                            {{ person.email }}
+                            {% if person.secondaryEmail %}
+                                <br>
+                                {{ person.secondaryEmail }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+
+                <h3>Address</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">Address</th>
+                        <td>{{ person.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ person.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td>{{ person.state }}</td>
+                    </tr>
+                    <tr>
+                        <th>Zip</th>
+                        <td>{{ person.zip }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% else %}
+        {# just host viewing themself #}
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Contact</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">Name</th>
+                        <td>{{ person.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ person.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Phone</th>
+                        <td>{{ person.mobilePhone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Home Phone</th>
+                        <td>{{ person.homePhone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Work Phone</th>
+                        <td>{{ person.workPhone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email(s)</th>
+                        <td>
+                            {{ person.email }}
+                            {% if person.secondaryEmail %}
+                                <br>
+                                {{ person.secondaryEmail }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h3>Address</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">Address</th>
+                        <td>{{ person.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ person.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td>{{ person.state }}</td>
+                    </tr>
+                    <tr>
+                        <th>Zip</th>
+                        <td>{{ person.zip }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    <h3>Additional Information</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th class="col-sm-3">Children</th>
+            <td>
+                {% for child in person.children %}
+                    {%- if not loop.first -%},{% endif %}
+                    {{ child -}}
+                {% else %}
+                    None
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Pets</th>
+            <td>{{ person.petStatus }}</td>
+        </tr>
+        {% if person.petStatus != 'None' %}
+            <tr>
+                <th>Pet Type(s)</th>
+                <td>{{ person.petType }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <th>Hobbies</th>
+            <td>{{ person.hobbies }}</td>
+        </tr>
+        <tr>
+            <th>Travel</th>
+            <td>{{ person.travel }}</td>
+        </tr>
+        <tr>
+            <th>Languages</th>
+            <td>{{ person.languages }}</td>
+        </tr>
+        {% if show_all %}
+            <tr>
+                <th>Hosting</th>
+                <td>
+                    {% if person.hosting %}
+                        <table class="table table-bordered" style="margin-bottom: 0px;">
+                            <thead>
+                                <th colspan="2">Yes</th>
+                            </thead>
+                            <tr>
+                                <th class="col-sm-4">Student Preference</th>
+                                <td>{{ person.studentType }}</td>
+                            </tr>
+                            <tr>
+                                <th>Country</th>
+                                <td>{{ person.getCountryList[person.studentCountry] }}</td>
+                            </tr>
+                            <tr>
+                                <th>Number to Host</th>
+                                <td>{{ person.maxStudents }}</td>
+                            </tr>
+                        </table>
+                    {% else %}
+                        No
+                    {% endif %}
+                </td>
+            </tr>
+        {% endif %}
+    </table>
+
+    {% if show_all %}
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Other ways to be involved</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Wives Club</th>
+                        <td>
+                            {% if person.wivesClub %}
+                                Yes
+                            {% else %}
+                                <span class="light-grey">No</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Event Help</th>
+                        <td>
+                            {% if person.eventHelp %}
+                                Yes
+                            {% else %}
+                                <span class="light-grey">No</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Shopping Trips</th>
+                        <td>
+                            {% if person.shopping %}
+                                Yes
+                            {% else %}
+                                <span class="light-grey">No</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Group Outings</th>
+                        <td>
+                            {% if person.groupOuting %}
+                                Yes
+                            {% else %}
+                                <span class="light-grey">No</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Provide Meal</th>
+                        <td>
+                            {% if person.provideMeal %}
+                                Yes
+                            {% else %}
+                                <span class="light-grey">No</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            {# reference #}
+            <div class="col-md-6">
+                <h3>Reference Information</h3>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th class="col-sm-4">Name</th>
+                        <td>{{ person.referenceName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{ person.referencePhone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ person.referenceEmail }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endmacro %}

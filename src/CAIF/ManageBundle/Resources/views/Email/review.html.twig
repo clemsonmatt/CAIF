@@ -1,0 +1,54 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Manage Email
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('emails') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="{{ path('caif_manage_email_index') }}">
+                    Sent Emails
+                </a>
+                &raquo;
+                {% set event_var = null %}
+                {% if event_var != null %}
+                    {% set event_var = event.id %}
+                {% endif %}
+                <a href="{{ path('caif_manage_email_edit', {'email': email.id, 'event': event_var}) }}">
+                    Edit Email Details
+                </a>
+                &raquo;
+                Review
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Date</th>
+                        <td>{{ email.createdAt|date('m/d/Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th>To</th>
+                        <td>{{ email.to }} <span class="badge">{{ send_to|length }}</span></td>
+                    </tr>
+                    <tr>
+                        <th>Subject</th>
+                        <td>{{ email.subject }}</td>
+                    </tr>
+                </table>
+                <br>
+                {{ email.message|raw|nl2br }}
+                <a href="{{ path('caif_manage_email_send', {'email': email.id}) }}" class="btn btn-purple pull-right">
+                    {{ icon('send') }}
+                    Send
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

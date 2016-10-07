@@ -1,0 +1,38 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Manage Photo Albums
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('photos') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="{{ path('caif_manage_photo_index') }}">
+                    All Albums
+                </a>
+                &raquo;
+                {% if album is defined %}
+                    Edit
+                {% else %}
+                    Add
+                {% endif %}
+                Album
+            </div>
+            <div class="panel-body">
+                {{ form_start(form) }}
+                    {{ form_rest(form) }}
+                    <button class="btn btn-purple pull-right">
+                        {{ icon('check') }}
+                        Submit
+                    </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

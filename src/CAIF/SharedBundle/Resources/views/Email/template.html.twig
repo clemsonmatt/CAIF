@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="background-color: #ECF0F1; font-family: sans-serif;">
+    <table style="max-width: 600px; width: 100%; margin: 0 auto;">
+        {# heading #}
+        <tr style="padding: 10px 15px; height: 140px; width: 100%;">
+            <td style="width: 75%;">
+                <h2 style="color: #522D80; margin-top: 40px;">Clemson Area<br>International Friendship</h2>
+            </td>
+            <td style="width: 25%;">
+                <img src="http://caifclemson.org/bundles/caifshared/images/Clemson%20Intl.png" style="max-width: 100%; width: 150px; float: right;">
+            </td>
+        </tr>
+
+        {# body #}
+        <tr>
+            <td colspan="2">
+                <div style="border-radius: 3px;">
+                    <div style="background-color: #fff; padding: 5px 20px 20px 20px; border-top-left-radius: 3px; border-top-right-radius: 3px; z-index: -1;">
+                        <h3 style="color: #7F8C8D;">{{ subject }}</h3>
+
+                        {# message #}
+                        <div style="padding: 10px 20px; color: #999;">
+                            {{ message|raw|nl2br }}
+                        </div>
+
+                        <hr style="margin-top: 30px; margin-bottom: 10px; border: 0; border-top: 1px solid #eeeeee;">
+
+                        <div style="padding: 5px 20px 5px 20px; color: #ccc;">
+                            If any links above do not open in your browser when clicked, copy and paste the URL into your web browser.
+                            <br><br>
+                            This message is sent by the CAIF site. If you have any questions or think you have recieved this email by mistake, please contact Kathy Mabry at <a href="mailto:sccaif@gmail.com" style="color: #ccc;">sccaif@gmail.com</a>.
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        {# footer #}
+        <tr>
+            <td colspan="2">
+                <div style="background-color: #7F8C8D; color: #BDC3C7; padding: 20px 15% 20px 15%;">
+                    <h4>Kathy Mabry</h4>
+                    <ul style="list-style: none; padding-left: 0px;">
+                        <li>CAIF President</li>
+                        <li style="margin-top: 5px;">
+                            Email: <a href="mailto:sccaif@gmail.com" style="color: #BDC3C7;">sccaif@gmail.com</a>
+                        </li>
+                        <li style="margin-top: 5px;">
+                            Phone:
+                            <a href="tel:864-882-8141" style="color: #BDC3C7;">(864)-882-8141</a>,
+                            <a href="tel:864-710-2756" style="color: #BDC3C7;">(864)-710-2756</a>
+                        </li>
+                    </ul>
+                </div>
+
+                {# footer #}
+                <div style="background-color: #6F7C7D; padding: 25px 15% 25px 15%; color: #BDC3C7; text-align: center;">
+                    <a href="http://caifclemson.org" style="color: #BDC3C7;">
+                        caifclemson.org
+                    </a>
+                    &bull;
+                    <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" style="color: #BDC3C7;">
+                        Follow us on facebook
+                    </a>
+                    <br><br>
+                    Copyright &copy; {{ 'now'|date('Y') }} Clemson Area International Friendship
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

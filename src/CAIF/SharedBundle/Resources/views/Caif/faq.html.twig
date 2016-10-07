@@ -1,0 +1,123 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Frequently Asked Questions
+{% endblock %}
+
+{% block content %}
+    <div class="col-xs-12 col-md-3">
+        {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
+        {{ macros.help_sub_nav('faq') }}
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <br>
+
+        <blockquote class="light-grey">
+            If you have any additional questions, please contact our president Kathy Mabry by email: sccaif@gmail.com or by phone: (864)-882-8141 or (864)-710-2756.
+        </blockquote>
+
+        {# What is caif? #}
+        <div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+                <div class="panel-heading pointer collapsed js-more-info" id="caif-info" role="button" data-toggle="collapse" data-parent="#accordion" href="#detail-caif-info">
+                    <span class="pull-right" id="arrow-down-caif-info">{{ icon('chevron-down') }}</span>
+                    <span class="pull-right" id="arrow-up-caif-info" style="display: none;">{{ icon('chevron-up') }}</span>
+                    What is CAIF?
+                </div>
+                <div id="detail-caif-info" class="panel-collapse collapse" role="tabpanel">
+                    <div class="panel-body">
+                        Clemson Area International Friendship (CAIF) is a community organization which coordinates hospitality and support services for foreign students, faculty and visitors in the Clemson area. CAIF is a Community Section of the National Association for Foreign Student Affairs.
+                        <br><br>
+                        The mission of Clemson Area International Friendship is to provide a mutually supportive and positive experience for both the international visitor and the community member. CAlF members want to become goodwill ambassadors to all our international friends.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        {# become a member #}
+        <div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+                <div class="panel-heading pointer collapsed js-more-info" id="become-member" role="button" data-toggle="collapse" data-parent="#accordion" href="#detail-become-member">
+                    <span class="pull-right" id="arrow-down-become-member">{{ icon('chevron-down') }}</span>
+                    <span class="pull-right" id="arrow-up-become-member" style="display: none;">{{ icon('chevron-up') }}</span>
+                    How can I become a member of CAIF?
+                </div>
+                <div id="detail-become-member" class="panel-collapse collapse" role="tabpanel">
+                    <div class="panel-body">
+                        If you are a student, you can join the CAIF program by filling out the <a href="{{ path('caif_shared_student_form') }}">form here</a>. Once we have recieved your information, we will pair you with a community member as fast as possible. You will recieve an email once paired with additional information on who your commuinty member family is and what to do next.
+                        <br><br>
+                        If you would like to help international students by serving in the CAIF program as a commuinty member, <a href="{{ path('caif_shared_host_form') }}">fill out the form here</a>. If you select that you would like to host student, you will recieve an email after a student is paired with you.
+                        <br><br>
+                        For more information about what the CAIF program is see <a class="js-more-info" id="caif-info" role="button" data-toggle="collapse" data-parent="#accordion" href="#detail-caif-info">What is CAIF?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        {# login #}
+        <div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+                <div class="panel-heading pointer collapsed js-more-info" id="issue-login" role="button" data-toggle="collapse" data-parent="#accordion" href="#detail-issue-login">
+                    <span class="pull-right" id="arrow-down-issue-login">{{ icon('chevron-down') }}</span>
+                    <span class="pull-right" id="arrow-up-issue-login" style="display: none;">{{ icon('chevron-up') }}</span>
+                    I can't login to my account
+                </div>
+                <div id="detail-issue-login" class="panel-collapse collapse" role="tabpanel">
+                    <div class="panel-body">
+                        If you have forgot your password, click the "forgot password" link under the signin form. Then enter your CAIF username to recieve an email to reset your password.
+                        <br><br>
+                        If you do not remember your CAIF username, contact Kathy Mabry for help.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        {# unable to contact #}
+        {#<div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+                <div class="panel-heading pointer collapsed js-more-info" id="issue-contacting" role="button" data-toggle="collapse" data-parent="#accordion" href="#detail-issue-contacting">
+                    <span class="pull-right" id="arrow-down-issue-contacting">{{ icon('chevron-down') }}</span>
+                    <span class="pull-right" id="arrow-up-issue-contacting" style="display: none;">{{ icon('chevron-up') }}</span>
+                    I am unable to contact my student / community member
+                </div>
+                <div id="detail-issue-contacting" class="panel-collapse collapse" role="tabpanel">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>#}
+
+        {# update info #}
+        <div class="panel-group" id="accordion" role="tablist">
+            <div class="panel panel-default">
+                <div class="panel-heading pointer collapsed js-more-info" id="update-account" role="button" data-toggle="collapse" data-parent="#accordion" href="#detail-update-account">
+                    <span class="pull-right" id="arrow-down-update-account">{{ icon('chevron-down') }}</span>
+                    <span class="pull-right" id="arrow-up-update-account" style="display: none;">{{ icon('chevron-up') }}</span>
+                    How can I update my information?
+                </div>
+                <div id="detail-update-account" class="panel-collapse collapse" role="tabpanel">
+                    <div class="panel-body">
+                        First login to your CAIF account. If you don't remember your password, see <a class="js-more-info" id="issue-login" role="button" data-toggle="collapse" data-parent="#accordion" href="#detail-issue-login">I can't login to my account</a>. Once you have logged in, click the link "Edit Profile" in your profile.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $('.js-more-info').on('click', function(e){
+            $('#arrow-up-' + $(this).attr('id')).toggle();
+            $('#arrow-down-' + $(this).attr('id')).toggle();
+        })
+    </script>
+{% endblock %}

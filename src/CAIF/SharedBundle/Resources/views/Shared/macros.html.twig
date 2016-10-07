@@ -1,0 +1,124 @@
+{% macro home_sub_nav(active_tab) %}
+    <br>
+    <ul class="list-group sub-tabs">
+        <a href="{{ path('caif_shared_index') }}" class="list-group-item">
+            Home
+        </a>
+        <a href="{{ path('caif_shared_quotes') }}" class="list-group-item {% if active_tab == "quotes" %}active{% endif %}">
+            What Folks Are Saying
+        </a>
+        <a href="{{ path('caif_shared_officers') }}" class="list-group-item {% if active_tab == "officers" %}active{% endif %}">
+            Officers
+        </a>
+        <a href="{{ path('caif_shared_gallery') }}" class="list-group-item {% if active_tab == "photos" %}active{% endif %}">
+            Photo Gallery
+        </a>
+        {#<a href="#" class="list-group-item {% if active_tab == "newsletters" %}active{% endif %}">
+            Newsletters
+        </a>#}
+    </ul>
+{% endmacro %}
+
+{% macro student_sub_nav(active_tab) %}
+    <br>
+    <ul class="list-group sub-tabs">
+        <a href="{{ path('caif_shared_student_form') }}" class="list-group-item {% if active_tab == "form" %}active{% endif %}">
+            International Student Form
+        </a>
+        <a href="{{ path('caif_shared_student_guidelines') }}" class="list-group-item {% if active_tab == "guidelines" %}active{% endif %}">
+            Student Guidelines
+        </a>
+        {#<a href="#" class="list-group-item {% if active_tab == "us_life" %}active{% endif %}">
+            Life In The U.S.
+        </a>#}
+    </ul>
+{% endmacro %}
+
+{% macro host_sub_nav(active_tab) %}
+    <br>
+    <ul class="list-group sub-tabs">
+        <a href="{{ path('caif_shared_host_about') }}" class="list-group-item {% if active_tab == "about" %}active{% endif %}">
+            About The Program
+        </a>
+        <a href="{{ path('caif_shared_host_form') }}" class="list-group-item {% if active_tab == "form" %}active{% endif %}">
+            Community Member Form
+        </a>
+        <a href="{{ path('caif_shared_host_guidelines') }}" class="list-group-item {% if active_tab == "guidelines" %}active{% endif %}">
+            Community Member Guidelines
+        </a>
+        <a href="{{ path('caif_shared_host_activity') }}" class="list-group-item {% if active_tab == "activity" %}active{% endif %}">
+            Activity Ideas
+        </a>
+        <a href="{{ path('caif_shared_host_conversation') }}" class="list-group-item {% if active_tab == "conversation" %}active{% endif %}">
+            Conversation Starters
+        </a>
+        <a href="{{ path('caif_shared_host_serve') }}" class="list-group-item {% if active_tab == "serve" %}active{% endif %}">
+            What To Serve
+        </a>
+    </ul>
+{% endmacro %}
+
+{% macro event_sub_nav(active_tab) %}
+    <br>
+    <ul class="list-group sub-tabs">
+        <a href="{{ path('caif_shared_event_index') }}" class="list-group-item {% if active_tab == "events" %}active{% endif %}">
+            Current Events
+        </a>
+        {#<a href="{{ path('caif_shared_event_past') }}" class="list-group-item {% if active_tab == "past-events" %}active{% endif %}">
+            Past Events
+        </a>#}
+        <a href="{{ path('caif_shared_event_english_classes') }}" class="list-group-item {% if active_tab == "english-classes" %}active{% endif %}">
+            English Classes
+        </a>
+        <a href="{{ path('caif_shared_event_intl_club') }}" class="list-group-item {% if active_tab == "intl-club" %}active{% endif %}">
+            International Club (Bridges Int'l)
+        </a>
+        {#<a href="#" class="list-group-item {% if active_tab == "msa" %}active{% endif %}">
+            MSA Flyer
+        </a>#}
+        <a href="{{ path('caif_shared_event_wives_club') }}" class="list-group-item {% if active_tab == "wives-club" %}active{% endif %}">
+            International Wives Club
+        </a>
+    </ul>
+    <hr>
+
+    <h4>Related Links</h4>
+    <ul class="list-group sub-tabs">
+        <a href="http://www.xaclemson.com/" class="list-group-item" target="_blank">
+            Chi Alpha Student Church
+        </a>
+        <a href="http://www.pickens.k12.sc.us/alc/pages/3.%20our%20programs/esl.aspx" class="list-group-item" target="_blank">
+            Adult Learning Center
+        </a>
+        <a href="{{ asset('bundles/caifshared/images/MSA_Flyer.pdf') }}" class="list-group-item" target="_blank">
+            Muslim Student Association
+        </a>
+        <a href="https://www.facebook.com/groups/FriendsOfInternationals.Clemson/" class="list-group-item" target="_blank">
+            Friends of Internationals
+        </a>
+        <a href="https://www.facebook.com/pages/RUF-I-Clemson/1489222417964573?fref=ts" class="list-group-item" target="_blank">
+            Reformed University Fellowship Internationals
+        </a>
+        <a href="https://www.facebook.com/groups/clemsonbridgesinternational/" class="list-group-item" target="_blank">
+            Clemson Bridges International
+        </a>
+        <a href="http://www.clemsoncommunitycare.org/" class="list-group-item" target="_blank">
+            Clemson Community Care
+        </a>
+        <a href="https://docs.google.com/presentation/d/1A047101edGc_aDRClVG3GMki5VeQSBofhLwoXjgR6Eo/edit#slide=id.p4" class="list-group-item" target="_blank">
+            Buying a Used Car
+        </a>
+    </ul>
+{% endmacro %}
+
+{% macro help_sub_nav(active_tab) %}
+    <br>
+    <ul class="list-group sub-tabs">
+        <a href="{{ path('caif_shared_faq') }}" class="list-group-item {% if active_tab == 'faq' %}active{% endif %}">
+            FAQ
+        </a>
+        <a href="{{ path('caif_shared_site_map') }}" class="list-group-item {% if active_tab == 'site-map' %}active{% endif %}">
+            Site Map
+        </a>
+    </ul>
+{% endmacro %}

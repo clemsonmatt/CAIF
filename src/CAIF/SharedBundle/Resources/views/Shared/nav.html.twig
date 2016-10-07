@@ -1,0 +1,91 @@
+<nav class="navbar" role="navigation" style="border-color: #fff; margin-bottom:0px;">
+    <div class="container-fluid container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">CAIF</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{{ path('caif_shared_contact') }}">
+                        Contact Us
+                    </a>
+                </li>
+
+                {% if app.user is not null %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle user-dropdown" data-toggle="dropdown" href="#">
+                            <span>
+                                {{ app.user }}
+                            </span>
+                            <i class="fa fa-caret-down user-dropdown-toggle"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li>
+                                    <a href="{{ path('caif_manage_index') }}">
+                                        {{ icon('cogs') }}
+                                        Admin
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if app.user.entityType == "Host" or app.user.entityType == "Student" %}
+                                <li>
+                                    <a href="{{ path('caif_shared_profile_' ~ app.user.entityType|lower, {'person': app.user.id}) }}">
+                                        {{ icon('user') }}
+                                        My Profile
+                                    </a>
+                                </li>
+                            {% endif %}
+                            <li>
+                                <a href="{{ path('caif_shared_faq') }}">
+                                    {{ icon('question-circle') }}
+                                    Help
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/logout">
+                                    {{ icon('power-off') }}
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle login-dropdown" data-toggle="dropdown" href="#">
+                            <span>
+                                Login
+                            </span>
+                            <i class="fa fa-caret-down login-dropdown-toggle"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="/login">
+                                    {{ icon('sign-in') }}
+                                    Login
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('caif_shared_faq') }}">
+                                    {{ icon('question-circle') }}
+                                    Help
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+
+            {% set primary_navigation = knp_menu_get('CAIFSharedBundle:Builder:mainMenu') %}
+            {{ knp_menu_render(primary_navigation, { 'style': 'navbar', 'depth' : 2 }) }}
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,4 @@
+Name, email, phone,
+{% for person in people %}
+    {{ person.name|csv }},{{ person.email|csv }},{{ person.bestPhone|csv }}
+{% endfor %}

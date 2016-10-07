@@ -1,0 +1,3 @@
+caif_shared:
+    resource: "@CAIFSharedBundle/Resources/config/routing.yml"
+    schemes:  [http]

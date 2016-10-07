@@ -1,0 +1,136 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Manage Events
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('events') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <a href="{{ path('caif_manage_event_edit', {'event': event.id}) }}" class="btn btn-default btn-sm">
+                            {{ icon('edit') }}
+                            Edit
+                        </a>
+                        <a href="{{ path('caif_manage_event_remove', {'event': event.id}) }}" class="btn btn-danger btn-sm">
+                            {{ icon('remove') }}
+                            Remove
+                        </a>
+                    </div>
+                </div>
+                <a href="{{ path('caif_manage_event_index') }}">
+                    All Events
+                </a>
+                &raquo;
+                Event Details
+            </div>
+            <div class="panel-body">
+                <h3>{{ event }}</h3>
+                <br>
+                <p class="description">{{ event.description|raw|nl2br }}</p>
+                <br>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Location</th>
+                        <td class="description">{{ event.location }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td class="description">
+                            {% if event.startDate != event.endDate %}
+                                {{ event.startDate|date('m/d/Y') }} &mdash; {{ event.endDate|date('m/d/Y') }}
+                            {% else %}
+                                {{ event.startDate|date('m/d/Y') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Time</th>
+                        <td class="description">
+                            {{ event.startTime|date('h:i A') }} &mdash; {{ event.endTime|date('h:i A') }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>RSVP Available</th>
+                        <td class="description">
+                            {% if event.rsvp %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+
+                {# contact info #}
+                {% if event.contactName != null or event.contactPhone != null or event.contactEmail != null %}
+                    <h4>Contact Information</h4>
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Contact Name</th>
+                            <td class="description">{{ event.contactName }}</td>
+                        </tr>
+                        <tr>
+                            <th>Contact Phone</th>
+                            <td class="description">{{ event.contactPhone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Contact Email</th>
+                            <td class="description">{{ event.contactEmail }}</td>
+                        </tr>
+                    </table>
+                {% endif %}
+
+                {# rsvps #}
+                {% if event.rsvp %}
+                    <hr>
+                    <h4>
+                        <div class="pull-right">
+                            <span class="text-muted">
+                                {{ total_attending }} total attending
+                            </span>
+                            <a href="{{ path('caif_manage_email_add', {'event': event.id}) }}" class="btn btn-xs btn-primary">
+                                {{ icon('envelope') }}
+                                Email
+                            </a>
+                        </div>
+                        RSVP List
+                    </h4>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <th class="col-sm-4">Name</th>
+                            <th class="col-sm-4">Email</th>
+                            <th class="col-sm-2">RSVP</th>
+                            <th class="col-sm-2">Guests</th>
+                            <th></th>
+                        </thead>
+                        {% for rsvp in event.rsvps %}
+                            <tr>
+                                <td>{{ rsvp.name }}</td>
+                                <td>{{ rsvp.email }}</td>
+                                <td>{{ rsvp.rsvpOption|capitalize }}</td>
+                                <th>{{ rsvp.guests|default(0) }}</th>
+                                <th>
+                                    <a href="{{ path('caif_manage_event_rsvp_remove', {'rsvp': rsvp.id}) }}" class="btn btn-xs btn-danger">
+                                        {{ icon('remove') }}
+                                    </a>
+                                </th>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5"><span class="light-grey">None</span></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Manage English Classes
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('english-class') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        {% import 'CAIFSharedBundle:Event:macro.html.twig' as macros %}
+        {{ macros.english_class(class, 'caif_manage_english_class_index', true) }}
+    </div>
+{% endblock %}

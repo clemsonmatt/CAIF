@@ -1,0 +1,42 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Add International Club
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('international-club') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="{{ path('caif_manage_intl_club_index') }}">
+                    All International Clubs
+                </a>
+                {% if club is defined %}
+                    &raquo;
+                    <a href="{{ path('caif_manage_intl_club_show', {'club': club.id}) }}">
+                        Club Details
+                    </a>
+                    &raquo;
+                    Edit
+                {% else %}
+                    &raquo;
+                    Add
+                {% endif %}
+            </div>
+            <div class="panel-body">
+                {{ form_start(form) }}
+                    {{ form_rest(form) }}
+                    <button class="btn btn-purple pull-right">
+                        {{ icon('check') }}
+                        Save
+                    </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

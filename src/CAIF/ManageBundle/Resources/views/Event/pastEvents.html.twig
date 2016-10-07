@@ -1,0 +1,46 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Manage Events
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('events') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="col-sm-12">
+            <div class="pull-right">
+                <a href="{{ path('caif_manage_event_add') }}" class="btn btn-sm btn-custom">
+                    {{ icon('plus') }}
+                    Add Event
+                </a>
+            </div>
+            <ul class="nav nav-tabs" id="tabs" data-tabs="tabs">
+                <li>
+                    <a href="{{ path('caif_manage_event_index') }}">
+                        Current
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#past" data-toggle="tab">
+                        Past
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-12 tab-content event">
+            {# import event detail #}
+            {% import 'CAIFSharedBundle:Event:macro.html.twig' as event_macro %}
+
+            {# past #}
+            <div class="tab-pane active" id="past">
+                <br>
+                {{ event_macro.events(events, 'caif_manage_event_show', pager) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

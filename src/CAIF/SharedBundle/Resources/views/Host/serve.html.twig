@@ -1,0 +1,72 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    What To Serve
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
+        {{ macros.host_sub_nav('serve') }}
+    </div>
+    <div class="col-md-9">
+        <h3 class="heading-sm">Meal Tips</h3>
+        <p class="light-grey" style="font-size: 16px;">
+            Meals are a key part of most cultures. Families and friends visit and interact around meals at home, eating out, having coffee or snacks together, or picnics. Inviting your international friend for a meal is a wonderful way to strengthen your relationship. As you become more acquainted with your new friends, you'll learn the types of foods they like and dislike, and also their favorites.
+        </p>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="heading-sm">Meal Ideas</h3>
+                <p class="light-grey" style="font-size: 16px;">
+                    In general, chicken, rice, fish, fruit, and cooked vegetables are good choices to include in a meal. The following are some basic meal guidelines:
+                </p>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Rice is a staple food in many cultures.
+                    </li>
+                    <li class="list-group-item">
+                        Vegetables and fruit -- fresh, canned, or frozen-- are generally accepted (with the exception of tossed salad for Asians)
+                    </li>
+                    <li class="list-group-item">
+                        Chicken is usually a safe choice, especially served with rice.
+                    </li>
+                    <li class="list-group-item">
+                        Fish, seafood and lamb may be acceptable alternatives for those who don't eat beef or pork.
+                    </li>
+                    <li class="list-group-item">
+                        Believe it or not, the American Southern favorite, "deviled eggs", is usually well-liked by most internationals.
+                    </li>
+                    <li class="list-group-item">
+                        Many internationals do not share the American affinity for sweets. They may prefer simple fruit desserts or ice cream to rich or heavy pastries. But by all means, make sure your new friends experience a HOT Krispy Kreme donut before they leave the South!
+                    </li>
+                    <li class="list-group-item">
+                        Most internationals are unfamiliar with our "southern sweet tea". Serving unsweet hot black or green tea is often appreciated either with a meal or afterwards.
+                    </li>
+                    <li class="list-group-item">
+                        You should ask your guest if he/she prefers ice in his/her beverage. Many do not like iced beverages.
+                    </li>
+                    <li class="list-group-item">
+                        Fruit juices are often enjoyed as meal beverages.
+                    </li>
+                    <li class="list-group-item">
+                        Having pita bread or flour tortillas available for Indian students is a good idea. They are sometimes more comfortable eating a meal with this type of bread as their "utensil".
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <h3 class="heading-sm">Recipes</h3>
+                {% for recipe in recipes %}
+                    <a href="{{ recipe.url }}" class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            {{ recipe.title }}
+                        </h4>
+                        <p class="list-group-item-text">
+                            {{ recipe.description }}
+                        </p>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

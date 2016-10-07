@@ -1,0 +1,48 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Manage
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('manage-admins') }}
+    </div>
+    <div class="col-md-9">
+        <h3>Admins</h3>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <th class="col-sm-6">Name</th>
+                <th class="col-sm-6">Email</th>
+                <th></th>
+            </thead>
+            {% for admin in admins %}
+                <tr>
+                    <td>{{ admin }}</td>
+                    <td>{{ admin.email }}</td>
+                    <td>
+                        <a href="{{ path('caif_manage_admins_remove', {'person': admin.id}) }}" class="btn btn-xs btn-danger">
+                            {{ icon('remove') }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <hr>
+
+        <h3>Click to add admin</h3>
+        <table class="table table-striped table-bordered table-hover table-pointer">
+            <thead>
+                <th class="col-sm-6">Name</th>
+                <th class="col-sm-6">Email</th>
+            </thead>
+            {% for nonAdmin in nonAdmins %}
+                <tr class="js-row-click" id="{{ path('caif_manage_admins_add', {'person': nonAdmin.id}) }}">
+                    <td>{{ nonAdmin }}</td>
+                    <td>{{ nonAdmin.email }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

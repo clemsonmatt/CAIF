@@ -1,0 +1,38 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Contact Us
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        <hr>
+        <div class="panel-body light-grey">
+            For more information about what CAIF is or how you can become
+            involved, contact our president Kathy Mabry by email:
+            <a href="mailto:sccaif@gmail.com">sccaif@gmail.com</a> or by phone:
+            <br>(864)-882-8141 or (864)-710-2756.
+        </div>
+        <hr>
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <blockquote class="light-grey">
+                    Please be as specific as possible to help us respond to your comments. Someone will respond to your message within 24 hours.
+                </blockquote>
+                {{ form_start(form) }}
+                    {{ form_rest(form) }}
+                    <div class="pull-right">
+                        <button class="btn btn-purple">
+                            {{ icon('send') }}
+                            Send
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+                <br><br>
+            </div>
+        </div>
+    </div>
+{% endblock %}

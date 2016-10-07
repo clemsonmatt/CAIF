@@ -1,0 +1,24 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Manage International Clubs
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('international-club') }}
+    </div>
+    <div class="col-md-9 event">
+        <br>
+        <h3 class="light-grey">
+            <a href="{{ path('caif_manage_intl_club_add') }}" class="btn btn-custom btn-sm pull-right">
+                {{ icon('plus') }}
+                Add
+            </a>
+            Current International Clubs
+        </h3>
+        {% import 'CAIFSharedBundle:Event:macro.html.twig' as macros %}
+        {{ macros.intl_clubs(clubs, 'caif_manage_intl_club_show') }}
+    </div>
+{% endblock %}

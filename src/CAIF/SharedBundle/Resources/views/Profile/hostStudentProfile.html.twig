@@ -1,0 +1,30 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    {{ person }}
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-3">
+        {% import 'CAIFSharedBundle:Profile:macros.html.twig' as macros %}
+        {{ macros.host(person, 'students') }}
+    </div>
+    <div class="col-sm-9">
+        {% for student in person.students %}
+            <br>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ student }}
+                </div>
+                <div class="panel-body">
+                    {{ macros.student_profile(student, false) }}
+                </div>
+            </div>
+        {% else %}
+            <br>
+            <div class="well light-grey">
+                No students yet
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

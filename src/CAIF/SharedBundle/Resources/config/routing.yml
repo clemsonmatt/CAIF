@@ -1,0 +1,32 @@
+caif_shared:
+    resource: "@CAIFSharedBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+caif_manage:
+    resource: "@CAIFManageBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+# caif_security:
+#     resource: "@CAIFSecurityBundle/Controller/"
+#     type:     annotation
+
+
+login:
+    path:     /login
+    defaults: { _controller: CAIFSecurityBundle:Security:login }
+
+forgot:
+    path:     /forgot
+    defaults: { _controller: CAIFSecurityBundle:Security:forgot }
+
+forgot_password:
+    path:     /forgotPassword/{tempPass}
+    defaults: { _controller: CAIFSecurityBundle:Security:forgotPassword }
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout

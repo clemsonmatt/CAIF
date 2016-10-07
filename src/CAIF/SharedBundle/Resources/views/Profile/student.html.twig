@@ -1,0 +1,18 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% import 'CAIFSharedBundle:Profile:macros.html.twig' as macros %}
+
+{% block page_title_header %}
+    {{ person }}
+{% endblock %}
+
+{% block content %}
+    <br>
+    {{ macros.check_archived(person) }}
+
+    <div class="col-sm-3">
+        {{ macros.student(person, 'overview') }}
+    </div>
+    <div class="col-sm-9">
+        {{ macros.student_profile(person, true) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    {{ person }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+            /* pets */
+            $('#host_form_petStatus_0').on('click', function(e){
+                $('#js-has-pet').hide();
+            });
+            $('#host_form_petStatus_1, #host_form_petStatus_2, #host_form_petStatus_3').on('click', function(e){
+                $('#js-has-pet').show();
+            });
+
+            /* hosting */
+            $('#host_form_hosting_1').on('click', function(e){
+                $('#js-hosting-options').show();
+            });
+            $('#host_form_hosting_0').on('click', function(e){
+                $('#js-hosting-options').hide();
+            })
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-3">
+    {% import 'CAIFSharedBundle:Profile:macros.html.twig' as macros %}
+    {{ macros.host(person, 'edit') }}
+</div>
+<div class="col-md-9">
+    {{ form_start(form) }}
+            <h2>Contact Information</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.mobilePhone) }}
+                    {{ form_row(form.homePhone) }}
+                    {{ form_row(form.workPhone) }}
+                    {{ form_row(form.email) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.address) }}
+                    {{ form_row(form.city) }}
+                    {{ form_row(form.state) }}
+                    {{ form_row(form.zip) }}
+                    {{ form_row(form.secondaryEmail) }}
+                </div>
+            </div>
+            <hr>
+
+            <h2>Personal Information</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.children) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.petStatus) }}
+                </div>
+            </div>
+            <div id="js-has-pet" style="display: none;">
+                {{ form_row(form.petType) }}
+            </div>
+            {{ form_row(form.hobbies) }}
+            {{ form_row(form.travel) }}
+            {{ form_row(form.languages) }}
+            {{ form_row(form.picture) }}
+            <hr>
+
+            <h2>Host Friend Program</h2>
+            {{ form_row(form.hosting) }}
+            <div class="well" id="js-hosting-options" style="{% if not person.hosting %}display: none;{% endif %}">
+                <blockquote class="light-grey">
+                    After registering in our database, you will be paired with a student within a few days.  We will then notify both you and the student via email that a pairing has been made.  This email will contain further information on how to contact each other.
+                </blockquote>
+                {{ form_row(form.maxStudents) }}
+                <blockquote class="light-grey">
+                    If you would like to befriend students from a particular country, cultural background, or gender, please select your preference. We try to fulfill requests when possible, but cannot make any guarantees.
+                </blockquote>
+                {{ form_row(form.studentType) }}
+                {{ form_row(form.studentCountry) }}
+            </div>
+            <hr>
+
+            <h2>Other Ways To Be Involved</h2>
+            <p class="light-grey">
+                Check all that apply. A check does not necessarily commit you.
+            </p>
+            {{ form_row(form.wivesClub) }}
+            {{ form_row(form.eventHelp) }}
+            {{ form_row(form.shopping) }}
+            {{ form_row(form.groupOuting) }}
+            {{ form_row(form.provideMeal) }}
+            <hr>
+
+            <div class="pull-right">
+                <button class="btn btn-purple btn-lg">
+                    {{ icon('check') }}
+                    Save
+                </button>
+            </div>
+        {{ form_end(form) }}
+    <br><br>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'CAIFSecurityBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div style="margin-top: 5%;">
+            <!-- login -->
+            <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+                <center>
+                    <img src="{{ asset('bundles/caifshared/images/Clemson Intl.png') }}" style="max-width: 70%;">
+                </center>
+                <br>
+                <div class="login-panel">
+                    <div class="login-panel-body">
+                        <form class="form-signin" action="login_check" method="post">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error }}</div>
+                            {% else %}
+                                <div style="margin-top: 25px;"></div>
+                            {% endif %}
+
+                            <input type="text" class="form-control input-lg" name="_username" value="{{ username }}" placeholder="Email or Username" />
+
+                            <input type="password" class="form-control input-lg" name="_password" placeholder="Password" />
+
+                            <button type="submit" class="btn btn-caif-clear btn-block btn-lg">
+                                {{ icon('sign-in') }}
+                                Login
+                            </button>
+                        </form>
+                        <br>
+                        <!-- forgot password -->
+                        <p style="margin-top: 30px;">
+                            <a id="change-password">
+                                Forgot Password?
+                            </a>
+                        </p>
+                        <div style="display: none;" id="reset-password">
+                            <form action="/forgot" method="post">
+                                <!-- username -->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="_username" value="{{ username }}" placeholder="Email or Username" />
+                                </div>
+                                <!-- submit btn -->
+                                <button type="submit" class="btn btn-caif-clear">Reset Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('#change-password').click(function(){
+            $(this).hide();
+            $('#reset-password').show();
+        })
+    </script>
+{% endblock %}

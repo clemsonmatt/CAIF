@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" type="image/ico" href="{{ asset('bundles/cfamanage/images/favicon.ico') }}"/>
+
+        <title>{% block title %}CAIF 500{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+            {% stylesheets
+                '@CAIFSharedBundle/Resources/public/css/bootstrap/bootstrap.css'
+                '@CAIFSharedBundle/Resources/public/css/custom.css'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+    </head>
+
+    <body style="background-color: #f8f8f8;">
+        <div class="container">
+            <div style="margin-top: 5%;">
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+                        <center>
+                            <img src="{{ asset('bundles/caifshared/images/Clemson Intl.png') }}" style="max-width: 70%;">
+                        </center>
+                        <br>
+                    </div>
+                </div>
+                <br>
+                <h1 class="text-muted text-center" style="font-size: 84px;">500</h1>
+                <h4 class="text-muted text-center">Internal Error</h4>
+                <hr>
+                <h3 class="text-muted text-center">
+                    Uh oh, something went wrong. Please let us know what you were doing when this happened so we can get it fixed as soon as possible.
+                </h3>
+                <br><br>
+                <center>
+                    <a href="{{ path('caif_shared_index') }}" class="btn btn-custom">
+                        Go Home
+                    </a>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>

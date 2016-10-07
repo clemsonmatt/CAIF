@@ -1,0 +1,118 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    {% if is_granted('ROLE_ADMIN') %}
+        Manage
+    {% endif %}
+    Photos
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% if is_granted('ROLE_ADMIN') and manage %}
+            {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+            {{ macros.manage_sub_nav('photos') }}
+        {% else %}
+            {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
+            {{ macros.home_sub_nav('photos') }}
+        {% endif %}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {% if is_granted('ROLE_ADMIN') and manage %}
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                {{ icon('chevron-down') }}
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="{{ path('caif_manage_photo_add', {'album': album.id}) }}">
+                                        {{ icon('plus') }}
+                                        Add Photo
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="{{ path('caif_manage_photo_album_edit', {'album': album.id}) }}">
+                                        {{ icon('edit') }}
+                                        Edit Album
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('caif_manage_photo_album_remove', {'album': album.id}) }}">
+                                        <span class="text-danger">
+                                            {{ icon('remove') }}
+                                            Remove Album
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+                <a href="{{ path(index_path) }}">
+                    All Albums
+                </a>
+                &raquo;
+                {{ album }}
+            </div>
+            <div class="panel-body">
+                {% if album.description %}
+                    <p class="light-grey" style="font-size: 16px;">
+                        {{ album.description }}
+                    </p>
+                    <hr>
+                {% endif %}
+                <div class="row">
+                    {% for photo in album.photos %}
+                        <div class="col-lg-4 col-sm-6 col-xs-12" style="min-height: 230px;" data-toggle="tooltip" data-placement="top" title="{{ photo.description }}">
+                            {# manage view #}
+                            {% if is_granted('ROLE_ADMIN') and manage %}
+                                <div class="panel panel-default">
+                                    <div class="panel-body" style="min-height: 250px;">
+                                        {{ _self.photo_block(album, photo) }}
+                                    </div>
+                                    <div class="panel-footer">
+                                        {# remove button #}
+                                        <a href="{{ path('caif_manage_photo_remove', {'album': album.id, 'photo': photo.id}) }}" class="btn btn-xs btn-danger btn-block">
+                                            {{ icon('remove') }}
+                                        </a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                {# gallery view #}
+                                {{ _self.photo_block(album, photo) }}
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <div class="col-xs-12">
+                            <div class="well light-grey">
+                                {{ icon('ban') }}
+                                No Photos
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% macro photo_block(album, photo) %}
+    <center>
+        <img src="{{ asset('/uploads/gallery/' ~ album.id ~ '/' ~ photo.path|url_encode) }}" style="max-width: 100%; max-height: 200px;">
+    </center>
+{% endmacro %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+{% endblock %}

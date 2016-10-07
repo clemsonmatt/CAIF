@@ -1,0 +1,276 @@
+{# events #}
+{% macro events(events, path, pager) %}
+    {% for event in events %}
+        <div class="panel panel-default pointer js-row-click" id="{{ path(path, {'event': event.id}) }}">
+            <div class="panel-body">
+                {# show if rsvp'd #}
+                {% if app.user %}
+                    {% for single_rsvp in app.user.rsvps %}
+                        {% if single_rsvp.event.id == event.id %}
+                            {% set rsvp_option = single_rsvp.rsvpOption %}
+                            <div class="alert alert-success">
+                                <strong>You have RSVP'd {{ rsvp_option }} to this event</strong>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                {# event details for computer #}
+                <div class="col-sm-9 hidden-xs" style="border-right: 1px solid #ddd;">
+                    <h4 class="secondary-color heading-sm">
+                        {{ event }}
+                    </h4>
+                    <strong>
+                        {{ event.location }}
+                    </strong>
+                    <br><br>
+                    <p class="text-block" style="height: 50px; overflow: hidden;">
+                        {{ event.description|raw }}
+                    </p>
+                </div>
+
+                {# event details for mobile #}
+                <div class="col-xs-12 visible-xs">
+                    <h4 class="secondary-color">
+                        {{ event }}
+                    </h4>
+                    <strong>
+                        {{ event.location }}
+                    </strong>
+                </div>
+
+                {# event date/time #}
+                <div class="col-sm-3" style="font-size: 16px;">
+                    <hr class="visible-xs">
+                    <center>
+                        {{ event.startDate|date('l') }}
+                        <br>
+                        <div style="margin-top: -5px;">
+                            <span style="font-size: 40px;" class="primary-color">
+                                {{ event.startDate|date('d') }}
+                            </span>
+                        </div>
+                        <br>
+                        <div style="margin-top: -25px">
+                            {{ event.startDate|date('F Y') }}
+                        </div>
+                        <hr style="margin-top: 7px; margin-bottom: 7px;" class="hidden-xs">
+                        {{ event.startTime|date('h:i A') }}
+                        &mdash;
+                        {{ event.endTime|date('h:i A') }}
+                    </center>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="well">
+            <span class="light-grey">No events currently</span>
+        </div>
+    {% endfor %}
+
+    {#{% if pager.haveToPaginate %}
+        <div class="pagerfanta pull-right">
+            {{ pagerfanta(pager, 'twitter_bootstrap3', { 'css_container_class' : 'pagination pagination-sm' }) }}
+        </div>
+    {% else %}
+        <div class="pull-right text-muted">
+            Page 1 of 1.
+        </div>
+    {% endif %}#}
+{% endmacro %}
+
+{# english classes #}
+{% macro english_classes(classes, path) %}
+    {% for class in classes %}
+        <div class="panel panel-default pointer js-row-click" id="{{ path(path, {'englishClass': class.id}) }}">
+            <div class="panel-body">
+                <h4 class="secondary-color heading-sm">
+                    {{ class.title }}
+                </h4>
+                <strong>Where:</strong> {{ class.location }}<br>
+                <strong>When:</strong> {{ class.whatDay }}
+                <br><br>
+                <p class="text-block" style="height: 50px; overflow: hidden;">
+                    {{ class.info }}
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <div class="well">
+            <span class="light-grey">No english classes</span>
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro english_class(class, prevPath, show_all) %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {% if show_all %}
+                <div class="btn-group pull-right">
+                    <a href="{{ path('caif_manage_english_class_edit', {'englishClass': class.id}) }}" class="btn btn-sm btn-default">
+                        {{ icon('edit') }}
+                        Edit
+                    </a>
+                    <a href="{{ path('caif_manage_english_class_remove', {'englishClass': class.id}) }}" class="btn btn-sm btn-danger">
+                        {{ icon('remove') }}
+                        Remove
+                    </a>
+                </div>
+            {% endif %}
+            <a href="{{ path(prevPath) }}">
+                All English Classes
+            </a>
+            &raquo;
+            Class Details
+        </div>
+        <div class="panel-body">
+            <h3 class="heading-sm secondary-color">{{ class }}</h3>
+            <br>
+            <p class="description">
+                {{ class.info|nl2br }}
+            </p>
+            <br>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>When</th>
+                    <td>{{ class.whatDay }}</td>
+                </tr>
+                <tr>
+                    <th>Where</th>
+                    <td>{{ class.location }}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>{{ class.startTime|date('h:i A') }} &mdash; {{ class.endTime|date('h:i A') }}</td>
+                </tr>
+                <tr>
+                    <th>Food</th>
+                    <td>{{ class.food|nl2br }}</td>
+                </tr>
+                <tr>
+                    <th>Childcare</th>
+                    <td>{{ class.childcare|nl2br }}</td>
+                </tr>
+                <tr>
+                    <th>Comments</th>
+                    <td>{{ class.comments|nl2br }}</td>
+                </tr>
+            </table>
+            <hr>
+            <h3>Contact Info</h3>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Contact Name</th>
+                    <td>{{ class.contactName }}</td>
+                </tr>
+                <tr>
+                    <th>Contact Phone</th>
+                    <td>{{ class.contactPhone }}</td>
+                </tr>
+                <tr>
+                    <th>Contact Email</th>
+                    <td>{{ class.contactEmail }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+
+
+{# international club #}
+{% macro intl_clubs(clubs, path) %}
+    {% for club in clubs %}
+        <div class="panel panel-default pointer js-row-click" id="{{ path(path, {'club': club.id}) }}">
+            <div class="panel-body">
+                <h4 class="secondary-color heading-sm">
+                    {{ club.title }}
+                </h4>
+                <strong>Where:</strong> {{ club.location }}<br>
+                <strong>When:</strong> {{ club.whatDay }}
+                <br><br>
+                <p class="text-block" style="height: 50px; overflow: hidden;">
+                    {{ club.info }}
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <div class="well">
+            <span class="light-grey">No international clubs</span>
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro intl_club(club, prevPath, show_all) %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {% if show_all %}
+                <div class="btn-group pull-right">
+                    <a href="{{ path('caif_manage_intl_club_edit', {'club': club.id}) }}" class="btn btn-sm btn-default">
+                        {{ icon('edit') }}
+                        Edit
+                    </a>
+                    <a href="{{ path('caif_manage_intl_club_remove', {'club': club.id}) }}" class="btn btn-sm btn-danger">
+                        {{ icon('remove') }}
+                        Remove
+                    </a>
+                </div>
+            {% endif %}
+            <a href="{{ path(prevPath) }}">
+                All International Clubs
+            </a>
+            &raquo;
+            Club Details
+        </div>
+        <div class="panel-body">
+            <h3 class="heading-sm secondary-color">{{ club }}</h3>
+            <br>
+            <p class="description">
+                {{ club.info|nl2br }}
+            </p>
+            <br>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>When</th>
+                    <td>{{ club.whatDay }}</td>
+                </tr>
+                <tr>
+                    <th>Where</th>
+                    <td>{{ club.location }}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>{{ club.startTime|date('h:i A') }} &mdash; {{ club.endTime|date('h:i A') }}</td>
+                </tr>
+                <tr>
+                    <th>Food</th>
+                    <td>{{ club.food|nl2br }}</td>
+                </tr>
+                <tr>
+                    <th>Childcare</th>
+                    <td>{{ club.childcare|nl2br }}</td>
+                </tr>
+                <tr>
+                    <th>Comments</th>
+                    <td>{{ club.comments|nl2br }}</td>
+                </tr>
+            </table>
+            <hr>
+            <h3>Contact Info</h3>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Contact Name</th>
+                    <td>{{ club.contactName }}</td>
+                </tr>
+                <tr>
+                    <th>Contact Phone</th>
+                    <td>{{ club.contactPhone }}</td>
+                </tr>
+                <tr>
+                    <th>Contact Email</th>
+                    <td>{{ club.contactEmail }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+

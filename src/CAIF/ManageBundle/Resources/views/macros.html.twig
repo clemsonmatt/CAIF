@@ -1,0 +1,34 @@
+{% macro manage_sub_nav(active_tab) %}
+    <br>
+    <ul class="list-group sub-tabs">
+        <a href="{{ path('caif_manage_index') }}" class="list-group-item {% if active_tab == "home" %}active{% endif %}">
+            Mange Home
+        </a>
+        <a href="{{ path('caif_manage_email_index') }}" class="list-group-item {% if active_tab == "emails" %}active{% endif %}">
+            Emails
+        </a>
+        <a href="{{ path('caif_manage_event_index') }}" class="list-group-item {% if active_tab == "events" %}active{% endif %}">
+            Events
+        </a>
+        <a href="#" class="list-group-item {% if active_tab == "newsletters" %}active{% endif %}">
+            Newsletters
+        </a>
+        <a href="{{ path('caif_manage_pair_index') }}" class="list-group-item {% if active_tab == "pair" %}active{% endif %}">
+            Pairing
+        </a>
+        <a href="{{ path('caif_manage_photo_index') }}" class="list-group-item {% if active_tab == "photos" %}active{% endif %}">
+            Photos
+        </a>
+        <a href="{{ path('caif_manage_english_class_index') }}" class="list-group-item {% if active_tab == "english-class" %}active{% endif %}">
+            English Classes
+        </a>
+        <a href="{{ path('caif_manage_intl_club_index') }}" class="list-group-item {% if active_tab == "international-club" %}active{% endif %}">
+            International Club
+        </a>
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <a href="{{ path('caif_manage_admins_index') }}" class="list-group-item {% if active_tab == "manage-admins" %}active{% endif %}">
+                Manage Admins
+            </a>
+        {% endif %}
+    </ul>
+{% endmacro %}

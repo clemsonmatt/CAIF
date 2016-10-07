@@ -1,0 +1,130 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Student Form
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+            $('#student_form_maritalStatus').on('change', function(e){
+                $('#js-married-boxes').toggle();
+            });
+            $('#student_form_kidStatus').on('change', function(e){
+                $('#js-kids-box').toggle();
+            });
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="col-xs-12 col-md-3">
+    {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
+    {{ macros.student_sub_nav('form') }}
+</div>
+<div class="col-xs-12 col-md-9">
+    {{ form_start(form) }}
+        <h2 class="heading-md">Contact Information</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.firstName) }}
+                        {{ form_row(form.lastName) }}
+                        {{ form_row(form.americanName) }}
+                        {{ form_row(form.phone) }}
+                        {{ form_row(form.email) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.apartmentComplex) }}
+                        {{ form_row(form.apartmentNumber) }}
+                        {{ form_row(form.mailingAddress) }}
+                        {{ form_row(form.city) }}
+                        {{ form_row(form.zip) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <center style="margin-top: -10px; margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-down') }}
+            </span>
+        </center>
+
+        <h2 class="heading-md">Personal Information</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.gender) }}
+                        {{ form_row(form.birthday) }}
+                        {{ form_row(form.homeCountry) }}
+                        {{ form_row(form.areaOfStudy) }}
+                        {{ form_row(form.degreeProgram) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.maritalStatus) }}
+                        <div id="js-married-boxes" class="well well-sm" style="display: none;">
+                            {{ form_row(form.spouseHere) }}
+                            {{ form_row(form.spouseName) }}
+                        </div>
+                        {{ form_row(form.kidStatus) }}
+                        <div id="js-kids-box" class="well well-sm" style="display: none;">
+                            {{ form_row(form.kidsHere) }}
+                        </div>
+                        {{ form_row(form.smoke) }}
+                        {{ form_row(form.car) }}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{ form_row(form.dogCatPresence) }}
+                        {{ form_row(form.allergies) }}
+                        {{ form_row(form.dneFoods) }}
+                        {{ form_row(form.activities) }}
+                        {{ form_row(form.languages) }}
+                        {{ form_row(form.travel) }}
+                        {{ form_row(form.picture) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <center style="margin-top: -10px; margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-down') }}
+            </span>
+        </center>
+
+        <h2 class="heading-md">Login Information</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.username) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.password) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <center style="margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-right') }}
+            </span>
+        </center>
+        <div class="pull-right" style="margin-top: -50px;">
+            <button class="btn btn-purple btn-lg">
+                {{ icon('check') }}
+                Submit
+            </button>
+        </div>
+    {{ form_end(form) }}
+    <br><br>
+</div>
+{% endblock %}

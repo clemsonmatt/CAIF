@@ -1,0 +1,42 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Manage Email
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('emails') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <h3>
+            <a href="{{ path('caif_manage_email_add') }}" class="btn btn-custom btn-sm pull-right">
+                {{ icon('plus') }}
+                Add
+            </a>
+            Sent Emails
+        </h3>
+        <table class="table table-striped table-bordered table-hover pointer">
+            <thead>
+                <th>Date</th>
+                <th>To</th>
+                <th>Subject</th>
+            </thead>
+            {% for email in emails %}
+                <tr class="js-row-click" id="{{ path('caif_manage_email_show', {'email': email.id}) }}">
+                    <td class="col-md-4">{{ email.createdAt|date('m/d/Y') }}</td>
+                    <td class="col-md-4">{{ email.to }}</td>
+                    <td class="col-md-4">{{ email.subject }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">
+                        <span class="light-grey">None</span>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

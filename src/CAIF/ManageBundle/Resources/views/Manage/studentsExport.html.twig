@@ -1,0 +1,4 @@
+Name, email, phone,
+{% for person in people %}
+    {{ person.firstName|csv ~ ' ' ~ person.lastName|csv }},{{ person.email|csv }},{{ person.phone|csv }}
+{% endfor %}

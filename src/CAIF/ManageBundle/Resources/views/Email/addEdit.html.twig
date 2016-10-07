@@ -1,0 +1,159 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    {% if email is defined %}
+        Edit
+    {% else %}
+        Add
+    {% endif %}
+    Email
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('emails') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="{{ path('caif_manage_email_index') }}">
+                    Sent Emails
+                </a>
+                &raquo;
+                {% if email is defined %}
+                    Edit
+                {% else %}
+                    Add
+                {% endif %}
+            </div>
+            <div class="panel-body">
+                {{ form_start(form) }}
+                    <div style="display: none;">{{ form_row(form.to) }}</div>
+
+                    {{ form_label(form.to) }}
+                    <ul class="list-group email-group">
+                        {% for item in form.to %}
+                            <li class="list-group-item pointer js-email-to {% if item.vars.checked == true %}active{% endif %}" id="js_email_to_{{ loop.index0 }}">
+                                <h4 class="list-group-item-heading">
+                                    {{ item.vars.label }}
+                                </h4>
+
+                                {% if item.vars.label == 'All' %}
+                                    <p class="list-group-item-text light-grey">
+                                        All students and community members that are active.
+                                    </p>
+                                {% elseif item.vars.label == 'All Students' %}
+                                    <p class="list-group-item-text light-grey">
+                                        All students that are active. This includes students with hosts, without hosts, and marked as host not needed.
+                                    </p>
+                                {% elseif item.vars.label == 'Students with host' %}
+                                    <p class="list-group-item-text light-grey">
+                                        All students that are active that have a host. This does not include students marked as host not needed.
+                                    </p>
+                                {% elseif item.vars.label == 'Students without hosts' %}
+                                    <p class="list-group-item-text light-grey">
+                                        All students that are active that do not have a host. This does not include students marked as host not needed.
+                                    </p>
+                                {% elseif item.vars.label == 'Students with host not needed' %}
+                                    <p class="list-group-item-text light-grey">
+                                        All students that are active that are marked as host not needed.
+                                    </p>
+                                {% elseif item.vars.label == 'All Community Members' %}
+                                    <p class="list-group-item-text light-grey">
+                                        All community members that are active.
+                                    </p>
+                                {% elseif item.vars.label == 'Only Community Members that host' %}
+                                    <p class="list-group-item-text light-grey">
+                                        All community members that are active and have chose the option to host students.
+                                    </p>
+                                {% elseif item.vars.label == 'Only Community Members that do not host' %}
+                                    <p class="list-group-item-text light-grey">
+                                        All community members that are active and have chose to not host students.
+                                    </p>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    {{ form_row(form.subject) }}
+                    <hr>
+
+                    {# format buttons #}
+                    {{ form_label(form.message) }}
+                    <div class="well">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default btn-xs js-tags" id="js-bold-tag">
+                                {{ icon('bold') }}
+                            </button>
+                            <button type="button" class="btn btn-default btn-xs js-tags" id="js-italic-tag">
+                                {{ icon('italic') }}
+                            </button>
+                        </div>
+                        <button type="button" class="btn btn-default btn-lg js-tags" id="js-h1-tag">
+                            {{ icon('header') }}
+                            Heading Large
+                        </button>
+                        <button type="button" class="btn btn-default btn-md js-tags" id="js-h2-tag">
+                            {{ icon('header') }}
+                            Heading Medium
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm js-tags" id="js-h3-tag">
+                            {{ icon('header') }}
+                            Heading Small
+                        </button>
+                    </div>
+
+                    {{ form_widget(form.message) }}
+                    <br>
+                    <button class="btn btn-purple pull-right">
+                        {{ icon('repeat') }}
+                        Review
+                    </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.js-tags').on('click', function(e){
+            switch ($(this).attr('id')) {
+                case 'js-bold-tag':
+                    $('#email_message').val($('#email_message').val() + '<b>text</b>');
+                    break;
+
+                case 'js-italic-tag':
+                    $('#email_message').val($('#email_message').val() + '<i>text</i>');
+                    break;
+
+                case 'js-h1-tag':
+                    $('#email_message').val($('#email_message').val() + '<h1>text</h1>');
+                    break;
+
+                case 'js-h2-tag':
+                    $('#email_message').val($('#email_message').val() + '<h2>text</h2>');
+                    break;
+
+                case 'js-h3-tag':
+                    $('#email_message').val($('#email_message').val() + '<h3>text</h3>');
+                    break;
+            }
+            $('#email_message').focus();
+        });
+
+        $('.js-email-to').on('click', function(e){
+            /* remove last active */
+            $('.js-email-to').removeClass('active');
+            /* set active */
+            $(this).addClass('active');
+
+            /* set radio checked */
+            var actualId = $(this).attr('id').replace("js_", "");
+            $('#' + actualId).prop('checked', true);
+        });
+    </script>
+{% endblock %}

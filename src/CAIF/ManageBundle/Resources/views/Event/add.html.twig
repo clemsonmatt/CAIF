@@ -1,0 +1,28 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block page_title_header %}
+    Add Event
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('events') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        {{ form_start(form) }}
+            {{ form_rest(form) }}
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-purple btn-lg pull-right">
+                        {{ icon('check') }}
+                        Save
+                    </button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    <br><br>
+    </div>
+{% endblock %}

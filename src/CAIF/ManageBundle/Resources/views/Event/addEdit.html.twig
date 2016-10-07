@@ -1,0 +1,53 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block page_title_header %}
+    {% if event is defined %}
+        Edit
+    {% else %}
+        Add
+    {% endif %} Event
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-3">
+        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+        {{ macros.manage_sub_nav('events') }}
+    </div>
+    <div class="col-md-9">
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a href="{{ path('caif_manage_event_index') }}">
+                    All Events
+                </a>
+                {% if event is defined %}
+                    &raquo;
+                    <a href="{{ path('caif_manage_event_show', {'event': event.id}) }}">
+                        Event Details
+                    </a>
+                {% endif %}
+                &raquo;
+                {% if event is defined %}
+                    Edit
+                {% else %}
+                    Add
+                {% endif %}
+            </div>
+            <div class="panel-body">
+                {{ form_start(form) }}
+                    {{ form_rest(form) }}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-purple btn-lg pull-right">
+                                {{ icon('check') }}
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <br><br>
+    </div>
+{% endblock %}
