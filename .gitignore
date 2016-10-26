@@ -2,7 +2,7 @@
 /web/uploads/
 /app/bootstrap.php.cache
 /app/cache/*
-/app/config/parameters.yml.dist
+/app/config/parameters.yml
 /app/config/parameters_dev.yml
 /app/config/parameters_prod.yml
 /app/logs/*
