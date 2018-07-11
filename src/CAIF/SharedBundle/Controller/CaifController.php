@@ -129,6 +129,7 @@ class CaifController extends Controller
      */
     public function officersAction()
     {
+        return $this->redirectToRoute('caif_shared_index');
         return $this->render('CAIFSharedBundle:Caif:officers.html.twig');
     }
 
