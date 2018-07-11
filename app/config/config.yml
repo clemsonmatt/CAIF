@@ -54,7 +54,7 @@ braincrafted_bootstrap:
     output_dir:
     assets_dir: %kernel.root_dir%/../../vendor/twbs/bootstrap-sass/assets
     jquery_path: %kernel.root_dir%/../../vendor/jquery/jquery/jquery-1.10.2.js
-    less_filter: scssphp # "less", "lessphp", "sass" or "none"
+    # less_filter: scssphp # "less", "lessphp", "sass" or "none"
     icon_prefix: fa
     fonts_dir: %kernel.root_dir%/../../web/core/fonts
     auto_configure:
