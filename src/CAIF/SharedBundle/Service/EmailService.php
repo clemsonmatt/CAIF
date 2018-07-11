@@ -59,14 +59,12 @@ class EmailService
 
                 Your participation involves committing to your student(s) for a period of at least one year if possible, making a point of contact about every month.  This can be an ice cream break, lunch, hike, email contact, dinner in your home, shopping outing, etc.  Whatever you enjoy together is fine.  The idea is for students to experience American culture in the context of friendship and family.  Other helpful tips are on our webpage at <a href='http://caifclemson.org/community-members/about'>http://caifclemson.org/community-members/about</a>.
 
-                Should you have questions about hosting while you await to be assigned, please contact coordinators Jon or Alana Varner at alanavarner@gmail.com (864-723-6187) or jonvarner@bellsouth.net (864-723-0821).
+                Should you have questions about hosting while you await to be assigned, please contact coordinator Connie Caldwell at ckcaldwell@ymail.com.
 
                 Sincerely,
 
-                Kathy Mabry
                 CAIF President
-                sccaif@gmail.com
-                864-710-2756";
+                sccaif@gmail.com";
 
             $emailAddress = [$host->getEmail()];
             if ($host->getSecondaryEmail()) {
@@ -83,7 +81,7 @@ class EmailService
                 Click to view more about them
             </a>';
 
-        $this->sendEmail('CAIF New Community Member', ['noreply@caifclemson.org' => 'CAIF Site'], ['sccaif@gmail.com', 'alanavarner@gmail.com'], $body);
+        $this->sendEmail('CAIF New Community Member', ['noreply@caifclemson.org' => 'CAIF Site'], ['sccaif@gmail.com', 'ckcaldwell@ymail.com'], $body);
     }
 
     /**
@@ -99,15 +97,13 @@ class EmailService
 
                 You will be notified via email when the pairing process is complete.  Meanwhile, please feel free to participate in all activities offered through CAIF.  These will be listed on our webpage at <a href='http://caifclemson.org/events/all'>http://caifclemson.org/events/all</a> and on our <a href='https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/'>Facebook group page</a>.  Please ask to join the group in order to stay well informed of upcoming events.
 
-                For questions or updates about the CAIF pairing, please contact coordinators Jon or Alana Varner at alanavarner@gmail.com (864-723-6187) or jonvarner@bellsouth.net (864-723-0821).
+                For questions or updates about the CAIF pairing, please contact coordinator Connie Caldwell at ckcaldwell@ymail.com.
 
                 Best wishes as you settle into our campus community!
 
                 Sincerely,
 
-                Kathy Mabry
                 CAIF President
-                710-2756
                 sccaif@gmail.com";
 
             $this->sendEmail('Welcome to CAIF', ['noreply@caifclemson.org' => 'CAIF Site'], $student->getEmail(), $body, 'sccaif@gmail.com');
@@ -120,7 +116,7 @@ class EmailService
                 Click to view more about them
             </a>';
 
-        $this->sendEmail('CAIF New Student', ['noreply@caifclemson.org' => 'CAIF Site'], ['sccaif@gmail.com', 'alanavarner@gmail.com'], $body);
+        $this->sendEmail('CAIF New Student', ['noreply@caifclemson.org' => 'CAIF Site'], ['sccaif@gmail.com', 'ckcaldwell@ymail.com'], $body);
     }
 
     /**
@@ -147,7 +143,7 @@ class EmailService
                 Click here to view host
             </a>';
 
-        $this->sendEmail('CAIF Hosting Change', ['noreply@caifclemson.org' => 'CAIF Site'], ['sccaif@gmail.com', 'alanavarner@gmail.com'], $body);
+        $this->sendEmail('CAIF Hosting Change', ['noreply@caifclemson.org' => 'CAIF Site'], ['sccaif@gmail.com', 'ckcaldwell@ymail.com'], $body);
     }
 
 
