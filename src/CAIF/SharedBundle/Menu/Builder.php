@@ -17,7 +17,7 @@ class Builder extends ContainerAware
             ->setChildrenAttribute('class', 'dropdown-menu');
         $menu['Home']->addChild('Home Page', ['route' => 'caif_shared_index']);
         $menu['Home']->addChild('What Folks Are Saying', ['route' => 'caif_shared_quotes']);
-        $menu['Home']->addChild('Officers', ['route' => 'caif_shared_officers']);
+        // $menu['Home']->addChild('Officers', ['route' => 'caif_shared_officers']);
         $menu['Home']->addChild('Photo Gallery', ['route' => 'caif_shared_gallery']);
         // $menu['Home']->addChild('Newsletters', ['uri' => '#']);
 

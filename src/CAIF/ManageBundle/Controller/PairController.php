@@ -143,15 +143,17 @@ class PairController extends BaseController
         ]);
 
         $students = [];
-        foreach ($pairEmail->getStudents() as $s) {
-            if ($s->getId() != $student->getId()) {
-                $students[] = $s;
+        if ($pairEmail) {
+            foreach ($pairEmail->getStudents() as $s) {
+                if ($s->getId() != $student->getId()) {
+                    $students[] = $s;
+                }
             }
         }
 
         if (count($students)) {
             $pairEmail->setStudents($students);
-        } else {
+        } elseif ($pairEmail) {
             $em->remove($pairEmail);
         }
 
