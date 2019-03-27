@@ -5,22 +5,26 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
-        {{ macros.host_sub_nav('about') }}
-    </div>
-    <div class="col-md-9">
-        <div class="col-sm-12">
-            <h1 class="heading-lg">The Need</h1>
-            <p class="block-text" style="margin-bottom: 40px;">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ asset('bundles/caifshared/images/hostProgram1.JPG') }}" style="width: 100%;">
+        </div>
+        <div class="col-md-6">
+            <h2>The Need</h2>
+            <p class="block-text">
                 Each year, Clemson University welcomes approximately
                 600 NEW internationals to its campus. At any given time,
                 there are between 1400-1500 internationals studying at
                 Clemson University, representing 80-90 different countries.
             </p>
-
-            <h1 class="heading-lg">The Opportunity</h1>
-            <p class="block-text" style="margin-bottom: 40px;">
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>The Opportunity</h2>
+            <p class="block-text">
                 With the presence of so many foreign students in our community,
                 there exists a unique opportunity for cross-cultural learning
                 and for building personal ties between Americans and people
@@ -29,9 +33,10 @@
                 of our friendships continue to grow even after the student
                 returns home.
             </p>
-
-            <h1 class="heading-lg">The Relationships</h1>
-            <p class="block-text" style="margin-bottom: 40px;">
+        </div>
+        <div class="col-md-6">
+            <h2>The Relationships</h2>
+            <p class="block-text">
                 The rewards range from expanding your understanding of the world
                 to discovering a new and special friend. The relationships that
                 develop between hosts and foreign students tend to foster a new
@@ -39,9 +44,14 @@
                 contribute to achieving a better awareness of cultural differences
                 and similarities.
             </p>
-
-            <h1 class="heading-lg">The Reward</h1>
-            <p class="block-text" style="margin-bottom: 40px;">
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>The Reward</h2>
+            <p class="block-text">
                 The Host Family Program of Clemson Area International Friendship
                 offers the opportunity for community members to become friends with
                 foreign students, faculty and visiting scholars to the Clemson, SC
@@ -50,6 +60,9 @@
                 by inviting them to share meals, visit in American homes, tour the area,
                 or take part in any number of activities.
             </p>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ asset('bundles/caifshared/images/hostProgram3.jpg') }}" style="width: 100%;">
         </div>
     </div>
 {% endblock %}
