@@ -2,49 +2,44 @@
 
 {% block page_title %}
     {# header -- hide if on mobile #}
-    <main>
-        <div id="stripes">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <div class="hidden-xs">
+        <main>
+            <div id="stripes">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-        <div style="position: relative; top: 100px;">
-            <center>
-                <section style="max-width: 700px;">
-                    <img src="{{ asset('bundles/caifshared/images/logoWhitePurple.png') }}" style="width: 100%;">
-                </section>
-            </center>
-        </div>
-    </main>
+            <div class="main-img">
+                <center>
+                    <section style="max-width: 700px;">
+                        <img src="{{ asset('bundles/caifshared/images/logoWhitePurple.png') }}" style="width: 100%;">
+                    </section>
+                </center>
+            </div>
+        </main>
+    </div>
 
     {# show caif logo on mobile #}
-    <div class="visible-xs" style="margin-bottom: -125px;">
-        <br>
+    <div class="main-xs visible-xs">
         <center>
-            <img src="{{ asset('bundles/caifshared/images/Clemson Intl.png') }}" style="max-width: 75%;">
+            <img src="{{ asset('bundles/caifshared/images/logoWhitePurple.png') }}" style="width: 75%;">
         </center>
-        <br>
-        <hr>
     </div>
 {% endblock %}
 
 {% block container_content %}
-<div style="padding: 0px 0px 120px 0px;
-            -webkit-transform: skewY(-10deg);
-            transform: skewY(-10deg);
-            background-color: #fff;
-            margin-top: -50px;">
+<div class="main-subject">
     <div class="container">
         <br>
         <center>
-            <div class="row" style="-webkit-transform: skewY(10deg); transform: skewY(10deg);">
+            <div class="row main-subject-text">
                 <div class="col-xs-12 col-md-6">
                     <h1 class="heading-lg">Who We Are</h1>
                     <br>
-                    <p class="col-xs-offset-1 col-xs-10 col-sm-12 block-text text-left">
+                    <p class="col-sm-12 block-text text-left">
                         Clemson Area International Friendship (CAIF) is a community
                         organization which coordinates hospitality and support
                         services for foreign students, faculty and visitors in the
@@ -56,7 +51,7 @@
                 <div class="col-xs-12 col-md-6">
                     <h1 class="heading-lg">Our Mission</h1>
                     <br>
-                    <p class="col-xs-offset-1 col-xs-10 col-sm-12 block-text text-left">
+                    <p class="col-sm-12 block-text text-left">
                         The mission of Clemson Area International Friendship
                         is to provide a mutually supportive and positive experience
                         for both the international visitor and the community member.
@@ -69,10 +64,10 @@
     </div>
 </div>
 <div style="background-color: #f4f4f4;">
-    <div style="padding: 300px 0px 100px 0px; margin-top: -300px;">
+    <div class="main-subject2">
         <div class="clearfix" style="text-align: center;">
             <div class="col-sm-6">
-                <div style="padding-left: 10%;">
+                <div style="padding-left: 10%; padding-right: 10%;">
                     <img src="{{ asset('bundles/caifshared/images/students1.JPG') }}" style="max-width: 100%; border-radius: 5px; box-shadow: 10px 10px rgba(100,100,100,.2);" />
                 </div>
             </div>
