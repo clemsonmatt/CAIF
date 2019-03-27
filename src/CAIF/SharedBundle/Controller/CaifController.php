@@ -117,11 +117,11 @@ class CaifController extends Controller
     }
 
     /**
-     * @Route("/quotes", name="caif_shared_quotes")
+     * @Route("/testimonials", name="caif_shared_testimonials")
      */
-    public function quotesAction()
+    public function testimonialsAction()
     {
-        return $this->render('CAIFSharedBundle:Caif:quotes.html.twig');
+        return $this->render('CAIFSharedBundle:Caif:testimonials.html.twig');
     }
 
     /**

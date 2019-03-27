@@ -61,19 +61,8 @@
         {% endblock %}
 
         {% block page_title %}
-            <div style="height: 125px;">
-                <div style="height: 125px; overflow: hidden;">
-                    <img src="{{ asset('bundles/caifshared/images/purpleBar.png') }}" class="header-background-home pull-right">
-                </div>
-                <div class="container" style="margin-top: -125px; position: relative; padding: 40px;">
-                    <div class="pull-right hidden-xs" style="margin-top: -25px;">
-                        <a href="{{ path('caif_shared_student_form') }}" class="btn-header pull-right">
-                            International Student Form
-                        </a>
-                        <a href="{{ path('caif_shared_host_form') }}" class="btn-header pull-right" style="margin-right: 10px;">
-                            Community Member Form
-                        </a>
-                    </div>
+            <div class="page-heading">
+                <div class="container">
                     <h1 class="color-white main-heading">
                         {% block page_title_header %}{% endblock %}
                     </h1>
@@ -85,10 +74,8 @@
             <div id="page-wrapper">
                 {% block container_content %}
                     <div class="container">
-                        <div class="row">
-                            {% block content %}
-                            {% endblock %}
-                        </div>
+                        {% block content %}
+                        {% endblock %}
                         <br>
                     </div>
                 {% endblock %}
