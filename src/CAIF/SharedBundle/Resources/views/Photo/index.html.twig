@@ -1,55 +1,43 @@
 {% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
 
 {% block page_title_header %}
-    Manage Events
+    Photos
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-3">
+    <h3>
         {% if is_granted('ROLE_ADMIN') and manage %}
-            {% import 'CAIFManageBundle::macros.html.twig' as macros %}
-            {{ macros.manage_sub_nav('photos') }}
-        {% else %}
-            {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
-            {{ macros.home_sub_nav('photos') }}
+            <a href="{{ path('caif_manage_photo_album_add') }}" class="btn btn-default btn-sm pull-right">
+                {{ icon('plus') }}
+            </a>
         {% endif %}
-    </div>
-    <div class="col-md-9">
-        <br>
-        <h3>
-            {% if is_granted('ROLE_ADMIN') and manage %}
-                <a href="{{ path('caif_manage_photo_album_add') }}" class="btn btn-default btn-sm pull-right">
-                    {{ icon('plus') }}
-                </a>
-            {% endif %}
-            Albums
-        </h3>
-        <br>
-        <div class="row">
-            {% for album in albums %}
-                <div class="col-lg-4 col-sm-6 col-xs-12 event">
-                    <div class="panel panel-default pointer js-row-click" id="{{ path(show_path, {'album': album.id}) }}">
-                        <div class="panel-body" style="min-height: 230px;">
-                            <center>
-                                {% if album.coverPhoto != null %}
-                                    <img src="{{ asset('/uploads/gallery/' ~ album.id ~ '/' ~ album.coverPhoto|url_encode) }}" style="max-width: 100%; max-height: 200px;">
-                                {% else %}
-                                    <div style="background-color: #eee; max-width: 100%; min-height: 200px; max-height: 200px;">
-                                        <br><br><br>
-                                        <span class="light-grey">
-                                            {{ icon('ban') }}
-                                            No photos
-                                        </span>
-                                    </div>
-                                {% endif %}
-                            </center>
-                        </div>
-                        <div class="panel-footer">
-                            {{ album }}
-                        </div>
+        Albums
+    </h3>
+    <br>
+    <div class="row">
+        {% for album in albums %}
+            <div class="col-lg-4 col-sm-6 col-xs-12 event">
+                <div class="panel panel-default pointer js-row-click" id="{{ path(show_path, {'album': album.id}) }}">
+                    <div class="panel-body" style="min-height: 230px;">
+                        <center>
+                            {% if album.coverPhoto != null %}
+                                <img src="{{ asset('/uploads/gallery/' ~ album.id ~ '/' ~ album.coverPhoto|url_encode) }}" style="max-width: 100%; max-height: 200px;">
+                            {% else %}
+                                <div style="background-color: #eee; max-width: 100%; min-height: 200px; max-height: 200px;">
+                                    <br><br><br>
+                                    <span class="light-grey">
+                                        {{ icon('ban') }}
+                                        No photos
+                                    </span>
+                                </div>
+                            {% endif %}
+                        </center>
+                    </div>
+                    <div class="panel-footer">
+                        {{ album }}
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

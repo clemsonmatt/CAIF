@@ -27,16 +27,16 @@ class Builder extends ContainerAware
         $menu['Host Home Program']->addChild('About The Program', ['route' => 'caif_shared_host_about']);
         $menu['Host Home Program']->addChild('Student Guidelines', ['route' => 'caif_shared_student_guidelines']);
         $menu['Host Home Program']->addChild('Form For New Students', ['route' => 'caif_shared_student_form']);
-        $menu['Host Home Program']->addChild('Intro to Hosting Students', ['route' => 'caif_shared_host_activity']);
+        $menu['Host Home Program']->addChild('Intro to Hosting Students', ['route' => 'caif_shared_host_conversation']);
         $menu['Host Home Program']->addChild('Host Guidelines', ['route' => 'caif_shared_host_guidelines']);
         $menu['Host Home Program']->addChild('Form For New Hosts', ['route' => 'caif_shared_host_form']);
 
-        $menu->addChild('Upcomming Events', ['uri' => '#', 'class' => 'dropdown-toggle'])
+        $menu->addChild('Upcoming Events', ['uri' => '#', 'class' => 'dropdown-toggle'])
             ->setAttribute('class', 'dropdown')
             ->setChildrenAttribute('class', 'dropdown-menu');
-        $menu['Upcomming Events']->addChild('Current Events', ['route' => 'caif_shared_event_index']);
-        $menu['Upcomming Events']->addChild('International Club (Bridges Int\'l)', ['route' => 'caif_shared_event_intl_club']);
-        $menu['Upcomming Events']->addChild('International Wives Club', ['route' => 'caif_shared_event_wives_club']);
+        $menu['Upcoming Events']->addChild('Current Events', ['route' => 'caif_shared_event_index']);
+        $menu['Upcoming Events']->addChild('International Club (Bridges Int\'l)', ['route' => 'caif_shared_event_intl_club']);
+        $menu['Upcoming Events']->addChild('International Wives Club', ['route' => 'caif_shared_event_wives_club']);
 
         $menu->addChild('Helpful Resources', ['uri' => '#', 'class' => 'dropdown-toggle'])
             ->setAttribute('class', 'dropdown')

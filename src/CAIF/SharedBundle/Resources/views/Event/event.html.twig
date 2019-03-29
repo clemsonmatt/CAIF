@@ -5,53 +5,47 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
-        {{ macros.event_sub_nav('events') }}
-    </div>
-    <div class="col-md-9 event">
-        <legend>
-            <button class="pull-right btn-custom btn-xs">
-                Past Events
-            </button>
-            <h3 class="light-grey">Upcoming Events</h3>
-        </legend>
-        {% for event in events %}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="col-xs-9" style="border-right: 1px solid #ddd;">
-                        <h4 class="secondary-color">
-                            {{ event }}
-                        </h4>
-                        <strong>
-                            {{ event.location }}
-                        </strong>
-                        <br><br>
-                        <p class="text-block" style="height: 50px; overflow: hidden;">
-                            {{ event.description }}
-                        </p>
-                    </div>
-                    <div class="col-xs-3" style="font-size: 16px;">
-                        <center>
-                            {{ event.startDate|date('l') }}
-                            <br>
-                            <div style="margin-top: -5px;">
-                                <span style="font-size: 40px;" class="primary-color">
-                                    {{ event.startDate|date('d') }}
-                                </span>
-                            </div>
-                            <br>
-                            <div style="margin-top: -25px">
-                                {{ event.startDate|date('M. Y') }}
-                            </div>
-                            <hr style="margin-top: 7px; margin-bottom: 7px;">
-                            {{ event.startTime|date('h:i A') }}
-                            &mdash;
-                            {{ event.endTime|date('h:i A') }}
-                        </center>
-                    </div>
+    <legend>
+        <button class="pull-right btn-custom btn-xs">
+            Past Events
+        </button>
+        <h3 class="light-grey">Upcoming Events</h3>
+    </legend>
+    {% for event in events %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-xs-9" style="border-right: 1px solid #ddd;">
+                    <h4 class="secondary-color">
+                        {{ event }}
+                    </h4>
+                    <strong>
+                        {{ event.location }}
+                    </strong>
+                    <br><br>
+                    <p class="text-block" style="height: 50px; overflow: hidden;">
+                        {{ event.description }}
+                    </p>
+                </div>
+                <div class="col-xs-3" style="font-size: 16px;">
+                    <center>
+                        {{ event.startDate|date('l') }}
+                        <br>
+                        <div style="margin-top: -5px;">
+                            <span style="font-size: 40px;" class="primary-color">
+                                {{ event.startDate|date('d') }}
+                            </span>
+                        </div>
+                        <br>
+                        <div style="margin-top: -25px">
+                            {{ event.startDate|date('M. Y') }}
+                        </div>
+                        <hr style="margin-top: 7px; margin-bottom: 7px;">
+                        {{ event.startTime|date('h:i A') }}
+                        &mdash;
+                        {{ event.endTime|date('h:i A') }}
+                    </center>
                 </div>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 {% endblock %}
