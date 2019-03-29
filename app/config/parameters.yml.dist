@@ -2,10 +2,11 @@
 
 parameters:
     database_driver: pdo_mysql
-    database_host: 127.0.0.1
+    database_host: '%db.host%'
     database_port: null
-    database_name: caif
-    database_user: root
+    database_name: '%db.name%'
+    database_user: '%db.user%'
+    database_password: '%db.password%'
     database_password: null
     locale: en
     secret: ThisTokenIsNotSoSecretChangeIt
