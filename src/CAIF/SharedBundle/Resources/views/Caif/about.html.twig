@@ -1,0 +1,29 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block page_title_header %}
+    Who We Are
+{% endblock %}
+
+{% block content %}
+    <center>
+        <iframe src="https://drive.google.com/file/d/1fM4I9CJq0kB9NNUqWWRkoAT0xScogEoI/preview" width="900" height="450"></iframe>
+    </center>
+    <br>
+    <p class="well text-muted">
+        Clemson Area International Friendship (CAIF) is a community organization which coordinates hospitality and support services for foreign students, faculty and visitors in the Clemson area. CAIF is a Community Section of the National Association for Foreign Student Affairs.
+    </p>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Host Home</h3>
+            <p class="text-muted">
+                Find out more about our <a href="{{ path('caif_shared_host_about') }}">hosting program</a> or complete the <a href="{{ path('caif_shared_host_form') }}">new host form</a> to get connected with students.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h3>Students</h3>
+            <p class="text-muted">
+                Checkout our <a href="{{ path('caif_shared_student_guidelines') }}">student FAQ</a> or complete the <a href="{{ path('caif_shared_student_form') }}">new student form</a> to get connected with a host friend.
+            </p>
+        </div>
+    </div>
+{% endblock %}

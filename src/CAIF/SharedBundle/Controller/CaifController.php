@@ -80,6 +80,14 @@ class CaifController extends Controller
     }
 
     /**
+     * @Route("/about-us", name="caif_shared_about")
+     */
+    public function aboutAction()
+    {
+        return $this->render('CAIFSharedBundle:Caif:about.html.twig');
+    }
+
+    /**
      * @Route("/contact-us", name="caif_shared_contact")
      */
     public function contactAction(Request $request)

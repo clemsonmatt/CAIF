@@ -15,7 +15,7 @@ class Builder extends ContainerAware
         $menu->addChild('About', ['class' => 'dropdown-toggle'])
             ->setAttribute('class', 'dropdown')
             ->setChildrenAttribute('class', 'dropdown-menu');
-        $menu['About']->addChild('Who We Are', ['route' => 'caif_shared_testimonials']);
+        $menu['About']->addChild('Who We Are', ['route' => 'caif_shared_about']);
         $menu['About']->addChild('Our Mission', ['route' => 'caif_shared_testimonials']);
         $menu['About']->addChild('Testimonials', ['route' => 'caif_shared_testimonials']);
         $menu['About']->addChild('Photos', ['route' => 'caif_shared_gallery']);
