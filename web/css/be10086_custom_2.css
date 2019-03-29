@@ -393,6 +393,15 @@ ul .active {
   background-color: #522D80 !important;
 }
 
+.navbar-nav > li > a,
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus,
+.navbar-nav .open > a,
+.navbar-nav .open > a:hover,
+.navbar-nav .open > a:focus {
+    background-color: inherit;
+}
+
 
 /* dropdown-menu basic */
 .dropdown-menu {
@@ -402,7 +411,8 @@ ul .active {
 .dropdown-menu li a {
     color: #522D80;
 }
-.dropdown-menu li a:hover {
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
     background-color: #eee;
     color           : inherit;
 }
