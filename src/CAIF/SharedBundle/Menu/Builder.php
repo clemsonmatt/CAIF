@@ -19,7 +19,7 @@ class Builder extends ContainerAware
         $menu['About']->addChild('Our Mission', ['route' => 'caif_shared_testimonials']);
         $menu['About']->addChild('About The Program', ['route' => 'caif_shared_host_about']);
         $menu['About']->addChild('Testimonials', ['route' => 'caif_shared_testimonials']);
-        $menu['About']->addChild('Board Members', ['route' => 'caif_shared_officers']);
+        // $menu['About']->addChild('Board Members', ['route' => 'caif_shared_officers']);
         $menu['About']->addChild('Upcoming Events', ['uri' => 'https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/'])->setLinkAttributes(['target' => '_blank']);
 
         $menu->addChild('Host Program', ['class' => 'dropdown-toggle'])
@@ -47,11 +47,11 @@ class Builder extends ContainerAware
         $menu['Helpful Resources']->addChild('When In Clemson', ['uri' => 'http://www.xaclemson.com/'])->setLinkAttributes(['target' => '_blank']);
         $menu['Helpful Resources']->addChild('International Services Clemson', ['uri' => 'http://caif.dev/bundles/caifshared/images/MSA_Flyer.pdf'])->setLinkAttributes(['target' => '_blank']);
 
-        $menu->addChild('Alumni', ['uri' => '#', 'class' => 'dropdown-toggle'])
-            ->setAttribute('class', 'dropdown')
-            ->setChildrenAttribute('class', 'dropdown-menu');
-        $menu['Alumni']->addChild('About', ['uri' => '#']);
-        $menu['Alumni']->addChild('Ways To Give Back', ['uri' => '#']);
+        // $menu->addChild('Alumni', ['uri' => '#', 'class' => 'dropdown-toggle'])
+        //     ->setAttribute('class', 'dropdown')
+        //     ->setChildrenAttribute('class', 'dropdown-menu');
+        // $menu['Alumni']->addChild('About', ['uri' => '#']);
+        // $menu['Alumni']->addChild('Ways To Give Back', ['uri' => '#']);
 
         return $menu;
     }
