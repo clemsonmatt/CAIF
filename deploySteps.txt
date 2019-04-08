@@ -1,0 +1,14 @@
+GITHUB
+- Merge PRs all into develop branch
+- Create new release from develop (make sure CHANGELOG is up to date)
+- Merge into master (update CHANGELOG with new release)
+- Deploy
+
+
+DREAMHOST
+- Connect with sftp
+- Upload any files that have changed
+- ssh:
+    - php app/console assets:install --env=prod
+    - php app/console assetic:dump --env=prod
+    - php app/console c:c --env=prod
