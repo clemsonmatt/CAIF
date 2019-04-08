@@ -5,32 +5,50 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-3">
-        <hr>
-        <div class="panel-body light-grey">
-            For more information about what CAIF is or how you can become
-            involved, contact us here
-        </div>
-        <hr>
-    </div>
-    <div class="col-md-9">
-        <br>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <blockquote class="light-grey">
-                    Please be as specific as possible to help us respond to your comments. Someone will respond to your message within 24 hours.
-                </blockquote>
-                {{ form_start(form) }}
-                    {{ form_rest(form) }}
-                    <div class="pull-right">
-                        <button class="btn btn-purple">
-                            {{ icon('send') }}
-                            Send
-                        </button>
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Send us a message</h2>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="well">
+                        Please be as specific as possible to help us respond to your comments. Someone will respond to your message within 24 hours.
                     </div>
-                {{ form_end(form) }}
-                <br><br>
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.name) }}
+                                {{ form_row(form.email) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.affiliation) }}
+                                {{ form_row(form.pertains) }}
+                            </div>
+                        </div>
+                        {{ form_rest(form) }}
+                        <div class="pull-right">
+                            <button class="btn btn-caif btn-lg">
+                                Submit
+                            </button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
             </div>
+        </div>
+        <div class="col-md-4">
+            <h4>Questions and Issues</h4>
+            <p>
+                Check out our <a href="{{ path('caif_shared_faq') }}">FAQ</a> first to see if the issue you are having has already been encountered by someone else.
+            </p>
+            <hr>
+            <h4>Host Home Program</h4>
+            <p>
+                If you would like to know more about the Host Home Program, <a href="{{ path('caif_shared_host_about') }}">click here</a> for details.
+            </p>
+            <hr>
+            <h4>Donations</h4>
+            <p>
+                Interested in donating to CAIF? Visit our <a href="#">donations</a> page for ways to give.
+            </p>
         </div>
     </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
 
 {% block page_title_header %}
-    Community Member Form
+    New Host Form
 {% endblock %}
 
 {% block javascripts %}
@@ -28,161 +28,155 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
-        {{ macros.host_sub_nav('form') }}
-    </div>
-    <div class="col-md-9">
-        {{ form_start(form) }}
-            <h2 class="heading-md">Reference</h2>
-            <div class="panel panel-default">
-                <div class="panel-body">
+    {{ form_start(form) }}
+        <h2 class="heading-md">Reference</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <blockquote class="light-grey">
+                    Thank you for your interest in international students. In order to protect the safety of our students and to maintain the integrity of CAIF, please provide the name and contact information of someone who can vouch for your good character. Please understand that CAIF maintains the prerogative to perform a background check.
+                </blockquote>
+                {{ form_row(form.referenceName) }}
+                {{ form_row(form.referencePhone) }}
+                {{ form_row(form.referenceEmail) }}
+            </div>
+        </div>
+
+        <center style="margin-top: -10px; margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-down') }}
+            </span>
+        </center>
+
+        <h2 class="heading-md">Contact Information</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.mobilePhone) }}
+                        {{ form_row(form.homePhone) }}
+                        {{ form_row(form.workPhone) }}
+                        {{ form_row(form.email) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.address) }}
+                        {{ form_row(form.city) }}
+                        {{ form_row(form.state) }}
+                        {{ form_row(form.zip) }}
+                        {{ form_row(form.secondaryEmail) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <center style="margin-top: -10px; margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-down') }}
+            </span>
+        </center>
+
+        <h2 class="heading-md">Personal Information</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.children) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.petStatus) }}
+                    </div>
+                </div>
+                <div id="js-has-pet" style="display: none;">
+                    {{ form_row(form.petType) }}
+                </div>
+                {{ form_row(form.hobbies) }}
+                {{ form_row(form.travel) }}
+                {{ form_row(form.languages) }}
+                {{ form_row(form.picture) }}
+            </div>
+        </div>
+
+        <center style="margin-top: -10px; margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-down') }}
+            </span>
+        </center>
+
+        <h2 class="heading-md">Host Friend Program</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{ form_row(form.hosting) }}
+                <div class="well" id="js-hosting-options" style="display: none;">
                     <blockquote class="light-grey">
-                        Thank you for your interest in international students. In order to protect the safety of our students and to maintain the integrity of CAIF, please provide the name and contact information of someone who can vouch for your good character. Please understand that CAIF maintains the prerogative to perform a background check.
+                        After registering in our database, you will be paired with a student within a few days.  We will then notify both you and the student via email that a pairing has been made.  This email will contain further information on how to contact each other.
                     </blockquote>
-                    {{ form_row(form.referenceName) }}
-                    {{ form_row(form.referencePhone) }}
-                    {{ form_row(form.referenceEmail) }}
-                </div>
-            </div>
-
-            <center style="margin-top: -10px; margin-bottom: -15px;">
-                <span style="font-size: 60px;" class="secondary-color">
-                    {{ icon('chevron-down') }}
-                </span>
-            </center>
-
-            <h2 class="heading-md">Contact Information</h2>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            {{ form_row(form.name) }}
-                            {{ form_row(form.mobilePhone) }}
-                            {{ form_row(form.homePhone) }}
-                            {{ form_row(form.workPhone) }}
-                            {{ form_row(form.email) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_row(form.address) }}
-                            {{ form_row(form.city) }}
-                            {{ form_row(form.state) }}
-                            {{ form_row(form.zip) }}
-                            {{ form_row(form.secondaryEmail) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <center style="margin-top: -10px; margin-bottom: -15px;">
-                <span style="font-size: 60px;" class="secondary-color">
-                    {{ icon('chevron-down') }}
-                </span>
-            </center>
-
-            <h2 class="heading-md">Personal Information</h2>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            {{ form_row(form.children) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_row(form.petStatus) }}
-                        </div>
-                    </div>
-                    <div id="js-has-pet" style="display: none;">
-                        {{ form_row(form.petType) }}
-                    </div>
-                    {{ form_row(form.hobbies) }}
-                    {{ form_row(form.travel) }}
-                    {{ form_row(form.languages) }}
-                    {{ form_row(form.picture) }}
-                </div>
-            </div>
-
-            <center style="margin-top: -10px; margin-bottom: -15px;">
-                <span style="font-size: 60px;" class="secondary-color">
-                    {{ icon('chevron-down') }}
-                </span>
-            </center>
-
-            <h2 class="heading-md">Host Friend Program</h2>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    {{ form_row(form.hosting) }}
-                    <div class="well" id="js-hosting-options" style="display: none;">
-                        <blockquote class="light-grey">
-                            After registering in our database, you will be paired with a student within a few days.  We will then notify both you and the student via email that a pairing has been made.  This email will contain further information on how to contact each other.
-                        </blockquote>
-                        {{ form_row(form.maxStudents) }}
-                        <blockquote class="light-grey">
-                            If you would like to befriend students from a particular country, cultural background, or gender, please select your preference. We try to fulfill requests when possible, but cannot make any guarantees.
-                        </blockquote>
-                        {{ form_row(form.studentType) }}
-                        {{ form_row(form.studentCountry) }}
-                    </div>
-                </div>
-            </div>
-
-            <center style="margin-top: -10px; margin-bottom: -15px;">
-                <span style="font-size: 60px;" class="secondary-color">
-                    {{ icon('chevron-down') }}
-                </span>
-            </center>
-
-            <h2 class="heading-md">Other Ways To Be Involved</h2>
-            <div class="panel panel-default">
-                <div class="panel-body">
+                    {{ form_row(form.maxStudents) }}
                     <blockquote class="light-grey">
-                        Once your account is completed at the bottom of this form, you may log back in at any time to change these involvement preferences
+                        If you would like to befriend students from a particular country, cultural background, or gender, please select your preference. We try to fulfill requests when possible, but cannot make any guarantees.
                     </blockquote>
-                    <p class="light-grey">
-                        Check all that apply. A check does not necessarily commit you.
-                    </p>
-                    {{ form_row(form.wivesClub) }}
-                    {{ form_row(form.eventHelp) }}
-                    {{ form_row(form.shopping) }}
-                    {{ form_row(form.groupOuting) }}
-                    {{ form_row(form.provideMeal) }}
+                    {{ form_row(form.studentType) }}
+                    {{ form_row(form.studentCountry) }}
                 </div>
             </div>
+        </div>
 
-            <center style="margin-top: -10px; margin-bottom: -15px;">
-                <span style="font-size: 60px;" class="secondary-color">
-                    {{ icon('chevron-down') }}
-                </span>
-            </center>
+        <center style="margin-top: -10px; margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-down') }}
+            </span>
+        </center>
 
-            <h2 class="heading-md">Create Login Information</h2>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <blockquote class="light-grey">
-                        This login information will be used inorder for you to keep your information up to date.
-                    </blockquote>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {{ form_row(form.username) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_row(form.password) }}
-                        </div>
+        <h2 class="heading-md">Other Ways To Be Involved</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <blockquote class="light-grey">
+                    Once your account is completed at the bottom of this form, you may log back in at any time to change these involvement preferences
+                </blockquote>
+                <p class="light-grey">
+                    Check all that apply. A check does not necessarily commit you.
+                </p>
+                {{ form_row(form.wivesClub) }}
+                {{ form_row(form.eventHelp) }}
+                {{ form_row(form.shopping) }}
+                {{ form_row(form.groupOuting) }}
+                {{ form_row(form.provideMeal) }}
+            </div>
+        </div>
+
+        <center style="margin-top: -10px; margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-down') }}
+            </span>
+        </center>
+
+        <h2 class="heading-md">Create Login Information</h2>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <blockquote class="light-grey">
+                    This login information will be used inorder for you to keep your information up to date.
+                </blockquote>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.username) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.password) }}
                     </div>
                 </div>
             </div>
+        </div>
 
 
-            <center style="margin-bottom: -15px;">
-                <span style="font-size: 60px;" class="secondary-color">
-                    {{ icon('chevron-right') }}
-                </span>
-            </center>
-            <div class="pull-right" style="margin-top: -50px;">
-                <button class="btn btn-purple btn-lg">
-                    {{ icon('check') }}
-                    Submit
-                </button>
-            </div>
-        {{ form_end(form) }}
-    </div>
+        <center style="margin-bottom: -15px;">
+            <span style="font-size: 60px;" class="secondary-color">
+                {{ icon('chevron-right') }}
+            </span>
+        </center>
+        <div class="pull-right" style="margin-top: -50px;">
+            <button class="btn btn-purple btn-lg">
+                {{ icon('check') }}
+                Submit
+            </button>
+        </div>
+    {{ form_end(form) }}
 {% endblock %}

@@ -19,11 +19,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-xs-12 col-md-3">
-    {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
-    {{ macros.student_sub_nav('form') }}
-</div>
-<div class="col-xs-12 col-md-9">
     {{ form_start(form) }}
         <h2 class="heading-md">Contact Information</h2>
         <div class="panel panel-default">
@@ -125,6 +120,4 @@
             </button>
         </div>
     {{ form_end(form) }}
-    <br><br>
-</div>
 {% endblock %}

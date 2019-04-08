@@ -61,19 +61,8 @@
         {% endblock %}
 
         {% block page_title %}
-            <div style="height: 125px;">
-                <div style="height: 125px; overflow: hidden;">
-                    <img src="{{ asset('bundles/caifshared/images/purpleBar.png') }}" class="header-background-home pull-right">
-                </div>
-                <div class="container" style="margin-top: -125px; position: relative; padding: 40px;">
-                    <div class="pull-right hidden-xs" style="margin-top: -25px;">
-                        <a href="{{ path('caif_shared_student_form') }}" class="btn-header pull-right">
-                            International Student Form
-                        </a>
-                        <a href="{{ path('caif_shared_host_form') }}" class="btn-header pull-right" style="margin-right: 10px;">
-                            Community Member Form
-                        </a>
-                    </div>
+            <div class="page-heading">
+                <div class="container">
                     <h1 class="color-white main-heading">
                         {% block page_title_header %}{% endblock %}
                     </h1>
@@ -81,47 +70,146 @@
             </div>
         {% endblock %}
 
+        {% block pre_content %}
+        {% endblock %}
+
         <div class="content">
             <div id="page-wrapper">
                 {% block container_content %}
-                    {#<div class="container" style="border: 1px solid #eee; border-top: none; background-color: #fff;">#}
-                    <div class="container">
-                        <div class="row">
-                            {% block content %}
-                            {% endblock %}
-                        </div>
+                    <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+                        {% block content %}
+                        {% endblock %}
                         <br>
                     </div>
                 {% endblock %}
-                <hr>
+                <hr style="margin: 0px;">
                 {% block footer %}
-                    <br>
-                    <div class="container">
-                        <div class="row hidden-xs">
-                            <div class="col-sm-2">
-                                <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" style="font-size: 30px;" class="light-grey" target="_blank">
-                                    {{ icon('facebook-square') }}
-                                </a>
+                    <footer style="padding-top: 20px;">
+                        <div class="container">
+                            <div class="row hidden-xs" style="padding: 10px 0px 30px 0px;">
+                                <div class="col-sm-3">
+                                    <img src="{{ asset('bundles/caifshared/images/logoOrangeSimple.png') }}" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-md-4">
+                                            <a href="{{ path('caif_shared_student_form') }}" class="btn btn-caif btn-block btn-lg">
+                                                Student Form
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="{{ path('caif_shared_host_form') }}" class="btn btn-caif btn-block btn-lg">
+                                                Host Form
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="{{ path('caif_shared_contact') }}" class="btn btn-caif btn-block btn-lg">
+                                                Contact Us
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-10">
-                                <h4 class="light-grey pull-right">
+                            <div class="visible-xs">
+                                <center class="light-grey">
+                                    <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" style="font-size: 30px;" class="light-grey" target="_blank">
+                                        {{ icon('facebook-square') }}
+                                    </a>
+                                    <br>
                                     Copyright &copy; {{ "now"|date('Y') }}
                                     Clemson Area International Friendship
-                                </h4>
+                                </center>
                             </div>
                         </div>
-                        <div class="visible-xs">
-                            <center class="light-grey">
-                                <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" style="font-size: 30px;" class="light-grey" target="_blank">
-                                    {{ icon('facebook-square') }}
-                                </a>
-                                <br>
-                                Copyright &copy; {{ "now"|date('Y') }}
-                                Clemson Area International Friendship
-                            </center>
+                        <div class="hidden-xs">
+                            <div class="footer-nav">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4>About</h4>
+                                            <a href="{{ path('caif_shared_about') }}">Who We Are</a>
+                                            {# <br>
+                                            <a href="#">Our Mission</a> #}
+                                            <br>
+                                            <a href="{{ path('caif_shared_host_about') }}">About the Program</a>
+                                            <br>
+                                            <a href="{{ path('caif_shared_testimonials') }}">Testimonials</a>
+                                            {# <br>
+                                            <a href="#">Board Members</a> #}
+                                            <br>
+                                            <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" target="_blank">Upcoming Events</a>
+                                            <br>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>Host Program</h4>
+                                            <a href="{{ path('caif_shared_host_conversation') }}">Intro to Hosting Students</a>
+                                            <br>
+                                            <a href="{{ path('caif_shared_host_guidelines') }}">Host Guidelines</a>
+                                            <br>
+                                            <a href="{{ path('caif_shared_host_form') }}">New Host Form</a>
+                                            <br>
+                                            {# <h4>Student Program</h4>
+                                            <a href="{{ path('caif_shared_student_guidelines') }}">Student Guidelines</a>
+                                            <br>
+                                            <a href="{{ path('caif_shared_student_form') }}">New Student Form</a>
+                                            <br> #}
+                                        </div>
+                                        <div class="col-md-3">
+                                                <h4>Student Program</h4>
+                                                <a href="{{ path('caif_shared_student_guidelines') }}">Student Guidelines</a>
+                                                <br>
+                                                <a href="{{ path('caif_shared_student_form') }}">New Student Form</a>
+                                                <br>
+                                            </div>
+                                        <div class="col-md-3">
+                                            <h4>Helpful Resources</h4>
+                                            <a href="{{ path('caif_shared_event_intl_club') }}">International Club (Bridges Int'l)</a>
+                                            <br>
+                                            <a href="{{ path('caif_shared_event_wives_club') }}">International Wives Club</a>
+                                            {# <br>
+                                            <a href="#">Adult Learning Center</a> #}
+                                            <br>
+                                            <a href="http://www.clemsoncommunitycare.org/" target="_blank">Clemson Community Care</a>
+                                            <br>
+                                            <a href="https://docs.google.com/presentation/d/1A047101edGc_aDRClVG3GMki5VeQSBofhLwoXjgR6Eo/edit#slide=id.p4" target="_blank">Buying a Used Car</a>
+                                            <br>
+                                            <a href="{{ path('caif_shared_event_english_classes') }}">English Classes</a>
+                                            {# <br>
+                                            <a href="#" target="_blank">When In Clemson</a> #}
+                                            {# <br>
+                                            <a href="http://caifclemson.org/bundles/caifshared/images/MSA_Flyer.pdf" target="_blank">International Services Clemson</a> #}
+                                            <br>
+                                        </div>
+                                        {# <div class="col-md-3">
+                                            <h4>Alumni</h4>
+                                            <a href="#">About</a>
+                                            <br>
+                                            <a href="#">Ways to Give Back</a>
+                                            <br>
+                                            <br>
+                                            <a href="#" class="btn btn-footer btn-block" style="color: #fff;">Contact Us</a>
+                                        </div> #}
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background-color: #ddd; padding: 10px 0px;">
+                                <div class="container">
+                                    <h4 class="light-grey">
+                                        <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" style="font-size: 38px;" class="light-grey" target="_blank">
+                                            {{ icon('facebook-square') }}
+                                        </a>
+                                        {# <a href="#" class="btn btn-footer" style="margin-top: -15px;">
+                                            Donate
+                                        </a> #}
+
+                                        <span class="pull-right" style="padding-top: 10px;">
+                                            &copy; {{ "now"|date('Y') }} Clemson Area International Friendship
+                                        </span>
+                                    </h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <br>
+                    </footer>
                 {% endblock %}
             </div>
         </div>

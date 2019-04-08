@@ -2,129 +2,115 @@
 
 {% block page_title %}
     {# header -- hide if on mobile #}
-    <div style="height: 400px;" class="hidden-xs">
-        <div style="height: 400px; overflow: hidden;">
-            <img src="{{ asset('bundles/caifshared/images/dancingPurple.png') }}" class="header-background-home pull-right">
-        </div>
-        <div class="container" style="margin-top: -400px; position: relative; padding: 40px;">
-            <div class="pull-right">
-                <div class="row" style="padding-right: 15px;">
-                    <a href="{{ path('caif_shared_student_form') }}" class="btn-header pull-right">
-                        International Student Form
-                    </a>
-                </div>
-                <div class="row" style="padding-right: 15px;">
-                    <a href="{{ path('caif_shared_host_form') }}" class="btn-header pull-right" style="margin-top: 10px;">
-                        Community Member Form
-                    </a>
-                </div>
+    <div class="hidden-xs">
+        <main>
+            <div id="stripes">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <center>
-                <div style="width: 250px; height: 250px;">
-                    <img src="{{ asset('bundles/caifshared/images/caif_logo_white_2.png') }}" style="max-width: 100%;">
-                </div>
-                <h1 class="color-white" style="margin-top: -20px;">
-                    Clemson Area International Friendship
-                </h1>
-                <h3 class="color-white" style="margin-top: 0px;">
-                    Meeting the world at your back door
-                </h3>
-            </center>
-        </div>
+
+            <div class="main-img">
+                <center>
+                    <section style="max-width: 700px;">
+                        <img src="{{ asset('bundles/caifshared/images/logoWhite.png') }}" style="width: 100%;">
+                    </section>
+                </center>
+            </div>
+        </main>
     </div>
 
     {# show caif logo on mobile #}
-    <div class="visible-xs" style="margin-bottom: -125px;">
-        <br>
+    <div class="main-xs visible-xs">
         <center>
-            <img src="{{ asset('bundles/caifshared/images/Clemson Intl.png') }}" style="max-width: 75%;">
+            <img src="{{ asset('bundles/caifshared/images/logoWhitePurple.png') }}" style="width: 75%;">
         </center>
-        <br>
-        <hr>
     </div>
 {% endblock %}
 
 {% block container_content %}
-<div class="container" style="padding: 100px 0px 120px 0px;">
-    <br>
-    <center>
-        <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <h1 class="heading-lg">Who We Are</h1>
-                <br>
-                <p class="col-xs-offset-1 col-xs-10 col-sm-12 block-text text-left">
-                    Clemson Area International Friendship (CAIF) is a community
-                    organization which coordinates hospitality and support
-                    services for foreign students, faculty and visitors in the
-                    Clemson area. CAIF is a Community Section of the National
-                    Association for Foreign Student Affairs.
-                    <br><br>
-                </p>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <h1 class="heading-lg">Our Mission</h1>
-                <br>
-                <p class="col-xs-offset-1 col-xs-10 col-sm-12 block-text text-left">
-                    The mission of Clemson Area International Friendship
-                    is to provide a mutually supportive and positive experience
-                    for both the international visitor and the community member.
-                    CAlF members want to become goodwill ambassadors to all our
-                    international friends.
-                </p>
-            </div>
-        </div>
-    </center>
-</div>
-<div style="background-color: #f4f4f4;">
-    <div style="padding: 100px 0px 150px 0px;">
-        <div class="container">
-            <center>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h1 class="heading-lg">Get Involved With CAIF</h1>
-                        <br>
-                        <p class="col-md-offset-1 col-md-10 block-text text-left">
-                            CAIF is always looking for friendly community members
-                            who are truly interested in our international students and visitors. Most members wish to be involved
-                            by serving as a host partner, however others may choose to be involved by helping with ladies'
-                            luncheons, apartment events, conversational English classes, transportation to outings, and a variety
-                            of other activities.  Please fill out the Community Member Form or Contact Us for more information.
-                        </p>
-                    </div>
-                </div>
-                <br>
-                <h4 class="secondary-color" style="font-size: 1.4em;">
-                    Start today by filling out our Community Member form
-                </h4>
-                <a href="{{ path('caif_shared_host_form') }}" class="btn btn-custom btn-lg">
-                    Community Member Form
-                </a>
-            </center>
-        </div>
-    </div>
-</div>
-<div style="background-color: #fff;">
-    <div class="container" style="padding: 100px 0px;">
+<div class="main-subject">
+    <div class="container">
+        <br>
         <center>
-            <div class="row">
-                <div class="col-xs-12">
-                    <h1 class="heading-lg">Student Participation</h1>
+            <div class="row main-subject-text">
+                <div class="col-xs-12 col-md-6">
+                    <h1 class="heading-lg">Who We Are</h1>
                     <br>
-                    <p class="col-md-offset-1 col-md-10 block-text text-left">
-                        Please visit our Events &amp; Services pages to learn about upcoming
-                        events which may be of interest to you.  To sign up for a host family, complete the Student Form.
+                    <p class="col-sm-12 block-text text-left">
+                        Clemson Area International Friendship (CAIF) is a 501c3 community
+                        organization which coordinates hospitality and support
+                        services for foreign students, faculty and visitors in the
+                        Clemson area.
+                        <br><br>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <h1 class="heading-lg">Our Mission</h1>
+                    <br>
+                    <p class="col-sm-12 block-text text-left">
+                        The mission of Clemson Area International Friendship
+                        is to provide a mutually supportive and positive experience
+                        for both the international visitor and the community member.
+                        CAlF members want to become goodwill ambassadors to all our
+                        international friends.
                     </p>
                 </div>
             </div>
-            <br>
-            <h4 class="secondary-color" style="font-size: 1.4em;">
-                Fill out the student form to get connected with a host family
-            </h4>
-            <a href="{{ path('caif_shared_student_form') }}" class="btn btn-custom btn-lg">
-                International Student Form
-            </a>
         </center>
     </div>
-    <br>
+</div>
+<div style="background-color: #f4f4f4;">
+    <div class="main-subject2">
+        <div class="clearfix" style="text-align: center;">
+            <div class="col-sm-6">
+                <div style="padding-left: 10%; padding-right: 10%;">
+                    <img src="{{ asset('bundles/caifshared/images/students1.JPG') }}" style="max-width: 100%; border-radius: 5px; box-shadow: 10px 10px rgba(100,100,100,.2);" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h1 class="heading-lg">Get Involved</h1>
+                <br>
+                <p class="col-md-offset-1 col-md-10 block-text text-left">
+                    CAIF is always looking for members
+                    who are interested in our international students and visitors. Most members wish to be involved
+                    by serving as a host partner, however others may choose to be involved by helping with special events, conversational English classes, transportation, or a variety
+                    of other activities.  Please complete the Host Form or Contact Us for more information.
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-12" style="text-align: center;">
+            <h4 class="secondary-color" style="font-size: 1.4em;">
+                Start today by filling out our Host form
+            </h4>
+            <a href="{{ path('caif_shared_host_form') }}" class="btn btn-custom btn-lg">
+                Host Form
+            </a>
+        </div>
+    </div>
+</div>
+<div style="background: url({{ asset('bundles/caifshared/images/unsplash2.jpg') }}); background-position: center 40%; background-repeat  : no-repeat; background-size : cover;">
+    <div class="container" style="padding: 100px 0px;">
+        <div style="text-align: center;">
+            <div style="border: 1px solid rgba(255, 255, 255, .3); padding: 40px 15px; border-radius: 3px;">
+                <h1 class="heading-lg color-white">Student Participation</h1>
+                <br>
+                <p class="color-white" style="font-size: 1.4em;">
+                    To sign up for a host, complete the Student Form below.
+                </p>
+                <p class="block-text color-white" style="padding: 0px 15%;">
+                    Please join our <a href="https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/" target="_blank" class="primary-color">Facebook page</a> to learn about upcoming
+                    events which may be of interest to you.  To sign up for a host family, complete the Student Form.
+                </p>
+                <br>
+                <a href="{{ path('caif_shared_student_form') }}" class="btn btn-header btn-header-lg">
+                    Student Form
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

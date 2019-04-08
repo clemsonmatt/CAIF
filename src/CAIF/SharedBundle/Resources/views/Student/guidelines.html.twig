@@ -5,215 +5,167 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
-        {{ macros.student_sub_nav('guidelines') }}
-    </div>
-    <div class="col-md-9">
-        <br>
-        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-            <li class="active">
-                <a href="#general-tab" data-toggle="tab">
-                    General Guidelines
-                </a>
-            </li>
-            <li>
-                <a href="#tips-tab" data-toggle="tab">
-                    Student-Host Relationship Tips
-                </a>
-            </li>
-        </ul>
-        <br>
-
-        <div class="tab-content">
-            <div class="tab-pane active" id="general-tab">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Time</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            As you may know, most Americans carefully observe
-                            the time that is set for people to meet. Please
-                            try to be on time and be sure to call if you have
-                            to change the time or have to cancel the
-                            appointment.
-                        </blockquote>
+    <h2>Frequently Asked Questions</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>General Guidelines</h3>
+            <div id="accordion-general" role="tablist">
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-general" href="#general1">
+                        How is time valued by Americans?
+                    </a>
+                    <div id="general1" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            As you may know, most Americans carefully observe the time that is set for people to meet. Please try to be on time and be sure to call if you have to change the time or have to cancel the appointment. Many Americans feel that arriving late for appointments or events indicates rudeness or lact of respect when keeping someone waiting.
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h4>Bringing Friends</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            If you would like to bring friends along with you when
-                            you get together with your friendship partner, you need
-                            to ask permission in advance.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-general" href="#general2">
+                        How often will I meet with my host friend?
+                    </a>
+                    <div id="general2" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            You will receive information about upcoming activities for all members of the organization, including students and friendship partners. You are welcome to attend all activities even though your friendship partner may not be able to participate. On the average, a student will meet with their friendship partner about every 4-6 weeks.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Activities</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                             You will receive information about upcoming activities
-                             for all members of the organization, including students
-                             and friendship partners. You are welcome to attend all
-                             activities even though your friendship partner may not
-                             be able to participate. On the average, a student will meet with their
-                            friendship partner about every 4-6 weeks.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-general" href="#general3">
+                        Can I invite my host friend to an event?
+                    </a>
+                    <div id="general3" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            Occasionally, you may wish to invite your friendship partner to attend a university function, or you may want to prepare one of your national food dishes for him or her and friends of the family. Please feel free to extend an invitation.
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h4>Contact Info</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                             Notify your friendship partner, as well as your foreign
-                             student advisor, if you change your address, email, or
-                             telephone. If you have not heard from your host for more
-                             than two months, please notify us at sccaif@gmail.com.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-general" href="#general4">
+                        What should I do if I feel uncomfortable with my host friend?
+                    </a>
+                    <div id="general4" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            If you should for any reason feel uncomfortable with the host friend assigned to you, please notify host friend coodinators, Jon or Alana Varner, right away.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Invitations</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                             Occasionally, you may wish to invite your friendship
-                             partner to attend a university function, or you may
-                             want to prepare one of your national food dishes for
-                             him or her and friends of the family. Please feel free
-                             to extend an invitation.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-general" href="#general5">
+                        Can I bring a friend with me to meet my host friend?
+                    </a>
+                    <div id="general5" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            If you would like to bring friends along with you when you get together with your friendship partner, you need to ask permission in advance.
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h4>Holidays</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                             You will probably be invited to participate in special
-                             holiday activities with your host. Feel free to ask
-                             about the particular celebration, why and how it is
-                             observed, and other questions you might have.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-general" href="#general6">
+                        I've been paired with a host friend, but I have not had any contact with them.
+                    </a>
+                    <div id="general6" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            If you have not heard from your host for more than two months, please notify us at sccaif@gmail.com.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Discomfort With Host Friend</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                              If you should for any reason feel uncomfortable with
-                              the host friend assigned to you, please notify host
-                              friend coodinators, Jon or Alana Varner, right away.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-general" href="#general7">
+                        Can I join in holiday celebrations?
+                    </a>
+                    <div id="general7" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            You will probably be invited to participate in special holiday activities with your host. Feel free to ask about the particular celebration, why and how it is observed, and other questions you might have.
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h4>Host Friends</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                             Host friends are involved in CAIF because they are
-                             truly interested in getting to know international
-                             students and they want to be your friends. Please
-                             do not hesitate to ask them any questions you have
-                             about American culture, family life, or any social
-                             issues that you do not understand.
-                        </blockquote>
-                    </div>
-                </div>
+                </li>
             </div>
-
-            <div class="tab-pane" id="tips-tab">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>American Friendship</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            Americans are usually very "friendly" and will
-                            readily welcome and help newcomers. However,
-                            "friendship" takes a long time to develop.
-                        </blockquote>
+        </div>
+        <div class="col-md-6">
+            <h3>Student-Host Relationship</h3>
+            <ul class="list-group" id="accordion-relationship" role="tablist">
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-relationship" href="#realtionship1">
+                        What are American friendships like?
+                    </a>
+                    <div id="realtionship1" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            Americans are usually very "friendly" and will readily welcome and help newcomers. However, "friendship" takes a long time to develop.
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h4>Asking Questions</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            Americans often indicate their interest in
-                            others by asking questions. This indicates
-                            an eagerness to learn about you and your
-                            culture.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-relationship" href="#realtionship2">
+                        How do I introduce myself?
+                    </a>
+                    <div id="realtionship2" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            It is proper to shake hands with everyone to whom you are introduced, both men and women. Some Americans, especially if well-acquainted, will greet each other with a hug. If you do not wish to be hugged, extend your hand quickly for a handshake.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Be On Time</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            You are expected to be ready at the time
-                            agreed upon if someone is picking you up at
-                            your residence. Many Americans feel that
-                            arriving late for appointments or events
-                            indicates rudeness or lact of respect when
-                            keeping someone waiting.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-relationship" href="#realtionship3">
+                        My host friend has a pet and it makes me uncomfortable.
+                    </a>
+                    <div id="realtionship3" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            Many Americans have pets; especially dogs and cats that are often allowed into every room in their homes. If the presence of pets makes you uncomfortable, discuss the situation with your host.
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h4>Dress</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            Everyday casual dress is appropriate for most
-                            visits to peoples' homes. Your host should
-                            indicate ahead of time if more formal attire
-                            is required for a particular event.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-relationship" href="#realtionship4">
+                        How can I share my culture with my host friend?
+                    </a>
+                    <div id="realtionship4" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            Americans often indicate their interest in others by asking questions. This indicates an eagerness to learn about you and your culture.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Hand Shakes &amp; Hugs</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                             It is proper to shake hands with everyone to
-                             whom you are introduced, both men and women.
-                             Some Americans, especially if well-acquainted,
-                             will greet each other with a hug. If you do
-                             not wish to be hugged, extend your hand quickly
-                             for a handshake.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-relationship" href="#realtionship5">
+                        How should I dress?
+                    </a>
+                    <div id="realtionship5" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            Everyday casual dress is appropriate for most visits to peoples' homes. Your host should indicate ahead of time if more formal attire is required for a particular event.
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h4>Dietary Restrictions</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            When you accept a meal invitation, tell your
-                            host if you have any dietary restrictions or
-                            allergies. He/she will appreciate this
-                            information.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-relationship" href="#realtionship6">
+                        What if I have dietary restrictions?
+                    </a>
+                    <div id="realtionship6" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            When you accept a meal invitation, tell your host if you have any dietary restrictions or allergies. He/she will appreciate this information.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Dinner Gifts</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            It is not necessary to take a gift when you are invited to dinner.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-relationship" href="#realtionship7">
+                        Is it acceptable to smoke?
+                    </a>
+                    <div id="realtionship7" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            If you are a smoker, ask your host's permission before smoking. Most non-smoking Americans do not allow smoking in their home.
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <h4>Smoking</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            If you are a smoker, ask your host's
-                            permission before smoking. Most non-smoking
-                            Americans do not allow smoking in their home.
-                        </blockquote>
+                </li>
+                <li class="list-group-item">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion-relationship" href="#realtionship8">
+                        Should I help with household tasks?
+                    </a>
+                    <div id="realtionship8" class="panel-collapse collapse" role="tabpanel">
+                        <div class="text-muted">
+                            You may offer to assist with household tasks (like meal preparation, clearing the table, etc) as a gesture of appreciation.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Pets</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            Many Americans have pets; especially dogs and
-                            cats that are often allowed into every room
-                            in their homes. If the presence of pets makes
-                            you uncomfortable, discuss the situation with
-                            your host.
-                        </blockquote>
-                    </div>
-                    <div class="col-sm-6">
-                        <h4>Household Tasks</h4>
-                        <blockquote class="text-block" style="font-size: 16px;">
-                            You may offer to assist with household tasks
-                            (like meal preparation, clearing the table,
-                            etc) as a gesture of appreciation.
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 {% endblock %}

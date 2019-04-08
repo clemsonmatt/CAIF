@@ -1,17 +1,10 @@
 {% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
 
 {% block page_title_header %}
-    International Clubs
+    International Club
 {% endblock %}
 
 {% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFSharedBundle:Shared:macros.html.twig' as macros %}
-        {{ macros.event_sub_nav('intl-club') }}
-    </div>
-    <div class="col-md-9">
-        <br>
-        {% import 'CAIFSharedBundle:Event:macro.html.twig' as macros %}
-        {{ macros.intl_club(club, 'caif_shared_event_intl_club', false) }}
-    </div>
+    {% import 'CAIFSharedBundle:Event:macro.html.twig' as macros %}
+    {{ macros.intl_club(club, 'caif_shared_event_intl_club', false) }}
 {% endblock %}
