@@ -3,6 +3,12 @@
 ## [Unreleased]
 ### Added
 
+## [2.0.1](https://github.com/clemsonmatt/CAIF/tree/2.0.1) (2019-04-09)
+[Full Changelog](https://github.com/clemsonmatt/CAIF/compare/2.0.0...2.0.1)
+
+### Added
+- Update navbar on mobile [\#15](https://github.com/clemsonmatt/caif/issues/15) (2019-04-08)
+
 ## [2.0.0](https://github.com/clemsonmatt/CAIF/tree/2.0.0) (2019-04-08)
 ### Added
 - Update UI [\#12](https://github.com/clemsonmatt/CAIF/issues/12)
