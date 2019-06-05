@@ -119,6 +119,22 @@ class EmailController extends Controller
         return $this->redirectToRoute('caif_manage_email_index');
     }
 
+    /**
+     * @Route("/test")
+     */
+    public function sendTestEmail()
+    {
+        $email = new Email();
+        $email->setTo('Test');
+        $email->setSubject('Testing');
+        $email->setMessage('This is a test');
+
+        $this->sendEmail($email);
+
+        $this->addFlash('success', 'Test email sent');
+        return $this->redirectToRoute('caif_manage_email_index');
+    }
+
 
     /**
      * Send email

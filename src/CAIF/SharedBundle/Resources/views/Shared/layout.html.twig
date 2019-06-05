@@ -39,27 +39,6 @@
     <body>
         {% include 'CAIFSharedBundle:Shared:nav.html.twig' %}
 
-        {% block flash_messages %}
-            {% set flashTypes = [ 'info', 'warning', 'error', 'success'] %}
-            {% set flashTypeMap = {
-                'info' : 'info',
-                'warning' : 'warning',
-                'error' : 'danger',
-                'success' : 'success',
-            } %}
-            {% for flashType in flashTypes %}
-                {% for flashMessage in app.session.flashbag.get(flashType) %}
-                    <div class="hidden-print alert alert-dismissible alert-{{ flashTypeMap[flashType] }}" role="alert" style="margin-bottom: 0px;">
-                        <div class="container">
-                            <strong>
-                                {{ flashMessage|raw }}
-                            </strong>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        {% endblock %}
-
         {% block page_title %}
             <div class="page-heading">
                 <div class="container">
@@ -71,6 +50,27 @@
         {% endblock %}
 
         {% block pre_content %}
+        {% endblock %}
+
+        {% block flash_messages %}
+            {% set flashTypes = [ 'info', 'warning', 'error', 'success'] %}
+            {% set flashTypeMap = {
+                'info' : 'info',
+                'warning' : 'warning',
+                'error' : 'danger',
+                'success' : 'success',
+            } %}
+            {% for flashType in flashTypes %}
+                {% for flashMessage in app.session.flashbag.get(flashType) %}
+                    <div class="hidden-print alert alert-dismissible alert-{{ flashTypeMap[flashType] }}" role="alert" style="margin: -10px 0px 0px 0px;">
+                        <div class="container">
+                            <strong>
+                                {{ flashMessage|raw }}
+                            </strong>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
         {% endblock %}
 
         <div class="content">

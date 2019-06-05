@@ -3,6 +3,15 @@
 ## [Unreleased]
 ### Added
 
+## [2.0.2](https://github.com/clemsonmatt/CAIF/tree/2.0.2) (2019-06-05)
+[Full Changelog](https://github.com/clemsonmatt/CAIF/compare/2.0.1...2.0.2)
+
+### Added
+- Added test email action (2019-06-05)
+
+### Fixed
+- Updated layout for flash messages (2019-06-05)
+
 ## [2.0.1](https://github.com/clemsonmatt/CAIF/tree/2.0.1) (2019-04-09)
 [Full Changelog](https://github.com/clemsonmatt/CAIF/compare/2.0.0...2.0.1)
 
