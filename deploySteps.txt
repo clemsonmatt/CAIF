@@ -8,6 +8,7 @@ GITHUB
 DREAMHOST
 - Connect with sftp
 - Upload any files that have changed
+- If css changes - may need to delete files in web/css folder
 - ssh:
     - php app/console assets:install --env=prod
     - php app/console assetic:dump --env=prod
