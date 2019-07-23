@@ -370,7 +370,7 @@ ul .active {
     max-height: none;
 }
 .collapse.in {
-    background-color: rgba(0, 0, 0, 0.4);
+    /* background-color: rgba(0, 0, 0, 0.4); */
     margin-top      : 15px;
 }
 .collapse.in .dropdown .dropdown-menu li a {
