@@ -14,4 +14,6 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: ~
     mailer_password: ~
+    recaptcha_site_key: sitekey
+    recaptcha_secret_key: secretkey
 

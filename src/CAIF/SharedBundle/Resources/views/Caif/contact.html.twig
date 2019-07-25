@@ -25,11 +25,10 @@
                             </div>
                         </div>
                         {{ form_rest(form) }}
-                        <div class="pull-right">
-                            <button class="btn btn-caif btn-lg">
-                                Submit
-                            </button>
-                        </div>
+                        <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+                        <button class="btn btn-caif btn-lg" style="margin-top: 10px;">
+                            Submit
+                        </button>
                     {{ form_end(form) }}
                 </div>
             </div>

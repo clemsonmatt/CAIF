@@ -30,6 +30,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        recaptcha_site_key: "%recaptcha_site_key%"
+        recaptcha_secret_key: "%recaptcha_secret_key%"
     form:
         resources:
             - 'BraincraftedBootstrapBundle:Form:bootstrap.html.twig'
