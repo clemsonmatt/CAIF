@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- reCAPTCHA for contact us message [#18](https://github.com/clemsonmatt/CAIF/pull/18)
 
 ## [2.0.2](https://github.com/clemsonmatt/CAIF/tree/2.0.2) (2019-06-05)
 [Full Changelog](https://github.com/clemsonmatt/CAIF/compare/2.0.1...2.0.2)
