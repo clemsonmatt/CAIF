@@ -127,7 +127,7 @@ class CaifController extends Controller
             $emailService->sendContactMessage($message);
 
             $this->addFlash('success', 'Message sent.');
-            return $this->redirectToRoute('caif_shared_index');
+            return $this->redirectToRoute('caif_shared_contact');
         }
 
         return $this->render('CAIFSharedBundle:Caif:contact.html.twig', [
