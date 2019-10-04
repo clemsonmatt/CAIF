@@ -136,6 +136,14 @@ class CaifController extends Controller
     }
 
     /**
+     * @Route("/mission", name="caif_shared_mission")
+     */
+    public function missionAction()
+    {
+        return $this->render('CAIFSharedBundle:Caif:mission.html.twig');
+    }
+
+    /**
      * @Route("/testimonials", name="caif_shared_testimonials")
      */
     public function testimonialsAction()
