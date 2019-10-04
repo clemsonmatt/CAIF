@@ -1,69 +1,78 @@
 {% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
 
 {% block page_title %}
-    {# header -- hide if on mobile #}
-    <div class="hidden-xs">
-        <main>
-            <div id="stripes">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <div class="main-img">
-                <center>
-                    <section style="max-width: 700px;">
-                        <img src="{{ asset('bundles/caifshared/images/logoWhite.png') }}" style="width: 100%;">
-                    </section>
-                </center>
-            </div>
-        </main>
-    </div>
-
-    {# show caif logo on mobile #}
-    <div class="main-xs visible-xs">
+    <div class="main-xs hidden-sm hidden-xs">
         <center>
-            <img src="{{ asset('bundles/caifshared/images/logoWhitePurple.png') }}" style="width: 75%;">
+            <img src="{{ asset('bundles/caifshared/images/logoWhite.png') }}" style="width: 25%;">
+        </center>
+    </div>
+    <div class="main-xs visible-sm visible-xs">
+        <center>
+            <img src="{{ asset('bundles/caifshared/images/logoWhite.png') }}" style="width: 75%;">
         </center>
     </div>
 {% endblock %}
 
+
 {% block container_content %}
-<div class="main-subject">
-    <div class="container">
-        <br>
-        <center>
-            <div class="row main-subject-text">
-                <div class="col-xs-12 col-md-6">
-                    <h1 class="heading-lg">Who We Are</h1>
-                    <br>
-                    <p class="col-sm-12 block-text text-left">
-                        Clemson Area International Friendship (CAIF) is a 501c3 community
-                        organization which coordinates hospitality and support
-                        services for foreign students, faculty and visitors in the
-                        Clemson area.
-                        <br><br>
-                    </p>
+<div id="carousel-example-generic" class="carousel slide hidden-sm hidden-xs" data-ride="carousel" data-interval="5000">
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="row">
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header1.JPG') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
                 </div>
-                <div class="col-xs-12 col-md-6">
-                    <h1 class="heading-lg">Our Mission</h1>
-                    <br>
-                    <p class="col-sm-12 block-text text-left">
-                        The mission of Clemson Area International Friendship
-                        is to provide a mutually supportive and positive experience
-                        for both the international visitor and the community member.
-                        CAlF members want to become goodwill ambassadors to all our
-                        international friends.
-                    </p>
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header2.JPG') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
+                </div>
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header3.JPG') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
                 </div>
             </div>
-        </center>
+        </div>
+        <div class="item">
+            <div class="row">
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header5.jpg') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
+                </div>
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header4.JPG') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
+                </div>
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header8.jpg') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="row">
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header7.JPG') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
+                </div>
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header6.jpg') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
+                </div>
+                <div class="col-md-4" style="padding: 0px;">
+                    <img src="{{ asset('bundles/caifshared/images/header/header9.jpg') }}" style="height: 400px; width: 100%; -o-object-fit: contain;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding: 75px 0px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
+                <h1 class="heading-lg text-center" style="margin-top: 0px;">Who We Are</h1>
+                <br>
+                <p class="col-sm-12 block-text text-center">
+                    Clemson Area International Friendship (CAIF) is a 501c3 community organization which coordinates hospitality and support services for foreign students, faculty and visitors in the Clemson area.
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <div style="background-color: #f4f4f4;">
-    <div class="main-subject2">
+    <div style="padding: 150px 0px;">
         <div class="clearfix" style="text-align: center;">
             <div class="col-sm-6">
                 <div style="padding-left: 10%; padding-right: 10%;">
