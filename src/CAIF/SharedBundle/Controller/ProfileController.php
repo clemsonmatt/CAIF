@@ -80,7 +80,6 @@ class ProfileController extends Controller
                 }
 
                 $studentsList = implode(", ", $students);
-
             } elseif ($numHosting > $person->getMaxStudents()) {
                 /* they changed their max number to host below the number they are currently hosting */
                 $students = [];
@@ -257,6 +256,15 @@ class ProfileController extends Controller
     public function archiveAction(Person $person)
     {
         $person->setActive(false);
+
+        // unpair students/host
+        if ($person->getEntityType() == 'Student') {
+            $person->setHost(null);
+        } else {
+            foreach ($person->getStudents() as $student) {
+                $student->setHost(null);
+            }
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();

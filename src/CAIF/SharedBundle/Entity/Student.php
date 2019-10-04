@@ -1091,7 +1091,7 @@ class Student extends Person
      * @param string $host
      * @return Student
      */
-    public function setHost($host)
+    public function setHost($host = null)
     {
         $this->host = $host;
 
