@@ -32,8 +32,16 @@ $(function(){
     $("#type-ahead-input").on("typeahead:selected typeahead:autocompleted", function(e, datum) {
         if (datum.type == 'Student') {
             var route = "/profile/student/" + datum.id + "/show";
+
+            if ($(this).attr('data-section') == 'pairing') {
+                route = "/manage/pair/student/" + datum.id;
+            }
         } else {
             var route = "/profile/community-member/" + datum.id + "/show";
+
+            if ($(this).attr('data-section') == 'pairing') {
+                route = "/manage/pair/host/" + datum.id;
+            }
         }
 
         window.location = route;

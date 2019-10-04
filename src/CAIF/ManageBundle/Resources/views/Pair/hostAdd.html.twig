@@ -1,145 +1,154 @@
-{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% extends 'CAIFManageBundle::layout.html.twig' %}
+
+{% set sub_nav_section = 'pair' %}
 
 {% block page_title_header %}
     Manage Pairing
 {% endblock %}
 
-{% block content %}
-    <br>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a href="{{ path('caif_manage_index') }}">
-                Manage Home
+{% block manage_content %}
+    <div class="row">
+        {# host details #}
+        <div class="col-md-3">
+            <center>
+                <div style="display: block;
+                    width: 200px;
+                    height: 200px;
+                    background: #E6E7ED;
+                    border-radius: 100px;
+                    -webkit-border-radius: 100px;
+                    background-image: url(
+                        {{ asset('/uploads/' ~ host.photo) }}
+                    );
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;">
+                </div>
+            </center>
+            <hr>
+            <center>
+                <h3>{{ host }}</h3>
+                <hr>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Max Students</th>
+                        <td>{{ host.maxStudents }}</td>
+                    </tr>
+                    <tr>
+                        <th>Country Preference</th>
+                        <td>{{ host.getCountryList(true)[host.studentCountry]|default('No preference') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Student Type</th>
+                        <td>{{ host.studentType }}</td>
+                    </tr>
+                </table>
+            </center>
+            <a href="{{ path('caif_shared_profile_host', { person: host.id }) }}" class="btn btn-custom btn-block">
+                View profile
             </a>
-            &raquo;
-            <a href="{{ path('caif_manage_pair_index') }}">
-                Pairing
-            </a>
-            &raquo;
-            {{ host }}
+            <br>
         </div>
-        <div class="panel-body">
-            <div class="row">
-                {# host details #}
-                <div class="col-md-4">
-                    <center>
-                        <div style="display: block;
-                            width: 200px;
-                            height: 200px;
-                            background: #E6E7ED;
-                            border-radius: 100px;
-                            -webkit-border-radius: 100px;
-                            background-image: url(
-                                {{ asset('/uploads/' ~ host.photo) }}
-                            );
-                            background-position: 50% 50%;
-                            background-repeat: no-repeat;
-                            background-size: cover;">
-                        </div>
-                    </center>
-                    <hr>
-                    <center>
-                        <h3>{{ host }}</h3>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Max Students</th>
-                                <td>{{ host.maxStudents }}</td>
-                            </tr>
-                            <tr>
-                                <th>Country Preference</th>
-                                <td>{{ host.getCountryList(true)[host.studentCountry]|default('No preference') }}</td>
-                            </tr>
-                            <tr>
-                                <th>Student Type</th>
-                                <td>{{ host.studentType }}</td>
-                            </tr>
-                        </table>
-                    </center>
-                    <hr>
-                </div>
 
-                <div class="col-md-8">
-                    {# show current students #}
-                    <h3>Current Students</h3>
-                    {% if host.students|length > 0 %}
-                        <table class="table table-bordered table-striped table-hover pointer">
-                            <thead>
-                                <th>Name</th>
-                                <th>Country</th>
-                                <th>Gender</th>
-                                <th>Apt.</th>
-                                <th>Apt. #</th>
-                                <th></th>
-                            </thead>
-                            {% for student in host.students %}
-                                <tr>
-                                    <td class="js-row-click" id="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
-                                        {{ student }}
-                                    </td>
-                                    <td class="js-row-click" id="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
-                                        {{ student.homeCountryName }}
-                                    </td>
-                                    <td class="js-row-click" id="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
-                                        {{ student.gender|capitalize }}
-                                    </td>
-                                    <td class="js-row-click" id="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
-                                        {{ student.apartmentComplex }}
-                                    </td>
-                                    <td class="js-row-click" id="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
-                                        {{ student.apartmentNumber }}
-                                    </td>
-                                    <td>
-                                        <a href="{{ path('caif_manage_pair_remove', {'host': host.id, 'student': student.id}) }}" class="btn btn-danger btn-xs">
-                                            {{ icon('remove') }}
-                                        </a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    {% else %}
-                        <div class="well">
-                            <span class="light-grey">No students yet</span>
-                        </div>
-                    {% endif %}
-
-                    {# add students #}
-                    {% if host.maxStudents > host.students|length %}
-                        <hr>
-                        <h4>
-                            <div class="pull-right">
-                                <small class="text-danger">* Married</small>
-                            </div>
-                            Click to add student
-                        </h4>
-                        <table class="table table-striped table-bordered table-hover pointer">
-                            <thead>
-                                <th>Name</th>
-                                <th>Country</th>
-                                <th>Gender</th>
-                                <th>Apt.</th>
-                                <th>Apt. #</th>
-                                <th>Date</th>
-                            </thead>
-                            {% for student in unpaired_students %}
-                                <tr class="js-row-click {% if student.isGreenville %}success{% endif %}" id="{{ path('caif_manage_pair_add', {'host': host.id, 'student': student.id}) }}">
-                                    <td>
-                                        {# * if married #}
-                                        {% if student.maritalStatus == 'married' %}
-                                            <span class="text-danger">*</span>
-                                        {% endif %}
-                                        {{ student }}
-                                    </td>
-                                    <td>{{ student.getCountryList(true)[student.homeCountry]|default(null) }}</td>
-                                    <td>{{ student.gender|capitalize }}</td>
-                                    <td>{{ student.apartmentComplex }}</td>
-                                    <td>{{ student.apartmentNumber }}</td>
-                                    <td>{{ student.createdAt|date('m/d/Y') }}</td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    {% endif %}
+        <div class="col-md-9">
+            {# show current students #}
+            <h3>Current Students ({{ host.students|length }})</h3>
+            {% if host.students|length > 0 %}
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Gender</th>
+                        <th>Apt.</th>
+                        <th>Apt. #</th>
+                        <th style="width: 1%;"></th>
+                    </thead>
+                    {% for student in host.students %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
+                                    {{ student }}
+                                </a>
+                                {% if not student.isActive %}
+                                    <span class="text-danger">
+                                        {{ icon('exclamation-triangle') }}
+                                        Archived
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ student.homeCountryName }}
+                            </td>
+                            <td>
+                                {{ student.gender|capitalize }}
+                            </td>
+                            <td>
+                                {{ student.apartmentComplex }}
+                            </td>
+                            <td>
+                                {{ student.apartmentNumber }}
+                            </td>
+                            <td>
+                                <a href="{{ path('caif_manage_pair_remove', {'host': host.id, 'student': student.id}) }}" class="btn btn-danger btn-xs">
+                                    {{ icon('remove') }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <div class="well">
+                    <span class="light-grey">No students yet</span>
                 </div>
-            </div>
+            {% endif %}
+
+            {# add students #}
+            <hr>
+            {% if host.students|length >= host.maxStudents %}
+                <div class="alert alert-info">
+                    Host max student limit is {{ host.maxStudents }}
+                </div>
+            {% endif %}
+            <h4>
+                <div class="pull-right">
+                    <small class="text-danger">* Married</small>
+                </div>
+                Avaliable Students ({{ unpaired_students|length }})
+            </h4>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Gender</th>
+                    <th>Apt.</th>
+                    <th>Apt. #</th>
+                    <th>Date</th>
+                    <th style="width: 1%;"></th>
+                </thead>
+                {% for student in unpaired_students %}
+                    <tr class="{% if student.isGreenville %}success{% endif %}">
+                        <td>
+                            {# * if married #}
+                            {% if student.maritalStatus == 'married' %}
+                                <span class="text-danger">*</span>
+                            {% endif %}
+                            <a href="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
+                                {{ student }}
+                            </a>
+                        </td>
+                        <td>{{ student.getCountryList(true)[student.homeCountry]|default(null) }}</td>
+                        <td>{{ student.gender|capitalize }}</td>
+                        <td>{{ student.apartmentComplex }}</td>
+                        <td>{{ student.apartmentNumber }}</td>
+                        <td>{{ student.createdAt|date('m/d/Y') }}</td>
+                        <td>
+                            <a href="{{ path('caif_manage_pair_add', {'host': host.id, 'student': student.id}) }}" class="btn btn-xs btn-default">
+                                Pair
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 {% endblock %}

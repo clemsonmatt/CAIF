@@ -1,24 +1,19 @@
-{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% extends 'CAIFManageBundle::layout.html.twig' %}
+
+{% set sub_nav_section = 'english-class' %}
 
 {% block page_title_header %}
     Manage English Classes
 {% endblock %}
 
-{% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
-        {{ macros.manage_sub_nav('english-class') }}
-    </div>
-    <div class="col-md-9 event">
-        <br>
-        <h3 class="light-grey">
-            <a href="{{ path('caif_manage_english_class_add') }}" class="btn btn-custom btn-sm pull-right">
-                {{ icon('plus') }}
-                Add
-            </a>
-            Current English Classes
-        </h3>
-        {% import 'CAIFSharedBundle:Event:macro.html.twig' as macros %}
-        {{ macros.english_classes(classes, 'caif_manage_english_class_show') }}
-    </div>
+{% block manage_content %}
+    <h3>
+        <a href="{{ path('caif_manage_english_class_add') }}" class="btn btn-custom btn-sm pull-right">
+            {{ icon('plus') }}
+            Add
+        </a>
+        Current English Classes
+    </h3>
+    {% import 'CAIFSharedBundle:Event:macro.html.twig' as macros %}
+    {{ macros.english_classes(classes, 'caif_manage_english_class_show') }}
 {% endblock %}

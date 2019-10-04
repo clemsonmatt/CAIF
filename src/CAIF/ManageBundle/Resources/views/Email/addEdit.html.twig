@@ -1,4 +1,6 @@
-{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% extends 'CAIFManageBundle::layout.html.twig' %}
+
+{% set sub_nav_section = 'emails' %}
 
 {% block page_title_header %}
     {% if email is defined %}
@@ -9,110 +11,103 @@
     Email
 {% endblock %}
 
-{% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
-        {{ macros.manage_sub_nav('emails') }}
-    </div>
-    <div class="col-md-9">
-        <br>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a href="{{ path('caif_manage_email_index') }}">
-                    Sent Emails
-                </a>
-                &raquo;
-                {% if email is defined %}
-                    Edit
-                {% else %}
-                    Add
-                {% endif %}
-            </div>
-            <div class="panel-body">
-                {{ form_start(form) }}
-                    <div style="display: none;">{{ form_row(form.to) }}</div>
+{% block manage_content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="{{ path('caif_manage_email_index') }}">
+                Sent Emails
+            </a>
+            &raquo;
+            {% if email is defined %}
+                Edit
+            {% else %}
+                Add
+            {% endif %}
+        </div>
+        <div class="panel-body">
+            {{ form_start(form) }}
+                <div style="display: none;">{{ form_row(form.to) }}</div>
 
-                    {{ form_label(form.to) }}
-                    <ul class="list-group email-group">
-                        {% for item in form.to %}
-                            <li class="list-group-item pointer js-email-to {% if item.vars.checked == true %}active{% endif %}" id="js_email_to_{{ loop.index0 }}">
-                                <h4 class="list-group-item-heading">
-                                    {{ item.vars.label }}
-                                </h4>
+                {{ form_label(form.to) }}
+                <ul class="list-group email-group">
+                    {% for item in form.to %}
+                        <li class="list-group-item pointer js-email-to {% if item.vars.checked == true %}active{% endif %}" id="js_email_to_{{ loop.index0 }}">
+                            <h4 class="list-group-item-heading">
+                                {{ item.vars.label }}
+                            </h4>
 
-                                {% if item.vars.label == 'All' %}
-                                    <p class="list-group-item-text light-grey">
-                                        All students and community members that are active.
-                                    </p>
-                                {% elseif item.vars.label == 'All Students' %}
-                                    <p class="list-group-item-text light-grey">
-                                        All students that are active. This includes students with hosts, without hosts, and marked as host not needed.
-                                    </p>
-                                {% elseif item.vars.label == 'Students with host' %}
-                                    <p class="list-group-item-text light-grey">
-                                        All students that are active that have a host. This does not include students marked as host not needed.
-                                    </p>
-                                {% elseif item.vars.label == 'Students without hosts' %}
-                                    <p class="list-group-item-text light-grey">
-                                        All students that are active that do not have a host. This does not include students marked as host not needed.
-                                    </p>
-                                {% elseif item.vars.label == 'Students with host not needed' %}
-                                    <p class="list-group-item-text light-grey">
-                                        All students that are active that are marked as host not needed.
-                                    </p>
-                                {% elseif item.vars.label == 'All Community Members' %}
-                                    <p class="list-group-item-text light-grey">
-                                        All community members that are active.
-                                    </p>
-                                {% elseif item.vars.label == 'Only Community Members that host' %}
-                                    <p class="list-group-item-text light-grey">
-                                        All community members that are active and have chose the option to host students.
-                                    </p>
-                                {% elseif item.vars.label == 'Only Community Members that do not host' %}
-                                    <p class="list-group-item-text light-grey">
-                                        All community members that are active and have chose to not host students.
-                                    </p>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
+                            {% if item.vars.label == 'All' %}
+                                <p class="list-group-item-text light-grey">
+                                    All students and community members that are active.
+                                </p>
+                            {% elseif item.vars.label == 'All Students' %}
+                                <p class="list-group-item-text light-grey">
+                                    All students that are active. This includes students with hosts, without hosts, and marked as host not needed.
+                                </p>
+                            {% elseif item.vars.label == 'Students with host' %}
+                                <p class="list-group-item-text light-grey">
+                                    All students that are active that have a host. This does not include students marked as host not needed.
+                                </p>
+                            {% elseif item.vars.label == 'Students without hosts' %}
+                                <p class="list-group-item-text light-grey">
+                                    All students that are active that do not have a host. This does not include students marked as host not needed.
+                                </p>
+                            {% elseif item.vars.label == 'Students with host not needed' %}
+                                <p class="list-group-item-text light-grey">
+                                    All students that are active that are marked as host not needed.
+                                </p>
+                            {% elseif item.vars.label == 'All Community Members' %}
+                                <p class="list-group-item-text light-grey">
+                                    All community members that are active.
+                                </p>
+                            {% elseif item.vars.label == 'Only Community Members that host' %}
+                                <p class="list-group-item-text light-grey">
+                                    All community members that are active and have chose the option to host students.
+                                </p>
+                            {% elseif item.vars.label == 'Only Community Members that do not host' %}
+                                <p class="list-group-item-text light-grey">
+                                    All community members that are active and have chose to not host students.
+                                </p>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
 
-                    {{ form_row(form.subject) }}
-                    <hr>
+                {{ form_row(form.subject) }}
+                <hr>
 
-                    {# format buttons #}
-                    {{ form_label(form.message) }}
-                    <div class="well">
-                        <div class="pull-right">
-                            <button type="button" class="btn btn-default btn-xs js-tags" id="js-bold-tag">
-                                {{ icon('bold') }}
-                            </button>
-                            <button type="button" class="btn btn-default btn-xs js-tags" id="js-italic-tag">
-                                {{ icon('italic') }}
-                            </button>
-                        </div>
-                        <button type="button" class="btn btn-default btn-lg js-tags" id="js-h1-tag">
-                            {{ icon('header') }}
-                            Heading Large
+                {# format buttons #}
+                {{ form_label(form.message) }}
+                <div class="well">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-default btn-xs js-tags" id="js-bold-tag">
+                            {{ icon('bold') }}
                         </button>
-                        <button type="button" class="btn btn-default btn-md js-tags" id="js-h2-tag">
-                            {{ icon('header') }}
-                            Heading Medium
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm js-tags" id="js-h3-tag">
-                            {{ icon('header') }}
-                            Heading Small
+                        <button type="button" class="btn btn-default btn-xs js-tags" id="js-italic-tag">
+                            {{ icon('italic') }}
                         </button>
                     </div>
-
-                    {{ form_widget(form.message) }}
-                    <br>
-                    <button class="btn btn-purple pull-right">
-                        {{ icon('repeat') }}
-                        Review
+                    <button type="button" class="btn btn-default btn-lg js-tags" id="js-h1-tag">
+                        {{ icon('header') }}
+                        Heading Large
                     </button>
-                {{ form_end(form) }}
-            </div>
+                    <button type="button" class="btn btn-default btn-md js-tags" id="js-h2-tag">
+                        {{ icon('header') }}
+                        Heading Medium
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm js-tags" id="js-h3-tag">
+                        {{ icon('header') }}
+                        Heading Small
+                    </button>
+                </div>
+
+                {{ form_widget(form.message) }}
+                <br>
+                <button class="btn btn-purple pull-right">
+                    {{ icon('repeat') }}
+                    Review
+                </button>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

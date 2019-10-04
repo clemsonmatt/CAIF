@@ -1,17 +1,12 @@
-{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% extends 'CAIFManageBundle::layout.html.twig' %}
+
+{% set sub_nav_section = 'international-club' %}
 
 {% block page_title_header %}
     Manage International Clubs
 {% endblock %}
 
-{% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
-        {{ macros.manage_sub_nav('international-club') }}
-    </div>
-    <div class="col-md-9">
-        <br>
-        {% import 'CAIFSharedBundle:Event:macro.html.twig' as macros %}
-        {{ macros.intl_club(club, 'caif_manage_intl_club_index', true) }}
-    </div>
+{% block manage_content %}
+    {% import 'CAIFSharedBundle:Event:macro.html.twig' as macros %}
+    {{ macros.intl_club(club, 'caif_manage_intl_club_index', true) }}
 {% endblock %}

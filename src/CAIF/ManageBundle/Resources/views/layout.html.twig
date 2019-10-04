@@ -1,0 +1,15 @@
+{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+
+{% block full_content %}
+    <div class="row" style="margin: 0px 15px;">
+        <div class="col-md-2">
+            {% import 'CAIFManageBundle::macros.html.twig' as macros %}
+            {{ macros.manage_sub_nav(sub_nav_section) }}
+        </div>
+        <div class="col-md-10">
+            <br>
+            {% block manage_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

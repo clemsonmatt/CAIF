@@ -49,6 +49,11 @@
         <a href="{{ path('caif_shared_profile_student_host', {'person': person.id}) }}" class="list-group-item {% if active_tab == "host" %}active{% endif %}">
             Host Profile
         </a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('caif_manage_pair_student_add', { student: person.id }) }}" class="list-group-item">
+                Manage Pairing
+            </a>
+        {% endif %}
     </ul>
 
     {% if is_granted('ROLE_ADMIN') %}
@@ -99,6 +104,11 @@
             <a href="{{ path('caif_shared_profile_host_student', {'person': person.id}) }}" class="list-group-item {% if active_tab == "students" %}active{% endif %}">
                 Student Profile(s)
             </a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('caif_manage_pair_host_add', { host: person.id }) }}" class="list-group-item">
+                    Manage Pairing
+                </a>
+            {% endif %}
         {% endif %}
     </ul>
 
@@ -129,6 +139,11 @@
                 <hr>
                 <h3 class="secondary-color">{{ person }}</h3>
                 Member since {{ person.createdAt|date('m/d/Y') }}
+                {% if app.user.getEntityType() == 'Admin' %}
+                    <a href="{{ path('caif_shared_profile_student', { person: person.id }) }}" class="btn btn-default btn-block" style="margin-top: 10px;">
+                        View profile
+                    </a>
+                {% endif %}
                 <hr>
             </div>
             <div class="col-md-7">
@@ -357,6 +372,11 @@
                 <hr>
                 <h3 class="secondary-color">{{ person }}</h3>
                 Member since {{ person.createdAt|date('m/d/Y') }}
+                {% if app.user.getEntityType() == 'Admin' %}
+                    <a href="{{ path('caif_shared_profile_host', { person: person.id }) }}" class="btn btn-default btn-block" style="margin-top: 10px;">
+                        View profile
+                    </a>
+                {% endif %}
                 <hr>
             </div>
             <div class="col-md-7">

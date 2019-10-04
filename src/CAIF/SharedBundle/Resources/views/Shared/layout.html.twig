@@ -45,7 +45,7 @@
         {% block page_title %}
             <div class="page-heading">
                 <div class="container">
-                    <h1 class="color-white main-heading">
+                    <h1 class="color-white main-heading" style="padding-left: 30px;">
                         {% block page_title_header %}{% endblock %}
                     </h1>
                 </div>
@@ -76,15 +76,21 @@
             {% endfor %}
         {% endblock %}
 
+        {% block full_content %}
+            <div class="content">
+                <div id="page-wrapper">
+                    {% block container_content %}
+                        <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+                            {% block content %}
+                            {% endblock %}
+                            <br>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
         <div class="content">
             <div id="page-wrapper">
-                {% block container_content %}
-                    <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
-                        {% block content %}
-                        {% endblock %}
-                        <br>
-                    </div>
-                {% endblock %}
                 <hr style="margin: 0px;">
                 {% block footer %}
                     <footer style="padding-top: 20px;">
