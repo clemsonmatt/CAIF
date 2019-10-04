@@ -17,18 +17,17 @@ class Builder extends ContainerAware
             ->setChildrenAttribute('class', 'dropdown-menu');
         $menu['About']->addChild('Who We Are', ['route' => 'caif_shared_about']);
         $menu['About']->addChild('Mission', ['route' => 'caif_shared_mission']);
-        $menu['About']->addChild('Upcoming Events', ['uri' => 'https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/'])->setLinkAttributes(['target' => '_blank']);
 
         $menu->addChild('Host Program', ['class' => 'dropdown-toggle'])
-        ->setAttribute('class', 'dropdown')
-        ->setChildrenAttribute('class', 'dropdown-menu');
+            ->setAttribute('class', 'dropdown')
+            ->setChildrenAttribute('class', 'dropdown-menu');
         $menu['Host Program']->addChild('Intro to Hosting Students', ['route' => 'caif_shared_host_conversation']);
         $menu['Host Program']->addChild('Host Guidelines', ['route' => 'caif_shared_host_guidelines']);
         $menu['Host Program']->addChild('Form For New Hosts', ['route' => 'caif_shared_host_form']);
 
         $menu->addChild('Student Program', ['class' => 'dropdown-toggle'])
-        ->setAttribute('class', 'dropdown')
-        ->setChildrenAttribute('class', 'dropdown-menu');
+            ->setAttribute('class', 'dropdown')
+            ->setChildrenAttribute('class', 'dropdown-menu');
         $menu['Student Program']->addChild('Student Guidelines', ['route' => 'caif_shared_student_guidelines']);
         $menu['Student Program']->addChild('Testimonials', ['route' => 'caif_shared_testimonials']);
         $menu['Student Program']->addChild('Form For New Students', ['route' => 'caif_shared_student_form']);
@@ -42,6 +41,9 @@ class Builder extends ContainerAware
         $menu['Helpful Resources']->addChild('Buying a Used Car', ['uri' => 'https://docs.google.com/presentation/d/1A047101edGc_aDRClVG3GMki5VeQSBofhLwoXjgR6Eo/edit#slide=id.p4'])->setLinkAttributes(['target' => '_blank']);
         $menu['Helpful Resources']->addChild('English Classes', ['route' => 'caif_shared_event_english_classes']);
         $menu['Helpful Resources']->addChild('FAQ', ['route' => 'caif_shared_faq']);
+
+        $menu->addChild('Upcoming Events', ['uri' => 'https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/'])
+            ->setLinkAttributes(['target' => '_blank']);
 
         return $menu;
     }
