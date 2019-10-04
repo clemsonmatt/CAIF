@@ -88,9 +88,9 @@ class PairController extends BaseController
     }
 
     /**
-     * @Route("/host/{host}/student/{student}/add", name="caif_manage_pair_add")
+     * @Route("/host/{host}/student/{student}/add/{currentSection}", name="caif_manage_pair_add", defaults={"currentSection": "host"}, requirements={"currentSection": "host|student"})
      */
-    public function pairAction(Host $host, Student $student)
+    public function pairAction(Host $host, Student $student, $currentSection)
     {
         $student->setHost($host);
 
@@ -124,15 +124,21 @@ class PairController extends BaseController
 
         $this->addFlash('success', (string)$student.' paired with '.(string)$host);
 
+        if ($currentSection == 'student') {
+            return $this->redirectToRoute('caif_manage_pair_student_add', [
+                'student' => $student->getId(),
+            ]);
+        }
+
         return $this->redirectToRoute('caif_manage_pair_host_add', [
             'host' => $host->getId(),
         ]);
     }
 
     /**
-     * @Route("/host/{host}/student/{student}/remove", name="caif_manage_pair_remove")
+     * @Route("/host/{host}/student/{student}/remove/{currentSection}", name="caif_manage_pair_remove", defaults={"currentSection": "host"}, requirements={"currentSection": "host|student"})
      */
-    public function pairRemoveAction(Host $host, Student $student)
+    public function pairRemoveAction(Host $host, Student $student, $currentSection)
     {
         /* remove from pair email list */
         $em         = $this->getDoctrine()->getManager();
@@ -163,6 +169,12 @@ class PairController extends BaseController
         $em->flush();
 
         $this->addFlash('warning', (string)$student.' unpaired from '.(string)$host);
+
+        if ($currentSection == 'student') {
+            return $this->redirectToRoute('caif_manage_pair_student_add', [
+                'student' => $student->getId(),
+            ]);
+        }
 
         return $this->redirectToRoute('caif_manage_pair_host_add', [
             'host' => $host->getId(),
