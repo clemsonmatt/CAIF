@@ -80,7 +80,7 @@
             {% elseif student.hostNotNeeded %}
                 <div class="well">
                     <a href="{{ path('caif_manage_pair_host_needed', {'student': student.id}) }}" class="btn btn-primary btn-sm pull-right">
-                        Add host
+                        Mark as host needed
                     </a>
                     <span class="light-grey">
                         Host not needed
@@ -88,6 +88,9 @@
                 </div>
             {% else %}
                 <div class="well">
+                    <a href="{{ path('caif_manage_pair_host_not_needed', { student: student.id }) }}" class="btn btn-info btn-sm pull-right">
+                        Mark as host not needed
+                    </a>
                     <span class="light-grey">Not paired yet</span>
                 </div>
             {% endif %}
