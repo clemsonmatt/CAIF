@@ -14,6 +14,14 @@ use CAIF\SharedBundle\Entity\Student;
 class StudentController extends Controller
 {
     /**
+     * @Route("/testimonials", name="caif_shared_testimonials")
+     */
+    public function testimonialsAction()
+    {
+        return $this->render('CAIFSharedBundle:Student:testimonials.html.twig');
+    }
+
+    /**
      * @Route("/form", name="caif_shared_student_form")
      */
     public function formAction(Request $request)

@@ -17,20 +17,20 @@ class Builder extends ContainerAware
             ->setChildrenAttribute('class', 'dropdown-menu');
         $menu['About']->addChild('Who We Are', ['route' => 'caif_shared_about']);
         $menu['About']->addChild('Mission', ['route' => 'caif_shared_mission']);
-        $menu['About']->addChild('Testimonials', ['route' => 'caif_shared_testimonials']);
         $menu['About']->addChild('Upcoming Events', ['uri' => 'https://www.facebook.com/groups/ClemsonAreaInternationalFriendship/'])->setLinkAttributes(['target' => '_blank']);
 
         $menu->addChild('Host Program', ['class' => 'dropdown-toggle'])
-            ->setAttribute('class', 'dropdown')
-            ->setChildrenAttribute('class', 'dropdown-menu');
+        ->setAttribute('class', 'dropdown')
+        ->setChildrenAttribute('class', 'dropdown-menu');
         $menu['Host Program']->addChild('Intro to Hosting Students', ['route' => 'caif_shared_host_conversation']);
         $menu['Host Program']->addChild('Host Guidelines', ['route' => 'caif_shared_host_guidelines']);
         $menu['Host Program']->addChild('Form For New Hosts', ['route' => 'caif_shared_host_form']);
 
         $menu->addChild('Student Program', ['class' => 'dropdown-toggle'])
-            ->setAttribute('class', 'dropdown')
-            ->setChildrenAttribute('class', 'dropdown-menu');
+        ->setAttribute('class', 'dropdown')
+        ->setChildrenAttribute('class', 'dropdown-menu');
         $menu['Student Program']->addChild('Student Guidelines', ['route' => 'caif_shared_student_guidelines']);
+        $menu['Student Program']->addChild('Testimonials', ['route' => 'caif_shared_testimonials']);
         $menu['Student Program']->addChild('Form For New Students', ['route' => 'caif_shared_student_form']);
 
         $menu->addChild('Helpful Resources', ['uri' => '#', 'class' => 'dropdown-toggle'])
