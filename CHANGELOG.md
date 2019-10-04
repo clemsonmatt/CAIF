@@ -1,8 +1,11 @@
 # Change Log
 
 ## [Unreleased]
+
+## [2.0.3]
 ### Added
-- reCAPTCHA for contact us message [#18](https://github.com/clemsonmatt/CAIF/pull/18)
+- reCAPTCHA for contact us message [\#18](https://github.com/clemsonmatt/CAIF/pull/18)
+- Updated admin section [\#19](https://github.com/clemsonmatt/CAIF/pull/19)
 
 ## [2.0.2](https://github.com/clemsonmatt/CAIF/tree/2.0.2) (2019-06-05)
 [Full Changelog](https://github.com/clemsonmatt/CAIF/compare/2.0.1...2.0.2)
