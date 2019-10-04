@@ -41,6 +41,7 @@ class Builder extends ContainerAware
         $menu['Helpful Resources']->addChild('Clemson Community Care', ['uri' => 'http://www.clemsoncommunitycare.org/'])->setLinkAttributes(['target' => '_blank']);
         $menu['Helpful Resources']->addChild('Buying a Used Car', ['uri' => 'https://docs.google.com/presentation/d/1A047101edGc_aDRClVG3GMki5VeQSBofhLwoXjgR6Eo/edit#slide=id.p4'])->setLinkAttributes(['target' => '_blank']);
         $menu['Helpful Resources']->addChild('English Classes', ['route' => 'caif_shared_event_english_classes']);
+        $menu['Helpful Resources']->addChild('FAQ', ['route' => 'caif_shared_faq']);
 
         return $menu;
     }
