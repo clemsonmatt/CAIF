@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-## [2.0.3]
+## [2.0.3](https://github.com/clemsonmatt/CAIF/tree/2.0.3) (2019-10-04)
 ### Added
 - reCAPTCHA for contact us message [\#18](https://github.com/clemsonmatt/CAIF/pull/18)
 - Updated admin section [\#19](https://github.com/clemsonmatt/CAIF/pull/19)
