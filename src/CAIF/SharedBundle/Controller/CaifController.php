@@ -81,7 +81,7 @@ class CaifController extends Controller
     }
 
     /**
-     * @Route("/about-us", name="caif_shared_about")
+     * @Route("/who-we-are", name="caif_shared_about")
      */
     public function aboutAction()
     {
