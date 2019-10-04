@@ -2,6 +2,7 @@
 
 namespace CAIF\SharedBundle\Controller;
 
+use ReCaptcha\ReCaptcha;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -107,6 +108,16 @@ class CaifController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $recaptcha = new ReCaptcha($this->container->getParameter('recaptcha_secret_key'));
+            $resp      = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
+
+            if (!$resp->isSuccess()) {
+                $this->addFlash('error', 'Invalid reCAPTCHA');
+                return $this->render('CAIFSharedBundle:Caif:contact.html.twig', [
+                    'form' => $form->createView(),
+                ]);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
@@ -116,7 +127,7 @@ class CaifController extends Controller
             $emailService->sendContactMessage($message);
 
             $this->addFlash('success', 'Message sent.');
-            return $this->redirectToRoute('caif_shared_index');
+            return $this->redirectToRoute('caif_shared_contact');
         }
 
         return $this->render('CAIFSharedBundle:Caif:contact.html.twig', [

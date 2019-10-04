@@ -1,190 +1,226 @@
-{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% extends 'CAIFManageBundle::layout.html.twig' %}
+
+{% set sub_nav_section = 'pair' %}
 
 {% block page_title_header %}
     Manage Pairing
 {% endblock %}
 
-{% block content %}
+{% block manage_content %}
+    <div id="prefetch">
+        <input id="type-ahead-input" type="text" class="typeahead form-control input-lg" placeholder="Search people" data-section="pairing">
+    </div>
     <br>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a href="{{ path('caif_manage_index') }}">
-                Manage Home
+
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active">
+            <a href="#unpaired-tab" data-toggle="tab">
+                Need Paired
+                {{ badge(unpaired_students|length) }}
             </a>
-            &raquo;
-            Pairing
-        </div>
-        <div class="panel-body">
-            <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                <li class="active">
-                    <a href="#unpaired-tab" data-toggle="tab">
-                        Need Paired
-                        {{ badge(unpaired_students|length) }}
-                    </a>
-                </li>
-                <li>
-                    <a href="#paired-tab" data-toggle="tab">
-                        Paired
-                    </a>
-                </li>
-                <li>
-                    <a href="#not-needed-tab" data-toggle="tab">
-                        Host Not Needed
-                    </a>
-                </li>
-                {% if recently_paired %}
-                    <li>
-                        <a href="#recently-paired-tab" data-toggle="tab">
-                            Recently Paired
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-            <br>
+        </li>
+        <li>
+            <a href="#paired-tab" data-toggle="tab">
+                Paired
+                {{ badge(unavailable_hosts|length) }}
+            </a>
+        </li>
+        <li>
+            <a href="#not-needed-tab" data-toggle="tab">
+                Host Not Needed
+                {{ badge(host_not_needed_students|length) }}
+            </a>
+        </li>
+        <li>
+            <a href="#recently-paired-tab" data-toggle="tab">
+                Recently Paired
+                {{ badge(recently_paired|length) }}
+            </a>
+        </li>
+    </ul>
+    <br>
 
-            <div class="tab-content">
-                {# not paired #}
-                <div class="tab-pane active" id="unpaired-tab">
-                    <div class="row">
-                        {# hosts #}
-                        <div class="col-sm-6">
-                            <h3>Available Hosts</h3>
-                            <table class="table table-striped table-bordered table-hover pointer">
-                                <thead>
-                                    <th class="col-sm-6">Name</th>
-                                    <th class="col-sm-5">Preference</th>
-                                    <th class="col-sm-1">Num/Max</th>
-                                </thead>
-                                {% for host in available_hosts %}
-                                    <tr class="js-row-click" id="{{ path('caif_manage_pair_host_add', {'host': host.id}) }}">
-                                        <td>{{ host }}</td>
-                                        <td>{{ host.preferences|raw }}</td>
-                                        <td>
-                                            {{ host.students|length }} / {{ host.maxStudents }}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
-
-                        {# students #}
-                        <div class="col-sm-6">
-                            <h3>
-                                <div class="pull-right">
-                                    <small class="text-danger">* Married</small>
-                                </div>
-                                Students
-                            </h3>
-                            <table class="table table-striped table-bordered table-hover pointer">
-                                <thead>
-                                    <th class="col-sm-5">Name</th>
-                                    <th class="col-sm-3">Country</th>
-                                    <th class="col-sm-2">Gender</th>
-                                    <th class="col-sm-2">Date</th>
-                                </thead>
-                                {% for student in unpaired_students %}
-                                    <tr class="{% if student.isGreenville %}success{% endif %} js-row-click" id="{{ path('caif_manage_pair_student_add', {'student': student.id}) }}">
-                                        <td>
-                                            {# * if married #}
-                                            {% if student.maritalStatus == 'married' %}
-                                                <span class="text-danger">*</span>
-                                            {% endif %}
-                                            {{ student }}
-                                        </td>
-                                        <td>{{ student.homeCountryName }}</td>
-                                        <td>{{ student.gender|capitalize }}</td>
-                                        <td>{{ student.createdAt|date('m/d/Y') }}</td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                {# already paired #}
-                <div class="tab-pane" id="paired-tab">
-                    {% for host in unavailable_hosts %}
-                        <a href="{{ path('caif_manage_pair_host_add', {'host': host.id}) }}">
-                            <h4 class="secondary-color">{{ host }}</h4>
-                        </a>
-                        <table class="table table-bordered table-striped table-hover pointer">
-                            {% for student in host.students %}
-                                <tr class="js-row-click" id="{{ path('caif_manage_pair_student_add', {'student': student.id}) }}">
-                                    <td>{{ student }}</td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    {% endfor %}
-                </div>
-
-                {# host not needed #}
-                <div class="tab-pane" id="not-needed-tab">
-                    <table class="table table-striped table-bordered table-hover pointer">
+    <div class="tab-content">
+        {# not paired #}
+        <div class="tab-pane active" id="unpaired-tab">
+            <div class="row">
+                {# hosts #}
+                <div class="col-sm-6">
+                    <h3>Available Hosts</h3>
+                    <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <th>Name</th>
-                            <th>Country</th>
-                            <th>Gender</th>
+                            <th>Preference</th>
+                            <th>Num/Max</th>
+                            <th style="width: 1%;"></th>
                         </thead>
-                        {% for student in host_not_needed_students %}
-                            <tr class="js-row-click" id="{{ path('caif_manage_pair_student_add', {'student': student.id}) }}">
-                                <td>{{ student }}</td>
-                                <td>{{ student.homeCountryName }}</td>
-                                <td>{{ student.gender|capitalize }}</td>
-                            </tr>
-                        {% else %}
+                        {% for host in available_hosts %}
                             <tr>
-                                <td colspan="3">
-                                    <span class="light-grey">None</span>
+                                <td>
+                                    <a href="{{ path('caif_shared_profile_host', { person: host.id }) }}">
+                                        {{ host }}
+                                    </a>
+                                </td>
+                                <td>{{ host.preferences|raw }}</td>
+                                <td>{{ host.students|length }} / {{ host.maxStudents }}</td>
+                                <td>
+                                    <a href="{{ path('caif_manage_pair_host_add', {'host': host.id}) }}" class="btn btn-xs btn-default">
+                                        Pair
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}
                     </table>
                 </div>
 
-                {# recently paired #}
-                {% if recently_paired %}
-                    <div class="tab-pane" id="recently-paired-tab">
-                        <a href="{{ path('caif_manage_pair_send_emails') }}" class="btn btn-purple">
-                            {{ icon('send') }}
-                            Send pairing emails
-                        </a>
-                        <br><br>
-                        <table class="table table-striped table-bordered table-hover pointer">
-                            <thead>
-                                <th>Host</th>
-                                <th>Student(s)</th>
-                                <th>Email Status</th>
-                            </thead>
-                            {% for paired_email in recently_paired %}
-                                <tr>
-                                    <td>
-                                        <a href="{{ path('caif_manage_pair_host_add', {'host': paired_email.host.id}) }}">
-                                            {{ paired_email.host }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {% for student in paired_email.students %}
-                                            <a href="{{ path('caif_manage_pair_student_add', {'student': student.id}) }}">
-                                                {{ student -}}
-                                                {%- if not loop.last -%},{% endif %}
-                                            </a>
-                                        {% endfor %}
-                                    </td>
-                                    <td>
-                                        {% if paired_email.sent %}
-                                            {{ icon('sent') }}
-                                            Sent
-                                        {% else %}
-                                            {{ icon('ban') }}
-                                            Not Sent
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    </div>
-                {% endif %}
+                {# students #}
+                <div class="col-sm-6">
+                    <h3>
+                        <div class="pull-right">
+                            <small class="text-danger">* Married</small>
+                        </div>
+                        Unpaired Students
+                    </h3>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <th>Name</th>
+                            <th>Country</th>
+                            <th>Gender</th>
+                            <th>Date</th>
+                            <th style="width: 1%;"></th>
+                        </thead>
+                        {% for student in unpaired_students %}
+                            <tr class="{% if student.isGreenville %}success{% endif %}">
+                                <td>
+                                    {# * if married #}
+                                    {% if student.maritalStatus == 'married' %}
+                                        <span class="text-danger">*</span>
+                                    {% endif %}
+                                    <a href="{{ path('caif_shared_profile_student', { person: student.id }) }}">
+                                        {{ student }}
+                                    </a>
+                                </td>
+                                <td>{{ student.homeCountryName }}</td>
+                                <td>{{ student.gender|capitalize }}</td>
+                                <td>{{ student.createdAt|date('m/d/Y') }}</td>
+                                <td>
+                                    <a href="{{ path('caif_manage_pair_student_add', { student: student.id }) }}" class="btn btn-xs btn-default">
+                                        Pair
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
+        </div>
+
+        {# already paired #}
+        <div class="tab-pane" id="paired-tab">
+            {% for host in unavailable_hosts %}
+                <a href="{{ path('caif_manage_pair_host_add', {'host': host.id}) }}">
+                    <h4 class="secondary-color">{{ host }}</h4>
+                </a>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            {% for student in host.students %}
+                                <a href="{{ path('caif_manage_pair_student_add', { student: student.id }) }}" style="color: #333;">
+                                    {{ student -}}
+                                </a>
+                                {%- if not loop.last -%}
+                                    ,
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </table>
+            {% endfor %}
+        </div>
+
+        {# host not needed #}
+        <div class="tab-pane" id="not-needed-tab">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Gender</th>
+                    <th style="width: 1%;"></th>
+                </thead>
+                {% for student in host_not_needed_students %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('caif_shared_profile_student', { person: student.id }) }}">
+                                {{ student }}
+                            </a>
+                        </td>
+                        <td>{{ student.homeCountryName }}</td>
+                        <td>{{ student.gender|capitalize }}</td>
+                        <td>
+                            <a href="{{ path('caif_manage_pair_student_add', { student: student.id }) }}" class="btn btn-xs btn-default">
+                                Pair
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">
+                            <span class="light-grey">None</span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        {# recently paired #}
+        <div class="tab-pane" id="recently-paired-tab">
+            {% if recently_paired|length %}
+                <a href="{{ path('caif_manage_pair_send_emails') }}" class="btn btn-purple">
+                    {{ icon('send') }}
+                    Send pairing emails
+                </a>
+                <br><br>
+            {% endif %}
+            <table class="table table-striped table-bordered table-hover pointer">
+                <thead>
+                    <th>Host</th>
+                    <th>Student(s)</th>
+                    <th>Email Status</th>
+                </thead>
+                {% for paired_email in recently_paired %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('caif_manage_pair_host_add', {'host': paired_email.host.id}) }}">
+                                {{ paired_email.host }}
+                            </a>
+                        </td>
+                        <td>
+                            {% for student in paired_email.students %}
+                                <a href="{{ path('caif_manage_pair_student_add', {'student': student.id}) }}">
+                                    {{ student -}}
+                                    {%- if not loop.last -%},{% endif %}
+                                </a>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% if paired_email.sent %}
+                                {{ icon('sent') }}
+                                Sent
+                            {% else %}
+                                {{ icon('ban') }}
+                                Not Sent
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">
+                            {{ icon('ban') }}
+                            None
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 {% endblock %}

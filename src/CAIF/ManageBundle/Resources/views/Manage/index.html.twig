@@ -1,169 +1,164 @@
-{% extends 'CAIFSharedBundle:Shared:layout.html.twig' %}
+{% extends 'CAIFManageBundle::layout.html.twig' %}
+
+{% set sub_nav_section = 'home' %}
 
 {% block page_title_header %}
     Manage
 {% endblock %}
 
-{% block content %}
-    <div class="col-md-3">
-        {% import 'CAIFManageBundle::macros.html.twig' as macros %}
-        {{ macros.manage_sub_nav('home') }}
+{% block manage_content %}
+    <div id="prefetch">
+        <input id="type-ahead-input" type="text" class="typeahead form-control input-lg" placeholder="Search people">
     </div>
-    <div class="col-md-9">
-        <br>
-        <div id="prefetch">
-            <input id="type-ahead-input" type="text" class="typeahead form-control input-lg" placeholder="Search people">
+    <br>
+
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active">
+            <a href="#students-tab" data-toggle="tab">
+                Students
+                {{ badge(students|length) }}
+            </a>
+        </li>
+        <li>
+            <a href="#host-tab" data-toggle="tab">
+                Hosts
+                {{ badge(hosts|length) }}
+            </a>
+        </li>
+        <li>
+            <a href="#member-tab" data-toggle="tab">
+                Community Members
+                {{ badge(members|length) }}
+            </a>
+        </li>
+        <li>
+            <a href="#archive-tab" data-toggle="tab">
+                Archived
+                {{ badge(archived|length) }}
+            </a>
+        </li>
+    </ul>
+    <br>
+
+    <div class="tab-content">
+        {# students #}
+        <div class="tab-pane active" id="students-tab">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="{{ path('caif_manage_download', {'type': 'students'}) }}" class="btn btn-custom btn-sm">
+                        {{ icon('download') }}
+                        Download
+                    </a>
+                </div>
+            </div>
+            <br>
+            <table class="table table-striped table-bordered table-hover table-pointer">
+                <thead>
+                    <th class="col-sm-3">First Name</th>
+                    <th class="col-sm-3">Last Name</th>
+                    <th class="col-sm-3">Host Family</th>
+                    <th class="col-sm-3">Email</th>
+                </thead>
+                {% for student in students %}
+                    <tr class="js-row-click {% if student.greenville %}success{% endif %}" id="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
+                        <td>{{ student.firstName }}</td>
+                        <td>{{ student.lastName }}</td>
+                        <td>{{ student.host }}</td>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <br>
 
-        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-            <li class="active">
-                <a href="#students-tab" data-toggle="tab">
-                    Students
-                    {{ badge(students|length) }}
-                </a>
-            </li>
-            <li>
-                <a href="#host-tab" data-toggle="tab">
-                    Hosts
-                    {{ badge(hosts|length) }}
-                </a>
-            </li>
-            <li>
-                <a href="#member-tab" data-toggle="tab">
-                    Community Members
-                    {{ badge(members|length) }}
-                </a>
-            </li>
-            <li>
-                <a href="#archive-tab" data-toggle="tab">
-                    Archived
-                    {{ badge(archived|length) }}
-                </a>
-            </li>
-        </ul>
-        <br>
-
-        <div class="tab-content">
-            {# students #}
-            <div class="tab-pane active" id="students-tab">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a href="{{ path('caif_manage_download', {'type': 'students'}) }}" class="btn btn-custom btn-sm">
-                            {{ icon('download') }}
-                            Download
-                        </a>
-                    </div>
+        {# hosts #}
+        <div class="tab-pane" id="host-tab">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="{{ path('caif_manage_download', {'type': 'hosts'}) }}" class="btn btn-custom btn-sm">
+                        {{ icon('download') }}
+                        CSV
+                    </a>
+                    <a href="{{ path('caif_manage_host_printable') }}" class="btn btn-custom btn-sm" target="_blank">
+                        {{ icon('file-o') }}
+                        Printable List
+                    </a>
                 </div>
-                <br>
-                <table class="table table-striped table-bordered table-hover table-pointer">
-                    <thead>
-                        <th class="col-sm-3">First Name</th>
-                        <th class="col-sm-3">Last Name</th>
-                        <th class="col-sm-3">Host Family</th>
-                        <th class="col-sm-3">Email</th>
-                    </thead>
-                    {% for student in students %}
-                        <tr class="js-row-click {% if student.greenville %}success{% endif %}" id="{{ path('caif_shared_profile_student', {'person': student.id}) }}">
-                            <td>{{ student.firstName }}</td>
-                            <td>{{ student.lastName }}</td>
-                            <td>{{ student.host }}</td>
-                            <td>{{ student.email }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
             </div>
+            <br>
+            <table class="table table-striped table-bordered table-hover table-pointer">
+                <thead>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Students</th>
+                    <th class="col-sm-3">Phone</th>
+                    <th class="col-sm-3">Email</th>
+                </thead>
+                {% for host in hosts %}
+                    <tr class="js-row-click" id="{{ path('caif_shared_profile_host', {'person': host.id}) }}">
+                        <td>{{ host }}</td>
+                        <td>
+                            {% for student in host.students %}
+                                {%- if not loop.first -%},{% endif %}
+                                {{ student -}}
+                            {% endfor %}
+                        </td>
+                        <td>{{ host.bestPhone }}</td>
+                        <td>{{ host.email }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
 
-            {# hosts #}
-            <div class="tab-pane" id="host-tab">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a href="{{ path('caif_manage_download', {'type': 'hosts'}) }}" class="btn btn-custom btn-sm">
-                            {{ icon('download') }}
-                            CSV
-                        </a>
-                        <a href="{{ path('caif_manage_host_printable') }}" class="btn btn-custom btn-sm" target="_blank">
-                            {{ icon('file-o') }}
-                            Printable List
-                        </a>
-                    </div>
+        {# non-host members #}
+        <div class="tab-pane" id="member-tab">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="{{ path('caif_manage_download', {'type': 'community-members'}) }}" class="btn btn-custom btn-sm">
+                        {{ icon('download') }}
+                        Download
+                    </a>
                 </div>
-                <br>
-                <table class="table table-striped table-bordered table-hover table-pointer">
-                    <thead>
-                        <th class="col-sm-3">Name</th>
-                        <th class="col-sm-3">Students</th>
-                        <th class="col-sm-3">Phone</th>
-                        <th class="col-sm-3">Email</th>
-                    </thead>
-                    {% for host in hosts %}
-                        <tr class="js-row-click" id="{{ path('caif_shared_profile_host', {'person': host.id}) }}">
-                            <td>{{ host }}</td>
-                            <td>
-                                {% for student in host.students %}
-                                    {%- if not loop.first -%},{% endif %}
-                                    {{ student -}}
-                                {% endfor %}
-                            </td>
-                            <td>{{ host.bestPhone }}</td>
-                            <td>{{ host.email }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
             </div>
+            <br>
+            <table class="table table-striped table-bordered table-hover table-pointer">
+                <thead>
+                    <th class="col-sm-4">Name</th>
+                    <th class="col-sm-4">Phone</th>
+                    <th class="col-sm-4">Email</th>
+                </thead>
+                {% for member in members %}
+                    <tr class="js-row-click" id="{{ path('caif_shared_profile_host', {'person': member.id}) }}">
+                        <td>{{ member }}</td>
+                        <td>{{ member.bestPhone }}</td>
+                        <td>{{ member.email }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
 
-            {# non-host members #}
-            <div class="tab-pane" id="member-tab">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a href="{{ path('caif_manage_download', {'type': 'community-members'}) }}" class="btn btn-custom btn-sm">
-                            {{ icon('download') }}
-                            Download
-                        </a>
-                    </div>
-                </div>
-                <br>
-                <table class="table table-striped table-bordered table-hover table-pointer">
-                    <thead>
-                        <th class="col-sm-4">Name</th>
-                        <th class="col-sm-4">Phone</th>
-                        <th class="col-sm-4">Email</th>
-                    </thead>
-                    {% for member in members %}
-                        <tr class="js-row-click" id="{{ path('caif_shared_profile_host', {'person': member.id}) }}">
-                            <td>{{ member }}</td>
-                            <td>{{ member.bestPhone }}</td>
-                            <td>{{ member.email }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-
-            {# archived #}
-            <div class="tab-pane" id="archive-tab">
-                <table class="table table-striped table-bordered table-hover table-pointer">
-                    <thead>
-                        <th class="col-sm-3">Name</th>
-                        <th class="col-sm-3">Phone</th>
-                        <th class="col-sm-3">Email</th>
-                        <th class="col-sm-3">Type</th>
-                    </thead>
-                    {% for person in archived %}
-                        <tr class="js-row-click" id="{{ path('caif_shared_profile_' ~ person.entityType|lower, {'person': person.id}) }}">
-                            <td>{{ person }}</td>
-                            <td>
-                                {% if person.phone is defined %}
-                                    {{ person.phone }}
-                                {% else %}
-                                    {{ person.bestPhone }}
-                                {% endif %}
-                            </td>
-                            <td>{{ person.email }}</td>
-                            <td>{{ person.entityType }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
+        {# archived #}
+        <div class="tab-pane" id="archive-tab">
+            <table class="table table-striped table-bordered table-hover table-pointer">
+                <thead>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Phone</th>
+                    <th class="col-sm-3">Email</th>
+                    <th class="col-sm-3">Type</th>
+                </thead>
+                {% for person in archived %}
+                    <tr class="js-row-click" id="{{ path('caif_shared_profile_' ~ person.entityType|lower, {'person': person.id}) }}">
+                        <td>{{ person }}</td>
+                        <td>
+                            {% if person.phone is defined %}
+                                {{ person.phone }}
+                            {% else %}
+                                {{ person.bestPhone }}
+                            {% endif %}
+                        </td>
+                        <td>{{ person.email }}</td>
+                        <td>{{ person.entityType }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 {% endblock %}
