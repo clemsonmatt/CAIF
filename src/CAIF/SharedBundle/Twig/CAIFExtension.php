@@ -3,18 +3,19 @@
 namespace CAIF\SharedBundle\Twig;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * @DI\Service("caif_shared.twig_extension")
  * @DI\Tag("twig.extension")
  */
-class CAIFExtension extends \Twig_Extension
+class CAIFExtension extends AbstractExtension
 {
     public function getFilters()
     {
         return [
-            'csv' => new \Twig_Filter_Method($this, 'csvEscape'),
+            new TwigFilter('csv', [$this, 'csvEscape']),
         ];
     }
 

@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.*",
+        "symfony/symfony": "2.8.*",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/dbal": "2.5.*",
@@ -26,7 +26,8 @@
         "braincrafted/bootstrap-bundle": "~2.0",
         "pugx/autocompleter-bundle": "^1.2",
         "white-october/pagerfanta-bundle": "1.0",
-        "google/recaptcha": "~1.1"
+        "google/recaptcha": "~1.1",
+        "doctrine/annotations": "^1.8"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

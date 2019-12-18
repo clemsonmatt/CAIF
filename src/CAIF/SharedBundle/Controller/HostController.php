@@ -14,14 +14,6 @@ use CAIF\SharedBundle\Entity\Host;
 class HostController extends Controller
 {
     /**
-     * @Route("/about", name="caif_shared_host_about")
-     */
-    public function aboutAction()
-    {
-        return $this->render('CAIFSharedBundle:Host:about.html.twig');
-    }
-
-    /**
      * @Route("/form", name="caif_shared_host_form")
      */
     public function formAction(Request $request)
