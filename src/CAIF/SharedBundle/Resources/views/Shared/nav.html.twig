@@ -13,10 +13,20 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 {# <li style="padding-top: 10px; margin-right: 20px;">
-                    <a href="#" class="btn btn-header" style="padding: 12px 20px;">
-                        Donate
-                    </a>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_s-xclick" />
+                        <input type="hidden" name="hosted_button_id" value="A4YHE4E3NNPJ4" />
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+                    </form>
                 </li> #}
+                <li style="padding-top: 10px; margin-right: 20px;">
+                    <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="A4YHE4E3NNPJ4">
+                        <input type="submit" class="btn btn-header" role="button" value="Donate" style="padding: 10px 25px; font-size: 1em; margin-top: 2px;">
+                    </form>
+                </li>
                 <li>
                     <a href="{{ path('caif_shared_contact') }}">
                         Contact Us
