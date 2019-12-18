@@ -81,7 +81,7 @@ class CaifController extends Controller
     }
 
     /**
-     * @Route("/about-us", name="caif_shared_about")
+     * @Route("/who-we-are", name="caif_shared_about")
      */
     public function aboutAction()
     {
@@ -136,11 +136,11 @@ class CaifController extends Controller
     }
 
     /**
-     * @Route("/testimonials", name="caif_shared_testimonials")
+     * @Route("/mission", name="caif_shared_mission")
      */
-    public function testimonialsAction()
+    public function missionAction()
     {
-        return $this->render('CAIFSharedBundle:Caif:testimonials.html.twig');
+        return $this->render('CAIFSharedBundle:Caif:mission.html.twig');
     }
 
     /**
