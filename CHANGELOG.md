@@ -1,6 +1,8 @@
 # Change Log
 
-## [Unreleased]
+## [2.0.4](https://github.com/clemsonmatt/CAIF/tree/2.0.4) (2019-12-18)
+### Added
+- Admin changes, general updates, added donation button [\#20](https://github.com/clemsonmatt/CAIF/pull/20)
 
 ## [2.0.3](https://github.com/clemsonmatt/CAIF/tree/2.0.3) (2019-10-04)
 ### Added
